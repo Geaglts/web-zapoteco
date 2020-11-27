@@ -1,6 +1,6 @@
-import {useState} from 'react';
+import { useState } from "react";
 
-import styles from "./inicio.module.css";
+import styles from "./Inicio.module.css";
 import AddText from "./AddText";
 import AddImage from "./AddImage";
 import { NavLink } from "react-router-dom";
@@ -10,8 +10,8 @@ function Inicio() {
   const [op, setOp] = useState(1);
 
   const changeView = (op) => () => {
-    setOp(op)
-  }
+    setOp(op);
+  };
 
   return (
     <header>
@@ -22,7 +22,7 @@ function Inicio() {
               <img src="https://picsum.photos/200/200" alt="" />
             </div>
             <div className={styles.perfilDatos}>
-              <a>Odalager17</a>
+              <h1 onClick={changeView(4)}>Odalager17</h1>
               <h2>odalager17@gmail.com</h2>
               <h2>17190000</h2>
             </div>
@@ -60,7 +60,9 @@ function menu(opc) {
       return <AddText />;
     case 2:
       return <AddImage />;
-    case 2:
+    case 3:
+      return <AddText />;
+    case 4:
       return <AddText />;
   }
 }

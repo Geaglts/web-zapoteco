@@ -171,9 +171,7 @@ button:focus {
   text-align: center;
 }
 
-a {
-  text-decoration: none;
-  color: var(--terciario);
+.btnEnlaces{
   font-size: 0.9375rem;
 }
 

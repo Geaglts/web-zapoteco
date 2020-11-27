@@ -2,7 +2,7 @@ import styles from "./AddText.module.css";
 
 function AddText() {
   return (
-    <form action="inicio2.html" method="GET">
+    <form action="" method="GET">
       <div className={styles.formulario}>
         <div className={styles.contArriba}>
           <h1 className={styles.titulo}>

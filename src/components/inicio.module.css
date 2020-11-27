@@ -29,6 +29,9 @@ header {
 .right {
   width: 40%;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: var(--secundario);
   animation: desplazar 1s forwards;
 }
@@ -56,7 +59,7 @@ header {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 0 180px;
+  padding: 0 11.25rem;
   width: 60%;
   height: 100vh;
   animation: mostrar 3s forwards;
@@ -73,21 +76,24 @@ header {
 
 .left .menu {
   width: 100%;
-  height: 100px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 60px;
+  height: 6.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
 }
 
 .left .menu .opc {
+  width: 6.25rem;
+  height: 6.25rem;
   background: var(--terciario);
-  border-radius: 20px;
+  border-radius: 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   text-align: center;
-  box-shadow: 0px 20px 30px 0px rgba(51, 51, 51, 0.5);
+  box-shadow: 0 1.25rem 1.875rem 0 rgba(51, 51, 51, 0.5);
   transition: all 0.4s ease;
   cursor: pointer;
 }
@@ -98,20 +104,20 @@ header {
 }
 
 .left .menu .opc ion-icon {
-  font-size: 30px;
+  font-size: 1.875rem;
   color: var(--primario);
 }
 
 .left .perfil {
   width: 100%;
-  height: 100px;
+  height: 6.25rem;
   display: flex;
-  margin-bottom: 100px;
+  margin-bottom: 6.25rem;
 }
 
 .left .perfil .perfilAvatar img {
-  width: 100px;
-  height: 100px;
+  width: 6.25rem;
+  height: 6.25rem;
   border-radius: 50%;
 }
 
@@ -119,19 +125,20 @@ header {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 0 1.25rem;
 }
 
-.left .perfil .perfilDatos a {
+.left .perfil .perfilDatos h1 {
   color: var(--primario);
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: bold;
   text-transform: uppercase;
+  cursor: pointer;
 }
 
 .left .perfil .perfilDatos h2 {
   color: var(--secundario);
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: bold;
 }
 

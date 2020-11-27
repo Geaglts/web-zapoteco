@@ -1,5 +1,5 @@
 // import "./app.css";
-import styles from "./login.module.css";
+import styles from "./Login.module.css";
 import {
   NavLink,
 } from "react-router-dom";
@@ -50,10 +50,12 @@ function Login() {
                 </button>
               </div>
               <div className={styles.contAbajo}>
-                <a>
-                  ¿No tienes una cuenta?
-                  <span>Registrate</span>
-                </a>
+                <div className={styles.btnEnlaces}>
+                  <NavLink className="link" to="/Registro">
+                    ¿No tienes una cuenta?
+                    <span> Registrate</span>
+                  </NavLink>
+                </div>
               </div>
             </div>
           </form>

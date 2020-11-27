@@ -1,10 +1,7 @@
 import Login from "./components/Login";
 import Inicio from "./components/Inicio";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import Registro from "./components/Registro";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -17,7 +14,9 @@ function App() {
           <Route path="/Inicio">
             <Inicio />
           </Route>
-          <Route path="/dashboard">{/* <Dashboard /> */}</Route>
+          <Route path="/Registro">
+            <Registro />
+          </Route>
         </Switch>
       </div>
     </Router>
