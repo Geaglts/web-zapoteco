@@ -1,6 +1,6 @@
 :root {
   --primario: #ff019e;
-  --secundario: #1F1E2E;
+  --secundario: #1f1e2e;
   --terciario: #fff;
   --cuarto: #898989;
 }
@@ -40,6 +40,9 @@ body {
 }
 
 .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40%;
   height: 100vh;
   background: var(--secundario);

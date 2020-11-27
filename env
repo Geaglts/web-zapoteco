@@ -1,2 +1,0 @@
-REACT_APP_APOLLO_SERVER_URI="https://bichuga-lee-server.herokuapp.com/graphql"
-REACT_APP_APOLLO_SERVER_URI_LOCAl="http://localhost:5000/graphql"
