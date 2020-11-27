@@ -1,0 +1,116 @@
+/* FORMULARIO PARA INGRESAR */
+
+.contArriba {
+  height: 200px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Lato", sans-serif;
+}
+
+.titulo {
+  color: var(--terciario);
+  font-size: 30px;
+}
+
+span {
+  color: var(--primario);
+}
+
+p {
+  color: var(--cuarto);
+}
+
+.contMedio {
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.campo {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.campo h5 {
+  color: var(--terciario);
+}
+
+.campo input {
+  font-family: "Lato", sans-serif;
+  width: 250px;
+  height: 50px;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid var(--primario);
+  border-radius: 5px;
+  background: var(--secundario);
+  font-size: 15px;
+  color: var(--terciario);
+}
+
+input:focus {
+  outline: none;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--cuarto);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--terciario);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--terciario);
+}
+
+.contMedio a {
+  font-size: 12px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+button {
+  background: var(--primario);
+  padding: 10px 30px;
+  color: var(--secundario);
+  font-size: 15px;
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.4s ease;
+}
+
+button:hover {
+  background: transparent;
+  border-color: var(--primario);
+  color: var(--primario);
+}
+
+button:focus {
+  outline: none;
+}
+
+.contAbajo {
+  height: 50px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: var(--terciario);
+  font-size: 15px;
+}
