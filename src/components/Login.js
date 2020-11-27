@@ -21,7 +21,7 @@ function Login() {
           </div>
         </div>
         <div className={styles.right}>
-          <form action="inicio.html" method="GET">
+          <form action="" method="GET">
             <div className={styles.formulario}>
               <div className={styles.contArriba}>
                 <h1 className={styles.titulo}>
@@ -42,7 +42,7 @@ function Login() {
                     placeholder="Contraseña"
                   />
                 </div>
-                <a href>Olvide mi contraseña</a>
+                <a>Olvide mi contraseña</a>
                 <button type="submit" name="ingresar">
                   <NavLink className="link" to="/Inicio">
                     Ingresar
@@ -50,7 +50,7 @@ function Login() {
                 </button>
               </div>
               <div className={styles.contAbajo}>
-                <a href="registro.html">
+                <a>
                   ¿No tienes una cuenta?
                   <span>Registrate</span>
                 </a>
