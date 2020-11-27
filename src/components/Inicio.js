@@ -7,7 +7,7 @@ import { NavLink } from "react-router-dom";
 
 function Inicio() {
   // const [variable, funcion] = useState(valor);
-  const [op, setOp] = useState(0);
+  const [op, setOp] = useState(1);
 
   const changeView = (op) => () => {
     setOp(op)
