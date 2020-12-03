@@ -11,6 +11,10 @@ import { getToken } from "../token";
 function Inicio() {
     // const [variable, funcion] = useState(valor);
     const [op, setOp] = useState(1);
+    /**
+     * Operacines de graphql
+     */
+    const aboutMe = useQuery(GraphqlOperations.Query.ABOUT_ME);
 
     /**
      * Verificar que el usuario ya este logueado
@@ -20,9 +24,14 @@ function Inicio() {
         return <Redirect to="/" />;
     }
 
-    /**
-     * Operacines de graphql
-     */
+    if (aboutMe.loading) {
+        return null;
+    }
+
+    let myData = {};
+    if (aboutMe?.data) {
+        myData = aboutMe.data.aboutMe;
+    }
 
     const changeView = (op) => () => {
         setOp(op);
@@ -37,9 +46,9 @@ function Inicio() {
                             <img src="https://picsum.photos/200/200" alt="" />
                         </div>
                         <div className={styles.perfilDatos}>
-                            <h1 onClick={changeView(4)}>Odalager17</h1>
-                            <h2>odalager17@gmail.com</h2>
-                            <h2>17190000</h2>
+                            <h1 onClick={changeView(4)}>{myData.usuario}</h1>
+                            <h2>{myData.correo}</h2>
+                            <h2>{myData.ncontrol}</h2>
                         </div>
                     </div>
                     <div className={styles.menu}>
@@ -87,7 +96,7 @@ function menu(opc) {
 export default Inicio;
 
 const GraphqlOperations = {
-    Mutation: {
+    Query: {
         ABOUT_ME: gql`
             {
                 aboutMe {
