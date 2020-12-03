@@ -5,8 +5,6 @@ import AddText from "./AddText";
 import AddImage from "./AddImage";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
-import { Redirect } from "react-router-dom";
-import { getToken } from "../token";
 
 function Inicio() {
     // const [variable, funcion] = useState(valor);
@@ -15,14 +13,6 @@ function Inicio() {
      * Operacines de graphql
      */
     const aboutMe = useQuery(GraphqlOperations.Query.ABOUT_ME);
-
-    /**
-     * Verificar que el usuario ya este logueado
-     * si no lo esta, lo redirige al login.
-     */
-    if (!getToken()) {
-        return <Redirect to="/" />;
-    }
 
     if (aboutMe.loading) {
         return null;
