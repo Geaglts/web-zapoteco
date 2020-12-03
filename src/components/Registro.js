@@ -1,7 +1,6 @@
 import { useState } from "react";
 import styles from "./Registro.module.css";
 import { NavLink, Redirect } from "react-router-dom";
-import { getToken } from "../token";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 
@@ -22,14 +21,6 @@ function Registro() {
      */
 
     const [registerMutation] = useMutation(GraphqlOperations.Mutation.REGISTER);
-
-    /**
-     * Verificar que el usuario ya este logueado
-     * si lo esta, lo redirige al inicio.
-     */
-    if (getToken()) {
-        return <Redirect to="/inicio" />;
-    }
 
     const onChangeInput = (field) => (v) => {
         setVariables({ ...variables, [field]: v.target.value });
