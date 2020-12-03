@@ -1,8 +1,50 @@
 // import "./app.css";
+import { useState } from "react";
 import styles from "./Login.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
+import { gql } from "apollo-boost";
+import { useMutation } from "@apollo/react-hooks";
+import { setAdmin, setToken } from "../token";
 
 function Login() {
+    const [loading, setLoading] = useState(false);
+    const [redirect, setRedirect] = useState(false);
+    const [values, setValues] = useState({
+        user: "geaglts",
+        contrasena: "miguelangel",
+    });
+
+    /**
+     * Operaciones de graphql
+     */
+
+    const [loginMutation] = useMutation(GraphqlOperations.Mutation.LOGIN);
+
+    const onChangeInput = (field) => (v) => {
+        setValues({ ...values, [field]: v.target.value });
+    };
+
+    const login = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        const loginResponse = await loginMutation({ variables: values });
+        const { admin, token } = loginResponse.data.login;
+
+        setAdmin(admin);
+        setToken(token);
+
+        setLoading(false);
+        setRedirect(true);
+    };
+
+    if (loading) {
+        return null;
+    }
+
+    if (redirect) {
+        return <Redirect to="/Inicio" />;
+    }
+
     return (
         <header>
             <div className={styles.content}>
@@ -20,7 +62,7 @@ function Login() {
                     </div>
                 </div>
                 <div className={styles.right}>
-                    <form action="" method="GET">
+                    <form>
                         <div className={styles.formulario}>
                             <div className={styles.contArriba}>
                                 <h1 className={styles.titulo}>
@@ -32,24 +74,32 @@ function Login() {
                                 <div className={styles.campo}>
                                     <ion-icon name="person" />
                                     <input
+                                        required
                                         type="text"
                                         name="txtuser"
                                         placeholder="Usuario"
+                                        value={values.user}
+                                        onChange={onChangeInput("user")}
                                     />
                                 </div>
                                 <div className={styles.campo}>
                                     <ion-icon name="lock-closed" />
                                     <input
+                                        required
                                         type="password"
                                         name="txtpass"
                                         placeholder="Contraseña"
+                                        value={values.contrasena}
+                                        onChange={onChangeInput("contrasena")}
                                     />
                                 </div>
                                 <a>Olvide mi contraseña</a>
-                                <button type="submit" name="ingresar">
-                                    <NavLink className="link" to="/Inicio">
-                                        Ingresar
-                                    </NavLink>
+                                <button
+                                    type="submit"
+                                    name="ingresar"
+                                    onClick={login}
+                                >
+                                    Ingresar
                                 </button>
                             </div>
                             <div className={styles.contAbajo}>
@@ -69,3 +119,13 @@ function Login() {
 }
 
 export default Login;
+
+const GraphqlOperations = {
+    Mutation: {
+        LOGIN: gql`
+            mutation($user: String!, $contrasena: String!) {
+                login(user: $user, contrasena: $contrasena)
+            }
+        `,
+    },
+};
