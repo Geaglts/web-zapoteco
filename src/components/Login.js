@@ -30,17 +30,26 @@ function Login() {
         const loginResponse = await loginMutation({ variables: values });
         const { admin, token } = loginResponse.data.login;
 
-        setAdmin(admin);
-        setToken(token);
-
         setLoading(false);
-        setRedirect(true);
+
+        if (token) {
+            setAdmin(admin);
+            setToken(token);
+            setRedirect(true);
+        }
     };
 
+    /**
+     * Si algun proceso esta cargando no se muestra nada
+     * puede mostrar una vista de carga si se desea.
+     */
     if (loading) {
         return null;
     }
 
+    /**
+     * Si los datos son correctos lo redirige al inicio.
+     */
     if (redirect) {
         return <Redirect to="/Inicio" />;
     }
