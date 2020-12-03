@@ -19,7 +19,7 @@ function Login() {
 
     /**
      * Verificar que el usuario ya este logueado
-     * si no lo esta, lo redirige al login.
+     * si lo esta, lo redirige al inicio.
      */
     if (getToken()) {
         return <Redirect to="/inicio" />;
