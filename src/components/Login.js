@@ -9,10 +9,7 @@ import { setAdmin, setToken } from "../token";
 function Login() {
     const [loading, setLoading] = useState(false);
     const [redirect, setRedirect] = useState(false);
-    const [values, setValues] = useState({
-        user: "geaglts",
-        contrasena: "miguelangel",
-    });
+    const [values, setValues] = useState({ user: "", contrasena: "" });
 
     /**
      * Operaciones de graphql
