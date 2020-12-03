@@ -4,7 +4,7 @@ import styles from "./Login.module.css";
 import { NavLink, Redirect } from "react-router-dom";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
-import { setAdmin, setToken } from "../token";
+import { setAdmin, setToken, getToken } from "../token";
 
 function Login() {
     const [loading, setLoading] = useState(false);
@@ -16,6 +16,14 @@ function Login() {
      */
 
     const [loginMutation] = useMutation(GraphqlOperations.Mutation.LOGIN);
+
+    /**
+     * Verificar que el usuario ya este logueado
+     * si no lo esta, lo redirige al login.
+     */
+    if (getToken()) {
+        return <Redirect to="/inicio" />;
+    }
 
     const onChangeInput = (field) => (v) => {
         setValues({ ...values, [field]: v.target.value });
@@ -99,7 +107,7 @@ function Login() {
                                         onChange={onChangeInput("contrasena")}
                                     />
                                 </div>
-                                <a>Olvide mi contraseña</a>
+                                <a href="/">Olvide mi contraseña</a>
                                 <button
                                     type="submit"
                                     name="ingresar"
