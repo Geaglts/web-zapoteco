@@ -1,13 +1,6 @@
 import styles from "./Visitante.module.css";
 import { useHistory } from "react-router-dom";
-
-const BotonFlotante = ({ label, ...rest }) => {
-    return (
-        <div className={styles.flotanteContainer} {...rest}>
-            <h3 className={styles.flotanteLabel}>{label}</h3>
-        </div>
-    );
-};
+import { BotonFlotante } from "../../../modules";
 
 export default function Visitante({ correo, usuario, ncontrol }) {
     const history = useHistory();
