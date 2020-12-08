@@ -27,6 +27,16 @@ export default function Categorias() {
         setValues({ ...values, [field]: e.target.value });
     };
 
+    const changeToUpdate = (categoria) => {
+        setUpdatingCategoria(true);
+        setValues({ categoria: categoria.categoria, id: categoria.id });
+    };
+
+    const cancelar = () => {
+        setUpdatingCategoria(false);
+        setValues({ categoria: "", id: "" });
+    };
+
     const add = async (e) => {
         e.preventDefault();
         if (values.categoria.length > 0) {
@@ -43,11 +53,6 @@ export default function Categorias() {
         }
     };
 
-    const changeToUpdate = (categoria) => {
-        setUpdatingCategoria(true);
-        setValues({ categoria: categoria.categoria, id: categoria.id });
-    };
-
     const update = async (e) => {
         e.preventDefault();
         if (values.categoria.length > 0) {
@@ -60,6 +65,7 @@ export default function Categorias() {
                 );
                 categorias[updateIndex] = values;
                 setValues({ categoria: "", id: "" });
+                setUpdatingCategoria(false);
             }
         }
     };
@@ -89,6 +95,9 @@ export default function Categorias() {
                             {updatingCategoria ? "Actualizar" : "Agregar"}
                         </button>
                     </form>
+                    {updatingCategoria && (
+                        <button onClick={cancelar}>cancelar</button>
+                    )}
                 </section>
                 <section>
                     <h4>Lista de tipos</h4>

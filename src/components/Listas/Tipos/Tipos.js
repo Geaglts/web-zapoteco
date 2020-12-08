@@ -27,6 +27,16 @@ export default function Tipos() {
         setValues({ ...values, [field]: e.target.value });
     };
 
+    const cancelar = () => {
+        setUpdatingTipo(false);
+        setValues({ tipo: "", id: "" });
+    };
+
+    const changeToUpdate = (tipo) => {
+        setUpdatingTipo(true);
+        setValues({ tipo: tipo.tipo, id: tipo.id });
+    };
+
     const add = async (e) => {
         e.preventDefault();
         if (values.tipo.length > 0) {
@@ -40,11 +50,6 @@ export default function Tipos() {
         }
     };
 
-    const changeToUpdate = (tipo) => {
-        setUpdatingTipo(true);
-        setValues({ tipo: tipo.tipo, id: tipo.id });
-    };
-
     const update = async (e) => {
         e.preventDefault();
         if (values.tipo.length > 0) {
@@ -55,6 +60,7 @@ export default function Tipos() {
                 let updateIndex = tipos.findIndex(({ id }) => id === values.id);
                 tipos[updateIndex] = values;
                 setValues({ tipo: "", id: "" });
+                setUpdatingTipo(false);
             }
         }
     };
@@ -84,6 +90,9 @@ export default function Tipos() {
                             {updatingTipo ? "Actualizar" : "Agregar"}
                         </button>
                     </form>
+                    {updatingTipo && (
+                        <button onClick={cancelar}>cancelar</button>
+                    )}
                 </section>
                 <section>
                     <h4>Lista de tipos</h4>
