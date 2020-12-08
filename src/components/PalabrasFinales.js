@@ -1,4 +1,5 @@
 import styles from "./PalabrasFinales.module.css";
+import logo from "../assets/img2.jpg";
 import { useHistory } from "react-router-dom";
 import { gql, useQuery } from "@apollo/react-hooks";
 
@@ -19,20 +20,33 @@ function PalabrasFinales() {
 
         return (
             <div>
-                <button className={styles.regresar} onClick={goToRegresar}>
-                    Regresar
-                </button>
-                <h1>Diccionario</h1>
-								{
-									words.map((word) => {
-										return (
-											<div className={styles.card}>
-												
-											</div>
-										);
-									})
-								}
-                <table className={styles.table}>
+                <div className={styles.header}>
+                    <h1>Diccionario de palabras</h1>
+                    <button className={styles.regresar} onClick={goToRegresar}>
+                        Volver al inicio
+                    </button>
+                </div>
+                <div className={styles.contenedor}>
+                    <div className={styles.contCard}>
+                        {words.map((word) => {
+                            return (
+                                <div className={styles.card}>
+                                    <div className={styles.contImg}>
+                                        <div className={styles.contInfo}>
+                                            <div className={styles.info}>
+                                                <h2>{word.tipo}</h2>
+                                                <h1>{word.texto}</h1>
+                                                <button>Ver más</button>
+                                            </div>
+                                        </div>
+                                        <img src={logo} />
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+                {/* <table className={styles.table}>
                     <thead>
                         <tr>
                             <th>Zapoteco</th>
@@ -57,7 +71,7 @@ function PalabrasFinales() {
                             );
                         })}
                     </tbody>
-                </table>
+                </table> */}
             </div>
         );
     } else {
