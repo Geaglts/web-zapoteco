@@ -3,12 +3,15 @@ import { useState } from "react";
 import styles from "./Inicio.module.css";
 import AddText from "./AddText";
 import AddImage from "./AddImage";
+import { Redirect } from "react-router-dom";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
+import { deleteAdmin, deleteToken } from "../token";
 
 function Inicio() {
     // const [variable, funcion] = useState(valor);
     const [op, setOp] = useState(1);
+    const [goToLogin, setGoToLogin] = useState(false);
     /**
      * Operacines de graphql
      */
@@ -27,9 +30,22 @@ function Inicio() {
         setOp(op);
     };
 
+    const cerrarSesion = () => {
+        deleteAdmin();
+        deleteToken();
+        setGoToLogin(true);
+    };
+
+    if (goToLogin) {
+        return <Redirect to="/" />;
+    }
+
     return (
         <header>
             <div className={styles.content}>
+                <button className={styles.cerrarSesion} onClick={cerrarSesion}>
+                    cerrar sesión
+                </button>
                 <div className={styles.left}>
                     <div className={styles.perfil}>
                         <div className={styles.perfilAvatar}>
