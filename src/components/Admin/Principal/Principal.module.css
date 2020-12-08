@@ -1,0 +1,35 @@
+::-webkit-scrollbar {
+    display: none;
+}
+
+.container {
+    color: white;
+}
+
+.misDatos {
+    background-color: white;
+}
+
+.misDatos {
+    padding: 1em;
+}
+
+.misDatos h1 {
+    color: #333;
+    font-size: 22pt;
+}
+
+.misDatos p {
+    color: #797979;
+    text-transform: capitalize;
+}
+
+.misDatos button {
+    margin-top: 10px;
+    padding: 7px 9px;
+}
+
+.menus {
+    display: flex;
+    flex-wrap: wrap;
+}

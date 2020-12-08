@@ -1,4 +1,4 @@
-export default function (roles = [], validRoles = []) {
+const hasRoles = (roles = [], validRoles = []) => {
     for (let rol of validRoles) {
         if (roles.includes(rol)) {
             return true;
@@ -6,4 +6,6 @@ export default function (roles = [], validRoles = []) {
     }
 
     return false;
-}
+};
+
+export default hasRoles;

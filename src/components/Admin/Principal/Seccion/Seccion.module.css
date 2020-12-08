@@ -1,0 +1,22 @@
+.listas {
+    background-color: white;
+    width: 40%;
+    margin: 40px auto 0 auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.listas h3 {
+    color: #333;
+    font-size: 22pt;
+}
+
+.listas button {
+    background-color: white;
+    color: #333;
+    width: 200px;
+    margin-top: 10px;
+}
