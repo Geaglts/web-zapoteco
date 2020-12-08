@@ -4,7 +4,7 @@
     background-color: white;
     margin: 4em auto;
     width: 70%;
-    height: 50%;
+    height: 292px;
     border-radius: 4px;
     padding: 3em;
     box-shadow: 0 0 10px 0 #888888;
@@ -30,4 +30,12 @@
     font-size: 22pt;
     font-weight: bold;
     text-transform: capitalize;
+}
+
+/* Boton Flotante */
+.botonera {
+    margin-top: 2em;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
 }
