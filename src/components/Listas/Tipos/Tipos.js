@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { useHistory } from "react-router-dom";
-import styles from "./Tipos.module.css";
+// import styles from "./Tipos.module.css";
 import hasRoles from "../../../utils/hasRoles";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function Tipos() {
     const history = useHistory();
