@@ -1,21 +1,20 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { useHistory } from "react-router-dom";
-// import styles from "./Categorias.module.css";
 import hasRoles from "../../../utils/hasRoles";
 import { useState } from "react";
 
-export default function Categorias() {
+export default function Contexto() {
     const history = useHistory();
-    const [updatingCategoria, setUpdatingCategoria] = useState(false);
-    const [values, setValues] = useState({ id: "", categoria: "" });
+    const [updatingContexto, setUpdatingContexto] = useState(false);
+    const [values, setValues] = useState({ id: "", contexto: "" });
 
     const myData = useQuery(GraphqlOp.query.GET_ROLES);
-    const cateforiasData = useQuery(GraphqlOp.query.GET_CATEGORIA);
-    const [addCategoria] = useMutation(GraphqlOp.mutation.ADD_CATEGORIA);
-    const [updateCategoria] = useMutation(GraphqlOp.mutation.UPDATE_CATEGORIA);
+    const contextosData = useQuery(GraphqlOp.query.GET_CONTEXTOS);
+    const [addContexto] = useMutation(GraphqlOp.mutation.ADD_CONTEXTO);
+    const [updateContexto] = useMutation(GraphqlOp.mutation.UPDATE_CONTEXTO);
 
-    if (myData.loading || cateforiasData.loading) {
+    if (myData.loading || contextosData.loading) {
         return null;
     }
 
@@ -27,50 +26,48 @@ export default function Categorias() {
         setValues({ ...values, [field]: e.target.value });
     };
 
-    const changeToUpdate = (categoria) => {
-        setUpdatingCategoria(true);
-        setValues({ categoria: categoria.categoria, id: categoria.id });
+    const cancelar = () => {
+        setUpdatingContexto(false);
+        setValues({ tipo: "", id: "" });
     };
 
-    const cancelar = () => {
-        setUpdatingCategoria(false);
-        setValues({ categoria: "", id: "" });
+    const changeToUpdate = (contexto) => {
+        setUpdatingContexto(true);
+        setValues({ contexto: contexto.contexto, id: contexto.id });
     };
 
     const add = async (e) => {
         e.preventDefault();
-        if (values.categoria.length > 0) {
-            const { data } = await addCategoria({
-                variables: { categoria: values.categoria },
+        if (values.contexto.length > 0) {
+            const { data } = await addContexto({
+                variables: { contexto: values.contexto },
             });
-            if (data.newCategory.status) {
-                categorias.push({
-                    id: categorias.length + 1,
-                    categoria: values.categoria,
-                });
-                setValues({ categoria: "" });
+            console.log(data);
+            if (data?.newContexto) {
+                contextos.push(data?.newContexto);
+                setValues({ contexto: "" });
             }
         }
     };
 
     const update = async (e) => {
         e.preventDefault();
-        if (values.categoria.length > 0) {
-            const { data } = await updateCategoria({
+        if (values.contexto.length > 0) {
+            const { data } = await updateContexto({
                 variables: values,
             });
-            if (data.updateCategory?.status) {
-                let updateIndex = categorias.findIndex(
+            if (data?.updateContexto) {
+                let updateIndex = contextos.findIndex(
                     ({ id }) => id === values.id
                 );
-                categorias[updateIndex] = values;
-                setValues({ categoria: "", id: "" });
-                setUpdatingCategoria(false);
+                contextos[updateIndex] = data?.updateContexto;
+                setValues({ contexto: "", id: "" });
+                setUpdatingContexto(false);
             }
         }
     };
 
-    let categorias = cateforiasData.data.getCategories;
+    let contextos = contextosData.data.getContextos;
 
     const { roles, admin } = myData.data.aboutMe;
     const usuarioTieneLosRoles = hasRoles(roles, ["capturador"]);
@@ -78,50 +75,48 @@ export default function Categorias() {
     if (usuarioTieneLosRoles || admin) {
         return (
             <div>
-                <h1>Tipos</h1>
+                <h1>Contextos</h1>
                 <button onClick={goTo(admin ? "/admin" : "/inicio")}>
                     Regresar
                 </button>
                 <section>
-                    <h4>Nueva categoria</h4>
+                    <h4>Nuevo contexto</h4>
                     <form>
                         <input
                             required
-                            placeholder="categoria"
-                            value={values.categoria}
-                            onChange={handleChange("categoria")}
+                            placeholder="contexto"
+                            value={values.contexto}
+                            onChange={handleChange("contexto")}
                         />
-                        <button onClick={updatingCategoria ? update : add}>
-                            {updatingCategoria ? "Actualizar" : "Agregar"}
+                        <button onClick={updatingContexto ? update : add}>
+                            {updatingContexto ? "Actualizar" : "Agregar"}
                         </button>
                     </form>
-                    {updatingCategoria && (
+                    {updatingContexto && (
                         <button onClick={cancelar}>cancelar</button>
                     )}
                 </section>
                 <section>
-                    <h4>Lista de categorias</h4>
+                    <h4>Lista de contextos</h4>
                     <table>
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Categoria</th>
-                                <th>opciones</th>
+                                <th>Contexto</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {categorias &&
-                                categorias.map((categoria, index) => {
+                            {contextos &&
+                                contextos.map((contexto, index) => {
                                     return (
-                                        <tr key={categoria.id}>
+                                        <tr key={contexto.id}>
                                             <td>{index + 1}</td>
-                                            <td>{categoria.categoria}</td>
+                                            <td>{contexto.contexto}</td>
                                             <td>
                                                 <button
                                                     onClick={() =>
-                                                        changeToUpdate(
-                                                            categoria
-                                                        )
+                                                        changeToUpdate(contexto)
                                                     }
                                                 >
                                                     actualizar
@@ -151,24 +146,30 @@ const GraphqlOp = {
                 }
             }
         `,
-        GET_CATEGORIA: gql`
+        GET_CONTEXTOS: gql`
             {
-                getCategories {
+                getContextos {
                     id
-                    categoria
+                    contexto
                 }
             }
         `,
     },
     mutation: {
-        ADD_CATEGORIA: gql`
-            mutation($categoria: String!) {
-                newCategory(categoria: $categoria)
+        ADD_CONTEXTO: gql`
+            mutation($contexto: String!) {
+                newContexto(contexto: $contexto) {
+                    id
+                    contexto
+                }
             }
         `,
-        UPDATE_CATEGORIA: gql`
-            mutation($id: Int!, $categoria: String!) {
-                updateCategory(id: $id, categoria: $categoria)
+        UPDATE_CONTEXTO: gql`
+            mutation($id: Int!, $contexto: String!) {
+                updateContexto(id: $id, contexto: $contexto) {
+                    id
+                    contexto
+                }
             }
         `,
     },

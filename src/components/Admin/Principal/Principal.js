@@ -41,6 +41,7 @@ export default function Principal() {
                 <Seccion label="Listas y Modificaciones">
                     <button onClick={goTo("/tipos")}>Tipos</button>
                     <button onClick={goTo("/categorias")}>Categorias</button>
+                    <button onClick={goTo("/contextos")}>Contextos</button>
                 </Seccion>
             </section>
         </div>

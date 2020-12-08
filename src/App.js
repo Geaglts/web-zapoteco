@@ -4,7 +4,7 @@ import Registro from "./components/Registro";
 import PalabrasFinales from "./components/PalabrasFinales";
 
 import { AdminPrincipal } from "./components/Admin";
-import { Categorias, Tipos } from "./components/Listas";
+import { Categorias, Tipos, Contexto } from "./components/Listas";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { UserRoute, NoUserRoutes, AdminRoutes } from "./routeCheckers";
@@ -21,6 +21,7 @@ function App() {
                         component={Categorias}
                     />
                     <UserRoute exact path="/tipos" component={Tipos} />
+                    <UserRoute exact path="/contextos" component={Contexto} />
                     <UserRoute path="/inicio" component={Inicio} />
 
                     <NoUserRoutes exact path="/" component={Login} />
