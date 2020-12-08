@@ -23,6 +23,15 @@ function PalabrasFinales() {
                     Regresar
                 </button>
                 <h1>Diccionario</h1>
+								{
+									words.map((word) => {
+										return (
+											<div className={styles.card}>
+												
+											</div>
+										);
+									})
+								}
                 <table className={styles.table}>
                     <thead>
                         <tr>
