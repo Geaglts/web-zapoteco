@@ -49,3 +49,8 @@ h1 {
     background-color: #1f1e2e;
     color: white;
 }
+
+.regresar {
+    position: absolute;
+    right: 2em;
+}

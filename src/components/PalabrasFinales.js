@@ -1,18 +1,27 @@
 import styles from "./PalabrasFinales.module.css";
+import { useHistory } from "react-router-dom";
 import { gql, useQuery } from "@apollo/react-hooks";
 
 function PalabrasFinales() {
+    const history = useHistory();
     const wordsQuery = useQuery(GraphqlOp.Query.GET_WORDS);
 
     if (wordsQuery.loading) {
         return null;
     }
 
+    const goToRegresar = () => {
+        history.push("/inicio");
+    };
+
     if (wordsQuery.data?.data) {
         let words = wordsQuery.data?.data;
 
         return (
             <div>
+                <button className={styles.regresar} onClick={goToRegresar}>
+                    Regresar
+                </button>
                 <h1>Diccionario</h1>
                 <table className={styles.table}>
                     <thead>

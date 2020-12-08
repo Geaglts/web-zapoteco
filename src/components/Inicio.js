@@ -8,6 +8,12 @@ import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 import { deleteAdmin, deleteToken } from "../token";
 
+// Utils
+import hasRoles from "../utils/hasRoles";
+// Mis modulos
+import { Boton } from "../modules";
+import { Visitante, Capturador, Experto } from "./Usuarios";
+
 function Inicio() {
     // const [variable, funcion] = useState(valor);
     const [op, setOp] = useState(1);
@@ -15,16 +21,23 @@ function Inicio() {
     /**
      * Operacines de graphql
      */
-    const aboutMe = useQuery(GraphqlOperations.Query.ABOUT_ME);
+    const aboutMe = useQuery(GraphqlOp.Query.ABOUT_ME);
 
     if (aboutMe.loading) {
         return null;
     }
 
     let myData = {};
+    let roles = [];
     if (aboutMe?.data) {
+        aboutMe.refetch();
         myData = aboutMe.data.aboutMe;
+        roles = aboutMe.data.aboutMe.roles;
     }
+
+    const userHasRolVisitante = hasRoles(roles, ["visitante"]);
+    const userHasRolCapturador = hasRoles(roles, ["capturador"]);
+    const userHasRolExperto = hasRoles(roles, ["experto"]);
 
     const changeView = (op) => () => {
         setOp(op);
@@ -40,68 +53,47 @@ function Inicio() {
         return <Redirect to="/" />;
     }
 
-    return (
-        <header>
-            <div className={styles.content}>
-                <button className={styles.cerrarSesion} onClick={cerrarSesion}>
-                    cerrar sesión
-                </button>
-                <div className={styles.left}>
-                    <div className={styles.perfil}>
-                        <div className={styles.perfilAvatar}>
-                            <img src="https://picsum.photos/200/200" alt="" />
-                        </div>
-                        <div className={styles.perfilDatos}>
-                            <h1 onClick={changeView(4)}>{myData.usuario}</h1>
-                            <h2>{myData.correo}</h2>
-                            <h2>{myData.ncontrol}</h2>
-                        </div>
-                    </div>
-                    <div className={styles.menu}>
-                        <div className={styles.opc} onClick={changeView(1)}>
-                            <ion-icon name="text" />
-                            <h6>
-                                Nuevo <br /> texto
-                            </h6>
-                        </div>
-                        <div className={styles.opc} onClick={changeView(2)}>
-                            <ion-icon name="image" />
-                            <h6>
-                                Nueva <br /> imagen
-                            </h6>
-                        </div>
-                        <div className={styles.opc} onClick={changeView(3)}>
-                            <ion-icon name="musical-note" />
-                            <h6>
-                                Nuevo <br /> audio
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-                <div className={styles.right}>{menu(op)}</div>
+    if (userHasRolVisitante) {
+        return (
+            <div className={styles.container}>
+                <Boton
+                    label="cerrar sesión"
+                    onClick={cerrarSesion}
+                    styles={styles.boton}
+                />
+                <Visitante {...myData} />
             </div>
-        </header>
-    );
-}
-
-function menu(opc) {
-    switch (opc) {
-        case 1:
-            return <AddText />;
-        case 2:
-            return <AddImage />;
-        case 3:
-            return <AddText />;
-        case 4:
-            return <AddText />;
-        default:
-            return null;
+        );
+    } else if (userHasRolCapturador) {
+        return (
+            <div className={styles.container}>
+                <Boton
+                    label="cerrar sesión"
+                    onClick={cerrarSesion}
+                    styles={styles.boton}
+                />
+                <Capturador {...myData} />
+            </div>
+        );
+    } else if (userHasRolExperto) {
+        return (
+            <div className={styles.container}>
+                <Boton
+                    label="cerrar sesión"
+                    onClick={cerrarSesion}
+                    styles={styles.boton}
+                />
+                <Experto {...myData} />
+            </div>
+        );
+    } else {
+        return null;
     }
 }
 
 export default Inicio;
 
-const GraphqlOperations = {
+const GraphqlOp = {
     Query: {
         ABOUT_ME: gql`
             {
@@ -113,6 +105,7 @@ const GraphqlOperations = {
                     usuario
                     correo
                     ncontrol
+                    roles
                 }
             }
         `,
