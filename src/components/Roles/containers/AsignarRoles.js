@@ -3,11 +3,12 @@ import CheckboxGroup from "../componentes/CheckboxGroup";
 import Buscador from "../componentes/Buscador";
 import Button from "../componentes/Button";
 import styles from "../Roles.module.css";
+import { gql, useMutation } from "@apollo/react-hooks";
 import classnames from "classnames";
 import axios from "axios";
 
 function AsignarRoles() {
-    const [correo, setCorreo] = useState("juggantis@gmail.com");
+    const [correo, setCorreo] = useState("");
     const [usuario, setUsuario] = useState(null);
 
     // Axios
@@ -46,7 +47,7 @@ function AsignarRoles() {
         setCorreo("");
     };
 
-    const onSubmitCancelar = () => {
+    const onSubmitCerrar = () => {
         setUsuario(null);
     };
 
@@ -61,7 +62,7 @@ function AsignarRoles() {
                 <Usuario
                     key={usuario.id}
                     usuario={usuario}
-                    onPressCancelar={onSubmitCancelar}
+                    onPressCerrar={onSubmitCerrar}
                 />
             )}
         </>
@@ -71,23 +72,53 @@ function AsignarRoles() {
 export default AsignarRoles;
 
 const Usuario = ({ usuario, ...rest }) => {
-    const { onPressCancelar } = rest;
+    const [loading, setLoading] = useState(false);
+    const { onPressCerrar } = rest;
 
-    const verificar = (rolids) => {
-        console.log(rolids);
+    const [setRols] = useMutation(GraphqlOp.mutation.SET_ROLS);
+
+    const modificarRoles = async (rolids) => {
+        try {
+            setLoading(true);
+            let variables = { rolids, usuarioid: usuario.id };
+            const { data } = await setRols({ variables });
+            if (data.setRols?.status) {
+                alert("Roles cambiados correctamente");
+                onPressCerrar();
+            }
+        } catch (error) {
+            alert("Verifique su informacion");
+        } finally {
+            setLoading(false);
+        }
     };
 
     let nombreCompleto = `${usuario.nombre} ${usuario.apaterno} ${usuario.amaterno}`;
 
+    if (loading) {
+        return null;
+    }
+
     return (
         <div className={classnames(styles.usuarioItem)}>
-            <Button callback={onPressCancelar} label="Cancelar" />
+            <Button callback={onPressCerrar} label="Cerrar" />
             <h3>{nombreCompleto}</h3>
             <h4 className={classnames(styles.usuarioCorreo)}>
                 {usuario.correo}
             </h4>
             <h4 className={classnames(styles.rolesTitle)}>Roles</h4>
-            <CheckboxGroup verificar={verificar} roles={usuario.roles} />
+            <CheckboxGroup verificar={modificarRoles} roles={usuario.roles} />
         </div>
     );
+};
+
+const GraphqlOp = {
+    query: {},
+    mutation: {
+        SET_ROLS: gql`
+            mutation($rolids: [Int], $usuarioid: Int!) {
+                setRols(rolids: $rolids, usuarioid: $usuarioid)
+            }
+        `,
+    },
 };
