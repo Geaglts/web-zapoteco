@@ -39,7 +39,7 @@ function PalabrasFinales() {
                                                 <button>Ver más</button>
                                             </div>
                                         </div>
-                                        <img src={logo} />
+                                        <img src={logo} alt="logo" />
                                     </div>
                                 </div>
                             );

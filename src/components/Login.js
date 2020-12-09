@@ -31,13 +31,6 @@ function Login() {
 
         setLoading(false);
 
-        if (admin) {
-            setAdmin(admin);
-            setToken(token);
-            history.push("/admin");
-            return;
-        }
-
         if (token) {
             setAdmin(admin);
             setToken(token);
