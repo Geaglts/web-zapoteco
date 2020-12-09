@@ -62,29 +62,13 @@ export default function Visitante({ correo, ncontrol, nombre, apaterno }) {
                 </div>
                 <div className={styles.contButtons}>
                     <div className={styles.buttons}>
-                        <button onClick={goToDiccionario}>Diccionario de palabras</button>
+                        <button onClick={goToDiccionario}>
+                            Diccionario de palabras
+                        </button>
                         <button>Agregar Palabra</button>
                     </div>
                 </div>
             </div>
         </div>
-        // <div className={styles.content}>
-        //     <h1>Capturador</h1>
-        //     <section className={styles.containerMisDatos}>
-        //         <p>{usuario}</p>
-        //         <p>{correo}</p>
-        //         {ncontrol && <p>{ncontrol}</p>}
-        //     </section>
-        //     <section className={styles.botonera}>
-        //         <BotonFlotante
-        //             label="Diccionario De Palabras"
-        //             onClick={goToDiccionario}
-        //         />
-        //         <BotonFlotante
-        //             label="Agregar Palabra"
-        //             onClick={goToDiccionario}
-        //         />
-        //     </section>
-        // </div>
     );
 }
