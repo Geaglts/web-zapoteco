@@ -80,12 +80,11 @@ export default function Tipos() {
                 </div>
                 <div className={styles.container}>
                     <div className={styles.contForm}>
-                        <h1><span>Agregar</span> tipo</h1>
                         <form>
                             <div className={styles.contInput}>
                                 <input
                                     required
-                                    placeholder="tipo"
+                                    placeholder="Escribir tipo"
                                     value={values.tipo}
                                     onChange={handleChange("tipo")}
                                 />
@@ -94,6 +93,23 @@ export default function Tipos() {
                                 </button>
                             </div>
                         </form>
+                    </div>
+                    <div className={styles.contTipos}>
+                        <div className={styles.contCard}>
+                            <div className={styles.cards}>
+                                {tipos &&
+                                    tipos.map((tipo, index) => {
+                                        return (
+                                            <div className={styles.infoCard}>
+                                                <h1>{tipo.tipo}</h1>
+                                                <button onClick={() => changeToUpdate(tipo) }>
+                                                    actualizar
+                                                </button>
+                                            </div>
+                                        );
+                                    })}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

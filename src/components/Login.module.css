@@ -83,7 +83,7 @@ p {
   color: var(--cuarto);
 }
 
-.contMedio {
+.formulario .contMedio {
   height: 21.875rem;
   display: flex;
   justify-content: center;
@@ -91,7 +91,7 @@ p {
   flex-direction: column;
 }
 
-.campo {
+.formulario .contMedio .campo {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,7 +104,7 @@ ion-icon {
   margin-right: 1.875rem;
 }
 
-input {
+.formulario .contMedio .campo input {
   font-family: "Lato", sans-serif;
   width: 15.625rem;
   padding: 0.5rem;
@@ -117,8 +117,21 @@ input {
   color: var(--terciario);
 }
 
-input:focus {
+.formulario .contMedio .campo input:focus {
   outline: none;
+}
+
+/* Change the white to any color ;) */
+.formulario .contMedio .campo input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  -webkit-box-shadow: 0 0 0 30px var(--secundario) inset !important;
+}
+
+/*Change text in autofill textbox*/
+.formulario .contMedio .campo input:-webkit-autofill {
+  -webkit-text-fill-color: var(--terciario) !important;
 }
 
 ::placeholder {
