@@ -145,6 +145,10 @@
     width: 400px;
 }
 
+.buscadorContainer input::placeholder {
+    color: #333333;
+}
+
 .buscadorContainer button {
     margin-left: 15px;
     border: 6px solid #333333;
