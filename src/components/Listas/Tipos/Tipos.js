@@ -27,10 +27,10 @@ export default function Tipos() {
         setValues({ ...values, [field]: e.target.value });
     };
 
-    const cancelar = () => {
-        setUpdatingTipo(false);
-        setValues({ tipo: "", id: "" });
-    };
+    // const cancelar = () => {
+    //     setUpdatingTipo(false);
+    //     setValues({ tipo: "", id: "" });
+    // };
 
     const changeToUpdate = (tipo) => {
         setUpdatingTipo(true);
@@ -102,7 +102,11 @@ export default function Tipos() {
                                         return (
                                             <div className={styles.infoCard}>
                                                 <h1>{tipo.tipo}</h1>
-                                                <button onClick={() => changeToUpdate(tipo) }>
+                                                <button
+                                                    onClick={() =>
+                                                        changeToUpdate(tipo)
+                                                    }
+                                                >
                                                     actualizar
                                                 </button>
                                             </div>

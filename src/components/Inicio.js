@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import styles from "./Inicio.module.css";
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";

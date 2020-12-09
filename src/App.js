@@ -15,6 +15,11 @@ const CambiarRolesRoute = {
     component: CambiarRoles,
 };
 
+const ListasRoute = {
+    path: "/listas",
+    component: AdminPrincipal,
+};
+
 function App() {
     return (
         <Router>
@@ -39,11 +44,7 @@ function App() {
                         component={PalabrasFinales}
                     />
 
-                    <AdminRoutes
-                        exact
-                        component={AdminPrincipal}
-                        path="/admin"
-                    />
+                    <AdminRoutes exact {...ListasRoute} />
                 </Switch>
             </div>
         </Router>
