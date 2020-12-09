@@ -7,7 +7,7 @@ import classnames from "classnames";
 import axios from "axios";
 
 function AsignarRoles() {
-    const [correo, setCorreo] = useState("");
+    const [correo, setCorreo] = useState("juggantis@gmail.com");
     const [usuario, setUsuario] = useState(null);
 
     // Axios

@@ -1,17 +1,17 @@
 import React from "react";
 import styles from "../Roles.module.css";
+import { gql, useQuery } from "@apollo/react-hooks";
 import classnames from "classnames";
-
-const roles = [
-    { id: "1", rol: "capturador" },
-    { id: "2", rol: "visitante" },
-    { id: "3", rol: "experto" },
-    { id: "4", rol: "verificador" },
-    { id: "5", rol: "coordinador" },
-];
 
 function CheckboxGroup({ verificar, roles: userRoles }) {
     let rolids = [];
+    let roles = null;
+
+    const rolsQuery = useQuery(GraphqlOp.query.GET_ROLES);
+
+    if (rolsQuery.loading) {
+        return null;
+    }
 
     const handleChange = (e) => {
         const { value } = e.target;
@@ -24,35 +24,40 @@ function CheckboxGroup({ verificar, roles: userRoles }) {
         }
     };
 
+    roles = rolsQuery.data.getRols;
+
     return (
         <div>
             <table>
                 <tbody>
-                    {roles.map((rol) => {
-                        let userHasRoles = userRoles.indexOf(rol.rol) > -1;
-                        if (userHasRoles) {
-                            rolids.push(parseInt(rol.id));
-                        }
-                        return (
-                            <tr
-                                key={rol.id}
-                                className={classnames(styles.checkboxContainer)}
-                            >
-                                <td>
-                                    <label htmlFor="check">{rol.rol}</label>
-                                </td>
-                                <td>
-                                    <input
-                                        type="checkbox"
-                                        defaultChecked={userHasRoles}
-                                        name="check"
-                                        value={rol.id}
-                                        onChange={handleChange}
-                                    />
-                                </td>
-                            </tr>
-                        );
-                    })}
+                    {roles &&
+                        roles.map((rol) => {
+                            let userHasRoles = userRoles.indexOf(rol.rol) > -1;
+                            if (userHasRoles) {
+                                rolids.push(parseInt(rol.id));
+                            }
+                            return (
+                                <tr
+                                    key={rol.id}
+                                    className={classnames(
+                                        styles.checkboxContainer
+                                    )}
+                                >
+                                    <td>
+                                        <label htmlFor="check">{rol.rol}</label>
+                                    </td>
+                                    <td>
+                                        <input
+                                            type="checkbox"
+                                            defaultChecked={userHasRoles}
+                                            name="check"
+                                            value={rol.id}
+                                            onChange={handleChange}
+                                        />
+                                    </td>
+                                </tr>
+                            );
+                        })}
                 </tbody>
             </table>
             <button
@@ -65,3 +70,17 @@ function CheckboxGroup({ verificar, roles: userRoles }) {
     );
 }
 export default CheckboxGroup;
+
+const GraphqlOp = {
+    query: {
+        GET_ROLES: gql`
+            {
+                getRols {
+                    id
+                    rol
+                }
+            }
+        `,
+    },
+    mutation: {},
+};

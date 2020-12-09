@@ -154,6 +154,10 @@
     border: 6px solid #333333;
 }
 
+.buscadorContainer button:hover {
+    border: 6px solid #333333;
+}
+
 /* Boton General */
 .generalButton {
     font-size: 14pt;
