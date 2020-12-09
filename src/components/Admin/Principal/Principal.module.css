@@ -4,6 +4,29 @@
 
 .container {
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.buttonCerrarSesion {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    background-color: transparent;
+    color: #333;
+    border: 3px solid #333;
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 50px;
+}
+
+.buttonCerrarSesion:hover {
+    color: #ffffff;
+    background-color: #ff019e;
+    border: 3px solid #ff019e;
 }
 
 .misDatos {
@@ -27,9 +50,4 @@
 .misDatos button {
     margin-top: 10px;
     padding: 7px 9px;
-}
-
-.menus {
-    display: flex;
-    flex-wrap: wrap;
 }
