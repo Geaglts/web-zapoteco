@@ -1,9 +1,5 @@
-import { gql } from "apollo-boost";
 import { useHistory } from "react-router-dom";
 import styles from "./Principal.module.css";
-
-// Componentes locales
-import Seccion from "./Seccion/Seccion";
 
 export default function Principal() {
     const history = useHistory();
@@ -20,11 +16,11 @@ export default function Principal() {
             >
                 Regresar
             </button>
-            <Seccion label="Listas y Modificaciones">
+            <section className={styles.lista}>
                 <button onClick={goTo("/tipos")}>Tipos</button>
                 <button onClick={goTo("/categorias")}>Categorias</button>
                 <button onClick={goTo("/contextos")}>Contextos</button>
-            </Seccion>
+            </section>
         </div>
     );
 }

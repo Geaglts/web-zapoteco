@@ -14,40 +14,45 @@
     position: absolute;
     left: 20px;
     top: 20px;
-    background-color: transparent;
-    color: #333;
-    border: 3px solid #333;
     padding: 10px;
     cursor: pointer;
     transition: all 0.3s;
     border-radius: 50px;
-}
-
-.buttonCerrarSesion:hover {
     color: #ffffff;
     background-color: #ff019e;
     border: 3px solid #ff019e;
 }
 
-.misDatos {
-    background-color: white;
-}
-
-.misDatos {
-    padding: 1em;
-}
-
-.misDatos h1 {
+.buttonCerrarSesion:hover {
     color: #333;
-    font-size: 22pt;
+    background-color: transparent;
+    border: 3px solid #333;
 }
 
-.misDatos p {
-    color: #797979;
-    text-transform: capitalize;
+/* Menu de listas */
+.lista {
+    height: 70%;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
 }
 
-.misDatos button {
-    margin-top: 10px;
-    padding: 7px 9px;
+.lista button {
+    background-color: #1f1e2e;
+    color: #fff;
+    border-radius: 4px;
+    padding: 0 20px;
+    margin: 10px;
+    width: 210px;
+    height: 260px;
+    font-size: 16pt;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+}
+
+.lista button:hover {
+    border: 5px solid #ff019e;
 }
