@@ -5,10 +5,8 @@ import { NavLink, Redirect } from "react-router-dom";
 import { gql } from "apollo-boost";
 import { useMutation } from "@apollo/react-hooks";
 import { setAdmin, setToken } from "../token";
-import { useHistory } from "react-router-dom";
 
 function Login() {
-    const history = useHistory();
     const [loading, setLoading] = useState(false);
     const [redirect, setRedirect] = useState(false);
     const [values, setValues] = useState({ user: "", contrasena: "" });
