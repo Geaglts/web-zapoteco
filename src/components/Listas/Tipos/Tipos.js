@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { useHistory } from "react-router-dom";
-// import styles from "./Tipos.module.css";
+import styles from "./Tipos.module.css";
 import hasRoles from "../../../utils/hasRoles";
 import { useState } from "react";
 
@@ -72,61 +72,86 @@ export default function Tipos() {
 
     if (usuarioTieneLosRoles || admin) {
         return (
-            <div>
-                <h1>Tipos</h1>
-                <button onClick={goTo(admin ? "/admin" : "/inicio")}>
-                    Regresar
-                </button>
-                <section>
-                    <h4>Nuevo Tipo</h4>
-                    <form>
-                        <input
-                            required
-                            placeholder="tipo"
-                            value={values.tipo}
-                            onChange={handleChange("tipo")}
-                        />
-                        <button onClick={updatingTipo ? update : add}>
-                            {updatingTipo ? "Actualizar" : "Agregar"}
-                        </button>
-                    </form>
-                    {updatingTipo && (
-                        <button onClick={cancelar}>cancelar</button>
-                    )}
-                </section>
-                <section>
-                    <h4>Lista de tipos</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Tipo</th>
-                                <th>opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {tipos &&
-                                tipos.map((tipo, index) => {
-                                    return (
-                                        <tr key={tipo.id}>
-                                            <td>{index + 1}</td>
-                                            <td>{tipo.tipo}</td>
-                                            <td>
-                                                <button
-                                                    onClick={() =>
-                                                        changeToUpdate(tipo)
-                                                    }
-                                                >
-                                                    actualizar
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                        </tbody>
-                    </table>
-                </section>
+            <div className={styles.content}>
+                <div className={styles.header}>
+                    <button onClick={goTo(admin ? "/admin" : "/inicio")}>
+                        Volver al inicio
+                    </button>
+                </div>
+                <div className={styles.container}>
+                    <div className={styles.contForm}>
+                        <h1><span>Agregar</span> tipo</h1>
+                        <form>
+                            <div className={styles.contInput}>
+                                <input
+                                    required
+                                    placeholder="tipo"
+                                    value={values.tipo}
+                                    onChange={handleChange("tipo")}
+                                />
+                                <button onClick={updatingTipo ? update : add}>
+                                    {updatingTipo ? "Actualizar" : "Agregar"}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
+            // <div>
+            //     <h1>Tipos</h1>
+            //     <button onClick={goTo(admin ? "/admin" : "/inicio")}>
+            //         Regresar
+            //     </button>
+            //     <section>
+            //         <h4>Nuevo Tipo</h4>
+            //         <form>
+            //             <input
+            //                 required
+            //                 placeholder="tipo"
+            //                 value={values.tipo}
+            //                 onChange={handleChange("tipo")}
+            //             />
+            //             <button onClick={updatingTipo ? update : add}>
+            //                 {updatingTipo ? "Actualizar" : "Agregar"}
+            //             </button>
+            //         </form>
+            //         {updatingTipo && (
+            //             <button onClick={cancelar}>cancelar</button>
+            //         )}
+            //     </section>
+            //     <section>
+            //         <h4>Lista de tipos</h4>
+            //         <table>
+            //             <thead>
+            //                 <tr>
+            //                     <th>ID</th>
+            //                     <th>Tipo</th>
+            //                     <th>opciones</th>
+            //                 </tr>
+            //             </thead>
+            //             <tbody>
+            //                 {tipos &&
+            //                     tipos.map((tipo, index) => {
+            //                         return (
+            //                             <tr key={tipo.id}>
+            //                                 <td>{index + 1}</td>
+            //                                 <td>{tipo.tipo}</td>
+            //                                 <td>
+            //                                     <button
+            //                                         onClick={() =>
+            //                                             changeToUpdate(tipo)
+            //                                         }
+            //                                     >
+            //                                         actualizar
+            //                                     </button>
+            //                                 </td>
+            //                             </tr>
+            //                         );
+            //                     })}
+            //             </tbody>
+            //         </table>
+            //     </section>
+            // </div>
         );
     } else {
         return history.push("/inicio");

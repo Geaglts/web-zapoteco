@@ -19,7 +19,7 @@ function PalabrasFinales() {
         let words = wordsQuery.data?.data;
 
         return (
-            <div>
+            <div className={styles.container}>
                 <div className={styles.header}>
                     <h1>Diccionario de palabras</h1>
                     <button className={styles.regresar} onClick={goToRegresar}>

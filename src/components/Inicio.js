@@ -61,33 +61,18 @@ function Inicio() {
     } else if (userHasRolExperto) {
         return (
             <div className={styles.container}>
-                <Boton
-                    label="cerrar sesión"
-                    onClick={cerrarSesion}
-                    styles={styles.boton}
-                />
                 <Experto {...{ ...myData, ...roles }} />
             </div>
         );
     } else if (userHasRolCapturador) {
         return (
             <div className={styles.container}>
-                <Boton
-                    label="cerrar sesión"
-                    onClick={cerrarSesion}
-                    styles={styles.boton}
-                />
                 <Capturador {...{ ...myData, ...roles }} />
             </div>
         );
     } else if (userHasRolVisitante) {
         return (
             <div className={styles.container}>
-                <Boton
-                    label="cerrar sesión"
-                    onClick={cerrarSesion}
-                    styles={styles.boton}
-                />
                 <Visitante {...{ ...myData, ...roles }} />
             </div>
         );

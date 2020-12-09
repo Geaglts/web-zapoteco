@@ -1,3 +1,144 @@
 * {
-    color: white;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.content{
+    width: 100%;
+    height: 100vh;
+}
+
+.content .header {
+    width: 100%;
+    height: 12%;
+    background: var(--secundario);
+    padding: .8rem 5rem;
+}
+
+.content .header button {
+    background: var(--secundario);
+    border: 0.1rem solid var(--terciario);
+    border-radius: 0;
+}
+
+.content .header button:hover {
+    border: 0.1rem solid var(--primario);
+}
+
+.content .container {
+    width: 100%;
+    height: calc(100vh - 12%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .container .contForm {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: .6rem;
+    text-transform: uppercase;
+}
+.content .container .contForm h1 {
+    color: var(--secundario);
+    margin-bottom: 3rem;
+    font-weight: bold;
+}
+
+.content .container .contForm h1 span {
+    color: var(--primario);
+    border: .15rem solid var(--secundario);
+    padding: .5rem;
+    border-radius: .5rem;
+    text-align: center;
+    margin-right: .5rem;
+}
+
+.content .container .contForm form {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.content .container .contForm form .contInput {
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.content .container .contForm form .contInput input {
+    margin: 0;
+    width: 75%;
+    height: 100%;
+    border-top-left-radius: 10rem;
+    border-bottom-left-radius: 10rem;
+    background: transparent;
+    color: var(--secundario);
+    border: .15rem solid var(--secundario);
+    border-right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding-left: 1rem;
+}
+
+/* Change the white to any color ;) */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+  -webkit-box-shadow: 0 0 0 30px var(--secundario) inset !important;
+}
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--terciario) !important;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--secundario);
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--secundario);
+}
+
+::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--secundario);
+}
+
+.content .container .contForm form .contInput button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+    border-top-right-radius: 10rem;
+    border-bottom-right-radius: 10rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background: transparent;
+    color: var(--secundario);
+    border: .15rem solid var(--secundario);
+    border-left: 0;
+}
+
+.content .container .contForm form .contInput button:hover {
+    background: var(--secundario);
+    color: var(--terciario);
 }
