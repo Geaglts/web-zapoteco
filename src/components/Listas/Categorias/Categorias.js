@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { useHistory } from "react-router-dom";
-// import styles from "./Categorias.module.css";
+import styles from "../Listas.module.css";
 import hasRoles from "../../../utils/hasRoles";
 import { useState } from "react";
 
@@ -77,46 +77,46 @@ export default function Categorias() {
 
     if (usuarioTieneLosRoles || admin) {
         return (
-            <div>
-                <h1>Tipos</h1>
-                <button onClick={goTo(admin ? "/admin" : "/inicio")}>
-                    Regresar
-                </button>
-                <section>
-                    <h4>Nueva categoria</h4>
-                    <form>
-                        <input
-                            required
-                            placeholder="categoria"
-                            value={values.categoria}
-                            onChange={handleChange("categoria")}
-                        />
-                        <button onClick={updatingCategoria ? update : add}>
-                            {updatingCategoria ? "Actualizar" : "Agregar"}
-                        </button>
-                    </form>
-                    {updatingCategoria && (
-                        <button onClick={cancelar}>cancelar</button>
-                    )}
-                </section>
-                <section>
-                    <h4>Lista de categorias</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Categoria</th>
-                                <th>opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {categorias &&
-                                categorias.map((categoria, index) => {
-                                    return (
-                                        <tr key={categoria.id}>
-                                            <td>{index + 1}</td>
-                                            <td>{categoria.categoria}</td>
-                                            <td>
+            <div className={styles.content}>
+                <div className={styles.header}>
+                    <h1>Nueva categoría</h1>
+                    <button onClick={goTo(admin ? "/listas" : "/inicio")}>
+                        Volver
+                    </button>
+                </div>
+                <div className={styles.container}>
+                    <div className={styles.contForm}>
+                        <form>
+                            <div className={styles.contInput}>
+                                <input
+                                    required
+                                    placeholder="Escribir categoría"
+                                    value={values.categoria}
+                                    onChange={handleChange("categoria")}
+                                />
+                                <button
+                                    onClick={updatingCategoria ? update : add}
+                                >
+                                    {updatingCategoria
+                                        ? "Actualizar"
+                                        : "Agregar"}
+                                </button>
+                            </div>
+                        </form>
+                        {updatingCategoria && (
+                            <div className={styles.contBtn}>
+                                <button onClick={cancelar}>cancelar</button>
+                            </div>
+                        )}
+                    </div>
+                    <div className={styles.contTipos}>
+                        <div className={styles.contCard}>
+                            <div className={styles.cards}>
+                                {categorias &&
+                                    categorias.map((categoria, index) => {
+                                        return (
+                                            <div className={styles.infoCard}>
+                                                <h1>{categoria.categoria}</h1>
                                                 <button
                                                     onClick={() =>
                                                         changeToUpdate(
@@ -126,14 +126,71 @@ export default function Categorias() {
                                                 >
                                                     actualizar
                                                 </button>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                        </tbody>
-                    </table>
-                </section>
+                                            </div>
+                                        );
+                                    })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            // <div>
+            //     <h1>Tipos</h1>
+            //     <button onClick={goTo(admin ? "/admin" : "/inicio")}>
+            //         Regresar
+            //     </button>
+            //     <section>
+            //         <h4>Nueva categoria</h4>
+            //         <form>
+            //             <input
+            //                 required
+            //                 placeholder="categoria"
+            //                 value={values.categoria}
+            //                 onChange={handleChange("categoria")}
+            //             />
+            //             <button onClick={updatingCategoria ? update : add}>
+            //                 {updatingCategoria ? "Actualizar" : "Agregar"}
+            //             </button>
+            //         </form>
+            //         {updatingCategoria && (
+            //             <button onClick={cancelar}>cancelar</button>
+            //         )}
+            //     </section>
+            //     <section>
+            //         <h4>Lista de categorias</h4>
+            //         <table>
+            //             <thead>
+            //                 <tr>
+            //                     <th>ID</th>
+            //                     <th>Categoria</th>
+            //                     <th>opciones</th>
+            //                 </tr>
+            //             </thead>
+            //             <tbody>
+            //                 {categorias &&
+            //                     categorias.map((categoria, index) => {
+            //                         return (
+            //                             <tr key={categoria.id}>
+            //                                 <td>{index + 1}</td>
+            //                                 <td>{categoria.categoria}</td>
+            //                                 <td>
+            //                                     <button
+            //                                         onClick={() =>
+            //                                             changeToUpdate(
+            //                                                 categoria
+            //                                             )
+            //                                         }
+            //                                     >
+            //                                         actualizar
+            //                                     </button>
+            //                                 </td>
+            //                             </tr>
+            //                         );
+            //                     })}
+            //             </tbody>
+            //         </table>
+            //     </section>
+            // </div>
         );
     } else {
         return history.push("/inicio");

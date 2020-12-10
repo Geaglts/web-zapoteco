@@ -53,7 +53,7 @@ function Registro() {
                     <h1 className={styles.titulo}>
                         Crear <span>Cuenta</span>
                     </h1>
-                    <p>Registrate para comenzar a disfrutar</p>
+                    <p>Registrate y forma parte de esta comunidad</p>
                 </div>
                 <form>
                     <div className={styles.contMedio}>

@@ -54,7 +54,7 @@ function Login() {
     return (
         <header>
             <div className={styles.content}>
-                <div className={styles.left}>
+                <div className={styles.contName}>
                     <div className={styles.textos}>
                         <h1>Shitalsha nuutu''</h1>
                         <h2>Padiushi</h2>
@@ -67,7 +67,7 @@ function Login() {
                         </div>
                     </div>
                 </div>
-                <div className={styles.right}>
+                <div className={styles.contForm}>
                     <form>
                         <div className={styles.formulario}>
                             <div className={styles.contArriba}>
@@ -99,7 +99,9 @@ function Login() {
                                         onChange={onChangeInput("contrasena")}
                                     />
                                 </div>
-                                <a href="/">Olvide mi contraseña</a>
+                                <NavLink className="link" to="/Registro">
+                                    Olvide mi contraseña
+                                </NavLink>
                                 <button
                                     type="submit"
                                     name="ingresar"

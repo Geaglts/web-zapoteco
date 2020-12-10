@@ -7,13 +7,6 @@
 
 body {
   font-family: "Lato", sans-serif;
-  background-image: linear-gradient(45deg, #1a1a1ac0, var(--secundario)),
-    url("../assets/fondo1.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: var(--terciario);
 }
 
 * {
@@ -28,6 +21,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-image: linear-gradient(45deg, #1a1a1ac0, var(--secundario)),
+    url("../assets/fondo1.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color: var(--terciario);
 }
 
 .formulario {
@@ -96,6 +96,7 @@ input {
   width: 100%;
   font-family: "Lato", sans-serif;
   padding: 0.5rem;
+  color: var(--terciario);
   background: var(--secundario);
   border: 0.125rem solid var(--cuarto);
   margin-bottom: 1.25rem;
@@ -107,6 +108,28 @@ input:focus {
   border: 0.125rem solid var(--primario);
 }
 
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+  -webkit-text-fill-color: var(--terciario) !important;
+}
+
+input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--terciario);
+  opacity: 1; /* Firefox */
+}
+
+input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--terciario);
+}
+
+input::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--terciario);
+}
+
 .contBtn {
   display: flex;
   justify-content: center;
@@ -116,13 +139,11 @@ input:focus {
 
 button {
   background: var(--primario);
-  padding: 0.625rem 1.875rem;
   color: var(--terciario);
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-family: "Lato", sans-serif;
-  font-weight: 600;
   border: 0.125rem solid transparent;
-  border-radius: 1.25rem;
+  border-radius: 1.9rem;
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.4s ease;
@@ -143,49 +164,13 @@ button:focus {
   font-size: 0.9375rem;
 }
 
-/* a {
-  margin-top: 20px;
-  text-decoration: none;
-  color: var(--primario);
-} */
+@media screen and (max-width: 1000px) {
+  .formulario {
+    background: transparent;
+    box-shadow: 0 0 0 0;
+  }
 
-/* NOTIFICAR REGISTRO */
-
-/* .ventana {
-  background: rgba(33, 41, 52, 0.85);
-  left: 0;
-  bottom: 0;
-  right: 0;
-  top: 0;
-  display: flex;
-  position: fixed;
-  z-index: 999;
+  .formulario input {
+    background: transparent;
+  }
 }
-
-.ventana .cont-ventana {
-  background: var(--secundario);
-  border-radius: 2px;
-  box-shadow: 0 1px 3px rgba(33, 41, 52, 0.75);
-  box-sizing: content-box;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  max-width: 600px;
-  min-width: 320px !important;
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-  padding: 2rem;
-  font-size: 1.3rem;
-  border-radius: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.contentButtons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px;
-} */

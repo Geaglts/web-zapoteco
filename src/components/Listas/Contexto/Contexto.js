@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { useHistory } from "react-router-dom";
+import styles from "../Listas.module.css";
 import hasRoles from "../../../utils/hasRoles";
 import { useState } from "react";
 
@@ -28,7 +29,7 @@ export default function Contexto() {
 
     const cancelar = () => {
         setUpdatingContexto(false);
-        setValues({ tipo: "", id: "" });
+        setValues({ contexto: "", id: "" });
     };
 
     const changeToUpdate = (contexto) => {
@@ -74,61 +75,116 @@ export default function Contexto() {
 
     if (usuarioTieneLosRoles || admin) {
         return (
-            <div>
-                <h1>Contextos</h1>
-                <button onClick={goTo(admin ? "/admin" : "/inicio")}>
-                    Regresar
-                </button>
-                <section>
-                    <h4>Nuevo contexto</h4>
-                    <form>
-                        <input
-                            required
-                            placeholder="contexto"
-                            value={values.contexto}
-                            onChange={handleChange("contexto")}
-                        />
-                        <button onClick={updatingContexto ? update : add}>
-                            {updatingContexto ? "Actualizar" : "Agregar"}
-                        </button>
-                    </form>
-                    {updatingContexto && (
-                        <button onClick={cancelar}>cancelar</button>
-                    )}
-                </section>
-                <section>
-                    <h4>Lista de contextos</h4>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Contexto</th>
-                                <th>Opciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {contextos &&
-                                contextos.map((contexto, index) => {
-                                    return (
-                                        <tr key={contexto.id}>
-                                            <td>{index + 1}</td>
-                                            <td>{contexto.contexto}</td>
-                                            <td>
+            <div className={styles.content}>
+                <div className={styles.header}>
+                     <h1>Nuevo contexto</h1>
+                    <button onClick={goTo(admin ? "/listas" : "/inicio")}>
+                        Volver
+                    </button>
+                </div>
+                <div className={styles.container}>
+                    <div className={styles.contForm}>
+                        <form>
+                            <div className={styles.contInput}>
+                                <input
+                                    required
+                                    placeholder="Escribir tipo"
+                                    value={values.contexto}
+                                    onChange={handleChange("contexto")}
+                                />
+                                <button
+                                    onClick={updatingContexto ? update : add}
+                                >
+                                    {updatingContexto
+                                        ? "Actualizar"
+                                        : "Agregar"}
+                                </button>
+                            </div>
+                        </form>
+                        {updatingContexto && (
+                            <div className={styles.contBtn}><button onClick={cancelar}>cancelar</button></div>
+                        )}
+                    </div>
+                    <div className={styles.contTipos}>
+                        <div className={styles.contCard}>
+                            <div className={styles.cards}>
+                                {contextos &&
+                                    contextos.map((contexto, index) => {
+                                        return (
+                                            <div className={styles.infoCard}>
+                                                <h1>{contexto.contexto}</h1>
                                                 <button
                                                     onClick={() =>
-                                                        changeToUpdate(contexto)
+                                                        changeToUpdate(
+                                                            contexto
+                                                        )
                                                     }
                                                 >
                                                     actualizar
                                                 </button>
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                        </tbody>
-                    </table>
-                </section>
+                                            </div>
+                                        );
+                                    })}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            // <div>
+            //     <h1>Contextos</h1>
+            //     <button onClick={goTo(admin ? "/admin" : "/inicio")}>
+            //         Regresar
+            //     </button>
+            //     <section>
+            //         <h4>Nuevo contexto</h4>
+            //         <form>
+            //             <input
+            //                 required
+            //                 placeholder="contexto"
+            //                 value={values.contexto}
+            //                 onChange={handleChange("contexto")}
+            //             />
+            //             <button onClick={updatingContexto ? update : add}>
+            //                 {updatingContexto ? "Actualizar" : "Agregar"}
+            //             </button>
+            //         </form>
+            //         {updatingContexto && (
+            //             <button onClick={cancelar}>cancelar</button>
+            //         )}
+            //     </section>
+            //     <section>
+            //         <h4>Lista de contextos</h4>
+            //         <table>
+            //             <thead>
+            //                 <tr>
+            //                     <th>ID</th>
+            //                     <th>Contexto</th>
+            //                     <th>Opciones</th>
+            //                 </tr>
+            //             </thead>
+            //             <tbody>
+            //                 {contextos &&
+            //                     contextos.map((contexto, index) => {
+            //                         return (
+            //                             <tr key={contexto.id}>
+            //                                 <td>{index + 1}</td>
+            //                                 <td>{contexto.contexto}</td>
+            //                                 <td>
+            //                                     <button
+            //                                         onClick={() =>
+            //                                             changeToUpdate(contexto)
+            //                                         }
+            //                                     >
+            //                                         actualizar
+            //                                     </button>
+            //                                 </td>
+            //                             </tr>
+            //                         );
+            //                     })}
+            //             </tbody>
+            //         </table>
+            //     </section>
+            // </div>
         );
     } else {
         return history.push("/inicio");

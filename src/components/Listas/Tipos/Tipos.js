@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { gql } from "apollo-boost";
 import { useHistory } from "react-router-dom";
-import styles from "./Tipos.module.css";
+import styles from "../Listas.module.css";
 import hasRoles from "../../../utils/hasRoles";
 import { useState } from "react";
 
@@ -35,6 +35,11 @@ export default function Tipos() {
     const changeToUpdate = (tipo) => {
         setUpdatingTipo(true);
         setValues({ tipo: tipo.tipo, id: tipo.id });
+    };
+
+    const cancelar = () => {
+        setUpdatingTipo(false);
+        setValues({ tipo: "", id: "" });
     };
 
     const add = async (e) => {
@@ -74,8 +79,9 @@ export default function Tipos() {
         return (
             <div className={styles.content}>
                 <div className={styles.header}>
-                    <button onClick={goTo(admin ? "/admin" : "/inicio")}>
-                        Volver al inicio
+                    <h1>Nuevo tipo</h1>
+                    <button onClick={goTo(admin ? "/listas" : "/inicio")}>
+                        Volver
                     </button>
                 </div>
                 <div className={styles.container}>
@@ -93,6 +99,11 @@ export default function Tipos() {
                                 </button>
                             </div>
                         </form>
+                        {updatingTipo && (
+                            <div className={styles.contBtn}>
+                                <button onClick={cancelar}>cancelar</button>
+                            </div>
+                        )}
                     </div>
                     <div className={styles.contTipos}>
                         <div className={styles.contCard}>

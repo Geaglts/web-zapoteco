@@ -7,26 +7,40 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
 }
 
-.buttonCerrarSesion {
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    padding: 10px;
-    cursor: pointer;
-    transition: all 0.3s;
-    border-radius: 50px;
-    color: #ffffff;
-    background-color: #ff019e;
-    border: 3px solid #ff019e;
+.container .header {
+    width: 100%;
+    height: 5rem;
+    background: var(--secundario);
+    padding: 0.8rem 10%;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.buttonCerrarSesion:hover {
-    color: #333;
-    background-color: transparent;
-    border: 3px solid #333;
+.container .header h1 {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--terciario);
+}
+
+.container .header button {
+    background: var(--secundario);
+    border: 0.1rem solid var(--terciario);
+    border-radius: 0;
+    color: var(--terciario);
+}
+
+.container .header button:hover {
+    border: 0.1rem solid var(--primario);
+    color: var(--primario);
 }
 
 /* Menu de listas */
@@ -34,25 +48,76 @@
     height: 70%;
     width: 80%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    overflow: scroll;
+    flex-direction: row;
 }
 
-.lista button {
-    background-color: #1f1e2e;
-    color: #fff;
-    border-radius: 4px;
-    padding: 0 20px;
-    margin: 10px;
-    width: 210px;
-    height: 260px;
-    font-size: 16pt;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 300;
+.lista .contOpcion {
+    background-image: linear-gradient(45deg, #1f1e2ec0, var(--secundario)),
+        url("../../../assets/img1.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--terciario);
+    border: 0.1rem solid var(--terciario);
+    border-radius: 1rem;
+    margin: 1rem;
+    width: 12rem;
+    height: 17rem;
+    font-family: "Lato", sans-serif;
+    transition: all .3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.lista button:hover {
-    border: 5px solid #ff019e;
+.lista .contOpcion:hover {
+    background: linear-gradient(45deg, #1f1e2ec0, var(--secundario)),
+        url("../../../assets/img1.jpg");
+    border: 0.1rem solid var(--terciario);
+    width: 15rem;
+    height: 20rem;
+    margin: 10rem;
+}
+
+.lista .contOpcion .contCard {
+    border-radius: 1rem;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+}
+
+.lista .contOpcion .contCard .contInfo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lista .contOpcion .contCard .contInfo h1 {
+    font-size: 1rem;
+}
+
+.lista .contOpcion .contCard .contInfo h2 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+}
+
+.lista .contOpcion .contCard .contInfo button {
+    margin-top: 30%;
+    width: 70%;
+    height: 15%;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: .1rem solid var(--terciario);
+}
+
+.lista .contOpcion .contCard .contInfo button:hover {
+    border: .1rem solid var(--primario);
 }
