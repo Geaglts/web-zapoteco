@@ -6,13 +6,22 @@ import classnames from "classnames";
 export default function Buscador({ handleChange, value, onSubmitBuscar }) {
     return (
         <div className={classnames(styles.buscadorContainer)}>
-            <input
-                type="text"
-                placeholder="Ingresa el correo del usuario"
-                onChange={handleChange}
-                value={value}
-            />
-            <Button callback={() => onSubmitBuscar(value)} label="Buscar" />
+            <div className={styles.contForm}>
+                <form>
+                    <div className={styles.contInput}>
+                        <input
+                            type="text"
+                            placeholder="Ingresa el correo del usuario"
+                            onChange={handleChange}
+                            value={value}
+                        />
+                        <Button
+                            callback={onSubmitBuscar(value)}
+                            label="Buscar"
+                        />
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

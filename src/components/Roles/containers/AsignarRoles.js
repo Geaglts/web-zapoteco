@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import CheckboxGroup from "../componentes/CheckboxGroup";
 import Buscador from "../componentes/Buscador";
 import Button from "../componentes/Button";
-import styles from "../Roles.module.css";
+// import styles from "../Roles.module.css";
+import styles from "../../Usuarios/HomeUsuario/Capturador.module.css";
 import { gql, useMutation } from "@apollo/react-hooks";
 import classnames from "classnames";
 import axios from "axios";
+import fondo from "../../../assets/img2.jpg";
 
 function AsignarRoles() {
     const [correo, setCorreo] = useState("");
@@ -42,7 +44,8 @@ function AsignarRoles() {
 
     const handleChange = (e) => setCorreo(e.target.value);
 
-    const onSubmitBuscar = (correo) => {
+    const onSubmitBuscar = (correo) => (e) => {
+        e.preventDefault();
         getUser(correo);
         setCorreo("");
     };
@@ -98,16 +101,58 @@ const Usuario = ({ usuario, ...rest }) => {
     if (loading) {
         return null;
     }
+    // juggantis@gmail.com
 
     return (
-        <div className={classnames(styles.usuarioItem)}>
-            <Button callback={onPressCerrar} label="Cerrar" />
+        <div className={styles.contentUser}>
+            <div className={styles.content}>
+                <div className={styles.container}>
+                    <div className={styles.sesion}>
+                        <div className={styles.sesionData}>
+                            <h1>Asignar roles</h1>
+                        </div>
+                        <div className={styles.sesionCerrar}>
+                            <Button callback={onPressCerrar} label="Cerrar" />
+                        </div>
+                    </div>
+                    <div className={styles.contProfile}>
+                        <div className={styles.profile}>
+                            <div className={styles.profileUser}>
+                                <h1>{nombreCompleto}</h1>
+                                <h2>{usuario.correo}</h2>
+                            </div>
+                            <div className={styles.profileData}>
+                                <div className={styles.contData}>
+                                    <h1>palabra</h1>
+                                    <h1>imagen</h1>
+                                    <h1>audio</h1>
+                                    <h2>25</h2>
+                                    <h2>10</h2>
+                                    <h2>0</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={styles.contImg}>
+                            <img src={fondo} alt="fondo" />
+                        </div>
+                    </div>
+                    <div className={styles.contCheck}>
+                        <div className={styles.checks}>
+                            <CheckboxGroup
+                                verificar={modificarRoles}
+                                roles={usuario.roles}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <Button callback={onPressCerrar} label="Cerrar" />
             <h3>{nombreCompleto}</h3>
             <h4 className={classnames(styles.usuarioCorreo)}>
                 {usuario.correo}
             </h4>
             <h4 className={classnames(styles.rolesTitle)}>Roles</h4>
-            <CheckboxGroup verificar={modificarRoles} roles={usuario.roles} />
+            <CheckboxGroup verificar={modificarRoles} roles={usuario.roles} /> */}
         </div>
     );
 };

@@ -27,8 +27,38 @@ function CheckboxGroup({ verificar, roles: userRoles }) {
     roles = rolsQuery.data.getRols;
 
     return (
-        <div>
-            <table>
+        <div className={styles.areaRoles}>
+            <div className={styles.contRoles}>
+                {roles &&
+                    roles.map((rol) => {
+                        let userHasRoles = userRoles.indexOf(rol.rol) > -1;
+                        if (userHasRoles) {
+                            rolids.push(parseInt(rol.id));
+                        }
+                        return (
+                            <div className={styles.roles}>
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        defaultChecked={userHasRoles}
+                                        name="check"
+                                        value={rol.id}
+                                        onChange={handleChange}
+                                    />
+                                    <span>{rol.rol}</span>
+                                </label>
+                            </div>
+                        );
+                    })}
+            </div>
+            <div className={styles.contBtnCheck}>
+                <button
+                    onClick={() => verificar(rolids)}
+                >
+                    Guardar cambios
+                </button>
+            </div>
+            {/* <table>
                 <tbody>
                     {roles &&
                         roles.map((rol) => {
@@ -62,10 +92,10 @@ function CheckboxGroup({ verificar, roles: userRoles }) {
             </table>
             <button
                 onClick={() => verificar(rolids)}
-                className={classnames(styles.checkboxGroupBtn)}
+                className={styles.checkboxGroupBtn}
             >
                 Modificar
-            </button>
+            </button> */}
         </div>
     );
 }

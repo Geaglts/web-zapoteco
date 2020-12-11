@@ -23,7 +23,7 @@ function PalabrasFinales() {
                 <div className={styles.header}>
                     <h1>Diccionario de palabras</h1>
                     <button className={styles.regresar} onClick={goToRegresar}>
-                        Volver al inicio
+                        Volver
                     </button>
                 </div>
                 <div className={styles.contenedor}>
@@ -46,32 +46,6 @@ function PalabrasFinales() {
                         })}
                     </div>
                 </div>
-                {/* <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th>Zapoteco</th>
-                            <th>Traducciones</th>
-                            <th>Tipo</th>
-                            <th>Fonetica</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {words.map((word) => {
-                            return (
-                                <tr>
-                                    <td>{word.texto}</td>
-                                    <td>
-                                        {word.traducciones.map((traduccion) => {
-                                            return traduccion;
-                                        })}
-                                    </td>
-                                    <td>{word.tipo}</td>
-                                    <td>{word.fonetica}</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table> */}
             </div>
         );
     } else {

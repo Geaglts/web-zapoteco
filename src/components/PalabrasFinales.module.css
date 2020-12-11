@@ -34,20 +34,15 @@ body {
 }
 
 .header .regresar {
-    background: transparent;
-    width: 12rem;
-    height: 3rem;
+    background: var(--secundario);
     border: 0.1rem solid var(--terciario);
     border-radius: 0;
-    text-transform: uppercase;
-    font-weight: bold;
     color: var(--terciario);
 }
 
 .header .regresar:hover {
-    border: 0.1rem solid var(--terciario);
-    color: var(--secundario);
-    background: var(--terciario);
+    border: 0.1rem solid var(--primario);
+    color: var(--primario);
 }
 
 .contenedor {
