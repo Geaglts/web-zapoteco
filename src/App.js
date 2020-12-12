@@ -3,6 +3,7 @@ import Inicio from "./components/Inicio";
 import Registro from "./components/Registro";
 import PalabrasFinales from "./components/PalabrasFinales";
 import CambiarRoles from "./components/Roles/Roles";
+import Docente from "./components/Docente/MainComponent";
 
 import { AdminPrincipal } from "./components/Admin";
 import { Categorias, Tipos, Contexto } from "./components/Listas";
@@ -20,6 +21,11 @@ const ListasRoute = {
     component: AdminPrincipal,
 };
 
+const DocenteRoute = {
+    path: "/docente",
+    component: Docente,
+};
+
 function App() {
     return (
         <Router>
@@ -34,6 +40,7 @@ function App() {
                     <UserRoute exact path="/tipos" component={Tipos} />
                     <UserRoute exact path="/contextos" component={Contexto} />
                     <UserRoute exact {...CambiarRolesRoute} />
+                    <UserRoute exact {...DocenteRoute} />
                     <UserRoute path="/inicio" component={Inicio} />
 
                     <NoUserRoutes exact path="/" component={Login} />
