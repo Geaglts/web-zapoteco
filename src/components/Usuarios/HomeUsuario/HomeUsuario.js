@@ -87,6 +87,7 @@ const ShowMenu = ({ roles = [], admin }) => {
     const esExperto = hasRoles(roles, ["experto"]) || admin;
     const esVerificador = hasRoles(roles, ["verificador"]) || admin;
     const esCoordinador = hasRoles(roles, ["coordinador"]) || admin;
+    const esDocente = hasRoles(roles, ["docente"]) || admin;
 
     const redirect = (page) => () => {
         switch (page) {
@@ -107,6 +108,9 @@ const ShowMenu = ({ roles = [], admin }) => {
                 return;
             case 6:
                 history.push("/listas");
+                return;
+            case 7:
+                history.push("/docente");
                 return;
             default:
                 return;
@@ -145,6 +149,11 @@ const ShowMenu = ({ roles = [], admin }) => {
                 condition={esCoordinador}
             />
             <Boton label="listas" callback={redirect(6)} condition={admin} />
+            <Boton
+                label="Participantes"
+                callback={redirect(7)}
+                condition={esDocente}
+            />
         </>
     );
 };
