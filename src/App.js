@@ -3,6 +3,7 @@ import Inicio from "./components/Inicio";
 import Registro from "./components/Registro";
 import PalabrasFinales from "./components/PalabrasFinales";
 import CambiarRoles from "./components/Roles/Roles";
+import AddPendingWord from "./components/FormPalabraPendiente/AddWord";
 
 import { AdminPrincipal } from "./components/Admin";
 import { Categorias, Tipos, Contexto } from "./components/Listas";
@@ -13,6 +14,11 @@ import { UserRoute, NoUserRoutes, AdminRoutes } from "./routeCheckers";
 const CambiarRolesRoute = {
     path: "/cambar-roles",
     component: CambiarRoles,
+};
+
+const NuevaPalabraPendienteRoute = {
+    path: "/nueva-palabra-pendiente",
+    component: AddPendingWord,
 };
 
 const ListasRoute = {
@@ -34,7 +40,7 @@ function App() {
                     <UserRoute exact path="/tipos" component={Tipos} />
                     <UserRoute exact path="/contextos" component={Contexto} />
                     <UserRoute exact {...CambiarRolesRoute} />
-                    <UserRoute path="/inicio" component={Inicio} />
+                    <UserRoute exact {...NuevaPalabraPendienteRoute} />
 
                     <NoUserRoutes exact path="/" component={Login} />
                     <NoUserRoutes exact path="/registro" component={Registro} />

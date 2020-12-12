@@ -91,7 +91,7 @@ const ShowMenu = ({ roles = [], admin }) => {
     const redirect = (page) => () => {
         switch (page) {
             case 1:
-                history.push("/inicio");
+                history.push("/nueva-palabra-pendiente");
                 return;
             case 2:
                 history.push("/inicio");
