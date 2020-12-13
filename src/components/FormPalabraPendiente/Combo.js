@@ -1,3 +1,4 @@
+import styles from "./AddWord.module.css";
 import React, { useState } from "react";
 
 function Combo(props) {
@@ -9,7 +10,7 @@ function Combo(props) {
     };
 
     const LlenarCombo = ({ row }) => {
-        return <option value={row.id}>{row[name_value]}</option>;
+        return (<option className={styles.opc} value={row.id}>{row[name_value]}</option>);
     };
 
     // console.log(values?.categ);
@@ -20,11 +21,12 @@ function Combo(props) {
         });
         return (
             <>
-                <label>{text}</label>
-                <br />
-                <select value={values[0][name]} onChange={handleChange}>
-                    {rows}
-                </select>
+                {/* <label>{text}</label> */}
+                <div className={styles.select}>
+                    <select value={values[0][name]} onChange={handleChange}>
+                        {rows}
+                    </select>
+                </div>
             </>
         );
     };

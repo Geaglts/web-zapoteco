@@ -1,5 +1,9 @@
 export default [
   {
+    id: 0,
+    categoria: "seleccionar categoria",
+  },
+  {
     id: 1,
     categoria: "fauna",
   },

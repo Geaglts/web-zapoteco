@@ -1,6 +1,8 @@
 import React, { useState, Children, cloneElement } from "react";
 import Combo from "./Combo";
 
+import { useHistory } from "react-router-dom";
+import styles from "./AddWord.module.css";
 import categorias from "./data/categoria";
 import tipos from "./data/tipos";
 import contexto from "./data/contexto";
@@ -20,10 +22,21 @@ const initialState = {
 
 export default function MainComponent() {
     return (
-        <PendingWord>
-            <PrimeraParte />
-            <SegundaParte />
-        </PendingWord>
+        <section className={styles.addPalabra}>
+            <div className={styles.container}>
+                <PendingWord>
+                    <PrimeraParte />
+                    <SegundaParte />
+                </PendingWord>
+                <div className={styles.contText}>
+                    <div className={styles.text}>
+                        <h1>Juggantiss</h1>
+                        <h2>Gracias</h2>
+                        <p>¡Tu aporte tiene mucho valor!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
     );
 }
 
@@ -52,12 +65,7 @@ const PendingWord = ({ children }) => {
         });
     });
 
-    return (
-        <section>
-            <h1>Agregar Palabra</h1>
-            {childrenWithProps}
-        </section>
-    );
+    return <div className={styles.contForm}>{childrenWithProps}</div>;
 };
 
 const PrimeraParte = ({ values, onChangeInput, visible }) => {
@@ -69,7 +77,7 @@ const PrimeraParte = ({ values, onChangeInput, visible }) => {
     if (visible[0]) return null;
 
     return (
-        <section>
+        <div className={styles.form}>
             <input
                 required
                 type="text"
@@ -77,7 +85,6 @@ const PrimeraParte = ({ values, onChangeInput, visible }) => {
                 value={fields.texto}
                 onChange={onChangeInput("texto")}
             />
-            <br />
             <input
                 required
                 type="text"
@@ -85,7 +92,6 @@ const PrimeraParte = ({ values, onChangeInput, visible }) => {
                 value={fields.traduccion}
                 onChange={onChangeInput("traduccion")}
             />
-            <br />
             <input
                 required
                 type="text"
@@ -93,7 +99,6 @@ const PrimeraParte = ({ values, onChangeInput, visible }) => {
                 value={fields.fonetica}
                 onChange={onChangeInput("fonetica")}
             />
-            <br />
             <Combo
                 data={categorias}
                 text="Categoria"
@@ -101,7 +106,6 @@ const PrimeraParte = ({ values, onChangeInput, visible }) => {
                 name_value="categoria"
                 values={values}
             />
-            <br />
             <Combo
                 data={tipos}
                 text="Tipos"
@@ -109,9 +113,8 @@ const PrimeraParte = ({ values, onChangeInput, visible }) => {
                 values={values}
                 name_value="tipo"
             />
-            <br />
             <button onClick={setVisible}>Siguiente</button>
-        </section>
+        </div>
     );
 };
 
@@ -139,7 +142,7 @@ const SegundaParte = (props) => {
     if (!visible[0]) return null;
 
     return (
-        <section>
+        <div className={styles.form}>
             <input
                 required
                 type="text"
@@ -147,7 +150,6 @@ const SegundaParte = (props) => {
                 value={fields.ejemplo_esp}
                 onChange={onChangeInput("ejemplo_esp")}
             />
-            <br />
             <input
                 required
                 type="text"
@@ -155,7 +157,6 @@ const SegundaParte = (props) => {
                 value={fields.ejemplo_zap}
                 onChange={onChangeInput("ejemplo_zap")}
             />
-            <br />
             <Combo
                 data={base}
                 text="Palabra Base"
@@ -163,7 +164,6 @@ const SegundaParte = (props) => {
                 values={values}
                 name_value="base"
             />
-            <br />
             <Combo
                 data={contexto}
                 text="Contexto"
@@ -171,12 +171,13 @@ const SegundaParte = (props) => {
                 values={values}
                 name_value="contexto"
             />
-            <br />
-            <button onClick={onSubmit}>Registrar</button>
-            <button onClick={setVisible}>Volver</button>
+            <div className={styles.contBtn}>
+                <button onClick={onSubmit}>Registrar</button>
+                <button onClick={setVisible}>Volver</button>
+            </div>
             {visibleVentana[0] && (
                 <VentanaFinal visibleVentana={visibleVentana} />
             )}
-        </section>
+        </div>
     );
 };
