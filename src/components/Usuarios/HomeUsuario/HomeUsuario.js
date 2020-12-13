@@ -101,7 +101,7 @@ const ShowMenu = ({ roles = [], admin }) => {
                 history.push("/inicio");
                 return;
             case 4:
-                history.push("/inicio");
+                history.push("/verificar-palabra");
                 return;
             case 5:
                 history.push("/cambar-roles");
