@@ -30,9 +30,9 @@ function PalabrasFinales() {
                 </div>
                 <div className={styles.contenedor}>
                     <div className={styles.contCard}>
-                        {words.map((word) => {
+                        {words.map((word, index) => {
                             return (
-                                <div className={styles.card}>
+                                <div key={index} className={styles.card}>
                                     <div className={styles.contImg}>
                                         <div className={styles.contInfo}>
                                             <div className={styles.info}>
