@@ -5,7 +5,7 @@ import Button from "../componentes/Button";
 // import styles from "../Roles.module.css";
 import styles from "../../Usuarios/HomeUsuario/Capturador.module.css";
 import { gql, useMutation } from "@apollo/react-hooks";
-import classnames from "classnames";
+// import classnames from "classnames";
 import axios from "axios";
 import fondo from "../../../assets/img2.jpg";
 

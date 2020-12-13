@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../Roles.module.css";
 import { gql, useQuery } from "@apollo/react-hooks";
-import classnames from "classnames";
+// import classnames from "classnames";
 
 function CheckboxGroup({ verificar, roles: userRoles }) {
     let rolids = [];
@@ -52,9 +52,7 @@ function CheckboxGroup({ verificar, roles: userRoles }) {
                     })}
             </div>
             <div className={styles.contBtnCheck}>
-                <button
-                    onClick={() => verificar(rolids)}
-                >
+                <button onClick={() => verificar(rolids)}>
                     Guardar cambios
                 </button>
             </div>
