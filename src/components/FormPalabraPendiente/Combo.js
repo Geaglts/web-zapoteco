@@ -1,30 +1,34 @@
 import styles from "./AddWord.module.css";
-import React, { useState } from "react";
 
 function Combo(props) {
-    const { data, text, name, name_value, values } = props;
-    // const [value, setValue] = useState(data[0].value);
+    const { data, name, name_value, values } = props;
 
     const handleChange = (e) => {
-        values[1]({ ...values[0], [name]: parseInt(e.target.value) });
+        values[1]({ ...values[0], [name]: e.target.value });
     };
 
-    const LlenarCombo = ({ row }) => {
-        return (<option className={styles.opc} value={row.id}>{row[name_value]}</option>);
-    };
-
-    // console.log(values?.categ);
+    let newData = [
+        {
+            id: 0,
+            [name_value]: "seleccionar categoria",
+        },
+        ...data,
+    ];
 
     const Combos = () => {
-        const rows = data.map((row, index) => {
-            return <LlenarCombo row={row} key={index} />;
-        });
         return (
             <>
-                {/* <label>{text}</label> */}
                 <div className={styles.select}>
                     <select value={values[0][name]} onChange={handleChange}>
-                        {rows}
+                        {newData.map((row, index) => {
+                            return (
+                                <LlenarCombo
+                                    row={row}
+                                    key={index}
+                                    name_value={name_value}
+                                />
+                            );
+                        })}
                     </select>
                 </div>
             </>
@@ -33,5 +37,13 @@ function Combo(props) {
 
     return <Combos />;
 }
+
+const LlenarCombo = ({ row, name_value }) => {
+    return (
+        <option className={styles.opc} value={row.id}>
+            {row[name_value]}
+        </option>
+    );
+};
 
 export default Combo;
