@@ -112,14 +112,14 @@ const PrimeraParte = ({ values, onChangeInput, visible, comboData }) => {
             <input
                 required
                 type="text"
-                placeholder="Palabra"
+                placeholder="Palabra Zapoteco"
                 value={fields.texto}
                 onChange={onChangeInput("texto")}
             />
             <input
                 required
                 type="text"
-                placeholder="Palabra Zapoteco"
+                placeholder="Palabra Español"
                 value={fields.traduccion}
                 onChange={onChangeInput("traduccion")}
             />

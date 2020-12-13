@@ -15,6 +15,8 @@ function PalabrasFinales() {
         history.push("/inicio");
     };
 
+    wordsQuery.refetch();
+
     if (wordsQuery.data?.data) {
         let words = wordsQuery.data?.data;
 
