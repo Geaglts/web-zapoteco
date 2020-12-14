@@ -36,7 +36,7 @@ function PalabrasFinales() {
                                     <div className={styles.contImg}>
                                         <div className={styles.contInfo}>
                                             <div className={styles.info}>
-                                                <h2>{word.tipo}</h2>
+                                                <h2>{word.traducciones[0]}</h2>
                                                 <h1>{word.texto}</h1>
                                                 <button>Ver más</button>
                                             </div>
