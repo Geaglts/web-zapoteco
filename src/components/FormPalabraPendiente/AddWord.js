@@ -223,10 +223,12 @@ const VentanaFinal = ({ visibleVentana, visible }) => {
 
     if (visibleVentana[0]) {
         return (
-            <section>
-                <h1>Se ha agregado tu palabra</h1>
-                <button onClick={setVisibleVentana}>Aceptar</button>
-            </section>
+            <div className={styles.accion}>
+                <div className={styles.contAccion}>
+                    <h1>Se ha agregado tu palabra</h1>
+                    <button className={styles.btnAceptar} onClick={setVisibleVentana}>Aceptar</button>
+                </div>
+            </div>
         );
     }
 };

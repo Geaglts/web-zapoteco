@@ -41,7 +41,6 @@
     width: 80%;
     height: 90%;
     margin: 9%;
-    box-shadow: 0 0 10px 0 var(--secundario);
 }
 
 .contVerificar .contCard .card{
@@ -54,6 +53,8 @@
     background-attachment: fixed;
     background-size: cover;
     background-color: var(--terciario);
+    box-shadow: 0 0 10px 0 var(--secundario);
+    margin-bottom: 2rem;
 }
 
 .contVerificar .contCard .card .contPalabra {
