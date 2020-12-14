@@ -258,7 +258,7 @@
 .accion input{
     width: 70%;
     background: transparent;
-    color: var(--terciario);
+    color: var(--secundario);
     margin-top: 1rem;
     border: .1rem solid var(--secundario);
     border-radius: 2rem;
