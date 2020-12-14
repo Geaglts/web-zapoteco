@@ -1,5 +1,6 @@
 import React, { useState, Children, cloneElement } from "react";
 import { gql, useQuery, useMutation } from "@apollo/react-hooks";
+import { useHistory } from "react-router-dom";
 import Combo from "./Combo";
 
 // import { useHistory } from "react-router-dom";
@@ -18,6 +19,10 @@ const initialState = {
 };
 
 export default function MainComponent() {
+    const history = useHistory();
+    const goToRegresar = () => {
+        history.push("/inicio");
+    };
     const MyData = useQuery(GraphqlOp.query.GET_USER);
 
     if (MyData.loading) return null;
@@ -34,6 +39,12 @@ export default function MainComponent() {
                         <h1>{MyData.data?.aboutMe?.usuario}</h1>
                         <h2>Gracias</h2>
                         <p>¡Tu aporte tiene mucho valor!</p>
+                        <button
+                            className={styles.regresar}
+                            onClick={goToRegresar}
+                        >
+                            continuar más tarde
+                        </button>
                     </div>
                 </div>
             </div>

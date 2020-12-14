@@ -183,3 +183,17 @@ select::-ms-expand {
     font-size: 1rem;
     color: var(--terciario);
 }
+
+.addPalabra .container .contText button {
+    margin-top: 3rem;
+    background: transparent;
+    border: .1rem solid var(--terciario);
+    text-transform: capitalize;
+    padding: 0;
+    width: 15rem;
+    height: 2.5rem;
+}
+
+.addPalabra .container .contText button:hover {
+    border: .1rem solid var(--primario);
+}
