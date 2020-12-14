@@ -99,7 +99,7 @@ function Login() {
                                         onChange={onChangeInput("contrasena")}
                                     />
                                 </div>
-                                <NavLink className="link" to="/Registro">
+                                <NavLink className="link" to="/">
                                     Olvide mi contraseña
                                 </NavLink>
                                 <button

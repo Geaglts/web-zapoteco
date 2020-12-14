@@ -110,11 +110,11 @@ input:focus {
 
 
 /*Change text in autofill textbox*/
-input:-webkit-autofill {
+.contMedio input:-webkit-autofill {
   -webkit-text-fill-color: var(--terciario) !important;
 }
 
-input::placeholder {
+.contMedio input::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--terciario);
   opacity: 1; /* Firefox */
