@@ -1,0 +1,145 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .contCard {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .contCard .contCarousel {
+    width: 80%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .contCard .contCarousel .contSlider {
+    width: 100%;
+    height: 100%;
+}
+
+.containerSlide {
+    background: #000;
+    width: 100%;
+    height: 100%;
+}
+
+.container .contCard .contCarousel .contSlider .slide {
+    width: 100%;
+    height: 100%;
+}
+
+.contSlider .slide .contPalabra {
+    width: 100%;
+    height: 100%;
+}
+
+.contSlider .slide .contPalabra .contInfo {
+    width: 100%;
+    height: 50%;
+    background: #fff;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas: 
+        "palabra palabra traducciones traducciones traducciones"
+        "base contextos ejemplo ejemplo ejemplo"
+        "botones botones botones botones botones";
+}
+
+.contSlider .slide .contPalabra .contInfo .palabra {
+    background: var(--secundario);
+    grid-area: palabra;
+}
+
+.contSlider .slide .contPalabra .contInfo .base {
+    background: #038f94;
+    grid-area: base;
+}
+
+.contSlider .slide .contPalabra .contInfo .traducciones {
+    background: var(--cuarto);
+    grid-area: traducciones;
+}
+
+.contSlider .slide .contPalabra .contInfo .contextos {
+    background: #94038d;
+    grid-area: contextos;
+}
+
+.contSlider .slide .contPalabra .contInfo .ejemplo {
+    background: #449403;
+    grid-area: ejemplo;
+}
+
+.contSlider .slide .contPalabra .contInfo .botones {
+    background: var(--terciario);
+    grid-area: botones;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contSlider .slide .contPalabra .contInfo .botones button {
+    background: transparent;
+    color: var(--secundario);
+    border-radius: 0;
+    border: .1rem solid var(--secundario);
+    margin: 2rem;
+}
+
+.contSlider .slide .contPalabra .contInfo .botones button:hover {
+    border-radius: 0;
+    border: .1rem solid var(--secundario);
+    background: var(--secundario);
+    color: var(--terciario);
+}
+
+
+.container .contCard .contCarousel .contBtn {
+    width: 5%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .contCard .contCarousel .contBtn .btnAtras,
+.container .contCard .contCarousel .contBtn .btnAdelante {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--secundario);
+    font-size: 2rem;
+}
+
+.container .contCard .contCarousel .contBtn .btnAtras:hover,
+.container .contCard .contCarousel .contBtn .btnAdelante:hover {
+    border: 0.1rem solid #ffffff80;
+    background: #00000046;
+}
+
+.containerSlide .contAccion {
+    background: rgba(33, 41, 52, 0.85);
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: -20;
+    display: flex;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

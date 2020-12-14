@@ -38,18 +38,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    animation: mostrar 2s forwards;
+    animation: mostrar .5s forwards;
 }
 
 @keyframes mostrar {
     0% {
-        transform: rotateY(0deg);
-    }
-    50% {
-        transform: rotateY(180deg);
+        opacity: 0;
     }
     100% {
-        transform: rotateY(0deg);
+        opacity: 1;
     }
 }
 

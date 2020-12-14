@@ -1,11 +1,21 @@
 import React, { useState } from "react";
 import { gql, useQuery, useMutation } from "@apollo/react-hooks";
+import { useHistory } from "react-router-dom";
+
+import CardCarousel from "./components/CardCarousel";
+import styles from "./VerificarWords.module.css";
+import "pure-react-carousel/dist/react-carousel.es.css";
 
 export default function MainComponent() {
     return <Tarjeta />;
 }
 
 const Tarjeta = () => {
+    const history = useHistory();
+    const goToRegresar = () => {
+        history.push("/inicio");
+    };
+
     let queryPendingWords = GraphqlOp.query.GET_PENDING_WORDS;
     let PendingWords = useQuery(queryPendingWords);
 
@@ -17,16 +27,27 @@ const Tarjeta = () => {
     let pendientes = PendingWords.data.getPendingWords;
 
     return (
-        <section>
-            <h1>Verificar Palabra</h1>
-            {pendientes.map((pendiente) => (
-                <LlenarTarjeta
-                    row={pendiente}
-                    key={pendiente.id}
+        <div className={styles.contVerificar}>
+            <div className={styles.header}>
+                <h1>Diccionario de palabras</h1>
+                <button className={styles.regresar} onClick={goToRegresar}>
+                    Volver
+                </button>
+            </div>
+            <div className={styles.contCard}>
+                {pendientes.map((pendiente) => (
+                    <LlenarTarjeta
+                        row={pendiente}
+                        key={pendiente.id}
+                        refetch={PendingWords.refetch}
+                    />
+                ))}
+                {/* <LlenarTarjeta
+                    pendientes={pendientes}
                     refetch={PendingWords.refetch}
-                />
-            ))}
-        </section>
+                /> */}
+            </div>
+        </div>
     );
 };
 
@@ -43,32 +64,57 @@ const LlenarTarjeta = ({ row, refetch }) => {
     };
 
     return (
-        <div>
-            <section>
-                <h3>{row.texto}</h3>
-                <p>fonetica: {row.fonetica}</p>
-                <p>categoria: {row.categoria}</p>
-                <p>tipo: {row.tipo}</p>
-                <section>
-                    <h5>base</h5>
-                    <p>español: {row.base.base_esp}</p>
-                    <p>zapoteco: {row.base.base_zap}</p>
-                </section>
-                <section>
-                    <h5>traducciones: </h5>
-                    {<LlenarTraducciones row={row.traducciones} />}
-                </section>
-                <section>
-                    <h5>contextos: </h5>
-                    {<LlenarContextos row={row.contextos} />}
-                </section>
-                <section>
-                    <h5>ejemplo</h5>
-                    <p>español: {row.example.ejemplo_esp}</p>
-                    <p>zapoteco: {row.example.ejemplo_zap}</p>
-                </section>
-                <button onClick={goShowAcceptCard}>aceptar</button>
-                <button onClick={goShowRejectCard}>rechazar</button>
+        <div className={styles.card}>
+            <div className={styles.contPalabra}>
+                <div className={styles.contTitulo}>
+                    <h1>{row.texto}</h1>
+                    <div className={styles.contInfo}>
+                        <div className={styles.contTxt}>
+                            <h2>fonetica</h2>
+                            <h3>{row.fonetica}</h3>
+                        </div>
+                        <div className={styles.contTxt}>
+                            <h2>categoria</h2>
+                            <h3>{row.categoria}</h3>
+                        </div>
+                        <div className={styles.contTxt}>
+                            <h2>tipo</h2>
+                            <h3>{row.tipo}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.contTitulo}>
+                    <h1>base</h1>
+                    <div className={styles.contInfo}>
+                        <div className={styles.contTxt}>
+                            <h2>español</h2>
+                            <h3>{row.base.base_esp}</h3>
+                        </div>
+                        <div className={styles.contTxt}>
+                            <h2>zapoteco</h2>
+                            <h3>{row.base.base_zap}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.contTitulo}>
+                    <div className={styles.contInfo}>
+                        <div className={styles.contTxt}>
+                            <h2>traducciones</h2>
+                            <h3>
+                                {<LlenarTraducciones row={row.traducciones} />}
+                            </h3>
+                        </div>
+                        <div className={styles.contTxt}>
+                            <h2>ejemplo</h2>
+                            <h3>ESPAÑOL: {row.example.ejemplo_esp}</h3>
+                            <h3>ZAPOTECO: {row.example.ejemplo_zap}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div className={styles.botones}>
+                    <button onClick={goShowAcceptCard}>aceptar</button>
+                    <button onClick={goShowRejectCard}>rechazar</button>
+                </div>
                 {visibleConfirmacion && (
                     <VentanaConfirmar
                         usuarioid={row.usuarioid}
@@ -85,7 +131,8 @@ const LlenarTarjeta = ({ row, refetch }) => {
                         refetch={refetch}
                     />
                 )}
-            </section>
+                {/* <Card fluid {...cardProps} /> */}
+            </div>
         </div>
     );
 };
@@ -131,11 +178,13 @@ const VentanaConfirmar = ({ usuarioid, palabraid, hideWindow, refetch }) => {
     };
 
     return (
-        <section>
+        <div className={styles.accion}>
             <h3>¿Estas seguro que deseas agregar esta palabra?</h3>
-            <button onClick={ConfirmarPalabra}>confirmar</button>
-            <button onClick={hideWindow}>volver</button>
-        </section>
+            <div className={styles.botones}>
+                <button onClick={ConfirmarPalabra}>confirmar</button>
+                <button onClick={hideWindow}>volver</button>
+            </div>
+        </div>
     );
 };
 
@@ -172,7 +221,7 @@ const VentanaRechazar = ({ usuarioid, palabraid, hideWindow, refetch }) => {
     };
 
     return (
-        <section>
+        <div className={styles.accion}>
             <h3>Rechazar palabra</h3>
             <input
                 required
@@ -181,9 +230,11 @@ const VentanaRechazar = ({ usuarioid, palabraid, hideWindow, refetch }) => {
                 type="text"
                 placeholder="mensaje"
             />
-            <button onClick={RechazarPalabra}>rechazar</button>
-            <button onClick={hideWindow}>volver</button>
-        </section>
+            <div className={styles.botones}>
+                <button onClick={RechazarPalabra}>rechazar</button>
+                <button onClick={hideWindow}>volver</button>
+            </div>
+        </div>
     );
 };
 
