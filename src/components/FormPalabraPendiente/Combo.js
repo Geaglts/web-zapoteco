@@ -10,7 +10,7 @@ function Combo(props) {
     let newData = [
         {
             id: 0,
-            [name_value]: "seleccionar categoria",
+            [name_value]: `Selecciona ${name_value}`,
         },
         ...data,
     ];

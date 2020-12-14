@@ -11,6 +11,8 @@ function MainComponent() {
 
     if (usuariosResponse.loading) return null;
 
+    usuariosResponse.refetch();
+
     let verifiersData = usuariosResponse.data.verifiers;
     let capturers = usuariosResponse.data.capturers;
 
