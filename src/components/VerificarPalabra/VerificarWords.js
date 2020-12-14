@@ -29,7 +29,7 @@ const Tarjeta = () => {
     return (
         <div className={styles.contVerificar}>
             <div className={styles.header}>
-                <h1>Diccionario de palabras</h1>
+                <h1>Verificar palabras</h1>
                 <button className={styles.regresar} onClick={goToRegresar}>
                     Volver
                 </button>
@@ -66,24 +66,25 @@ const LlenarTarjeta = ({ row, refetch }) => {
     return (
         <div className={styles.card}>
             <div className={styles.contPalabra}>
-                <div className={styles.contTitulo}>
-                    <h1>{row.texto}</h1>
-                    <div className={styles.contInfo}>
-                        <div className={styles.contTxt}>
-                            <h2>fonetica</h2>
-                            <h3>{row.fonetica}</h3>
-                        </div>
-                        <div className={styles.contTxt}>
-                            <h2>categoria</h2>
-                            <h3>{row.categoria}</h3>
-                        </div>
-                        <div className={styles.contTxt}>
-                            <h2>tipo</h2>
-                            <h3>{row.tipo}</h3>
-                        </div>
+                <div className={styles.texto}>
+                    <div className={styles.contTxt}>
+                        <h2>Palabra</h2>
+                        <h3>{row.texto}</h3>
+                    </div>
+                    <div className={styles.contTxt}>
+                        <h2>fonetica</h2>
+                        <h3>{row.fonetica}</h3>
+                    </div>
+                    <div className={styles.contTxt}>
+                        <h2>categoria</h2>
+                        <h3>{row.categoria}</h3>
+                    </div>
+                    <div className={styles.contTxt}>
+                        <h2>tipo</h2>
+                        <h3>{row.tipo}</h3>
                     </div>
                 </div>
-                <div className={styles.contTitulo}>
+                <div className={styles.base}>
                     <h1>base</h1>
                     <div className={styles.contInfo}>
                         <div className={styles.contTxt}>
@@ -96,18 +97,20 @@ const LlenarTarjeta = ({ row, refetch }) => {
                         </div>
                     </div>
                 </div>
-                <div className={styles.contTitulo}>
+                <div className={styles.traducciones}>
+                    <h2>traducciones</h2>
+                    {<LlenarTraducciones row={row.traducciones} />}
+                </div>
+                <div className={styles.ejemplo}>
+                    <h2>ejemplo</h2>
                     <div className={styles.contInfo}>
                         <div className={styles.contTxt}>
-                            <h2>traducciones</h2>
-                            <h3>
-                                {<LlenarTraducciones row={row.traducciones} />}
-                            </h3>
+                            <h2>español</h2>
+                            <h3>{row.example.ejemplo_esp}</h3>
                         </div>
                         <div className={styles.contTxt}>
-                            <h2>ejemplo</h2>
-                            <h3>ESPAÑOL: {row.example.ejemplo_esp}</h3>
-                            <h3>ZAPOTECO: {row.example.ejemplo_zap}</h3>
+                            <h2>zapoteco</h2>
+                            <h3>{row.example.ejemplo_zap}</h3>
                         </div>
                     </div>
                 </div>
@@ -139,11 +142,11 @@ const LlenarTarjeta = ({ row, refetch }) => {
 
 const LlenarTraducciones = ({ row }) => {
     return (
-        <section>
+        <div className={styles.contTraduccion}>
             {row.map((traduccion, index) => (
-                <p key={index}>{traduccion}</p>
+                <h2 key={index}>{traduccion}</h2>
             ))}
-        </section>
+        </div>
     );
 };
 
@@ -179,12 +182,22 @@ const VentanaConfirmar = ({ usuarioid, palabraid, hideWindow, refetch }) => {
 
     return (
         <div className={styles.accion}>
-            <h3>¿Estas seguro que deseas agregar esta palabra?</h3>
-            <div className={styles.botones}>
-                <button onClick={ConfirmarPalabra}>confirmar</button>
-                <button onClick={hideWindow}>volver</button>
+            <div className={styles.contAccion}>
+                <h3>¿Estas seguro que deseas agregar esta palabra?</h3>
+                <div className={styles.contBotones}>
+                    <button onClick={ConfirmarPalabra}>confirmar</button>
+                    <button onClick={hideWindow}>volver</button>
+                </div>
             </div>
         </div>
+
+        // <div className={styles.accion}>
+        //     <h3>¿Estas seguro que deseas agregar esta palabra?</h3>
+        //     <div className={styles.botones}>
+        //         <button onClick={ConfirmarPalabra}>confirmar</button>
+        //         <button onClick={hideWindow}>volver</button>
+        //     </div>
+        // </div>
     );
 };
 
@@ -222,17 +235,19 @@ const VentanaRechazar = ({ usuarioid, palabraid, hideWindow, refetch }) => {
 
     return (
         <div className={styles.accion}>
-            <h3>Rechazar palabra</h3>
-            <input
-                required
-                value={mensaje}
-                onChange={onChangeInput}
-                type="text"
-                placeholder="mensaje"
-            />
-            <div className={styles.botones}>
-                <button onClick={RechazarPalabra}>rechazar</button>
-                <button onClick={hideWindow}>volver</button>
+            <div className={styles.contAccion}>
+                <h3>Rechazar palabra</h3>
+                <input
+                    required
+                    value={mensaje}
+                    onChange={onChangeInput}
+                    type="text"
+                    placeholder="mensaje"
+                />
+                <div className={styles.contBotones}>
+                    <button onClick={RechazarPalabra}>rechazar</button>
+                    <button onClick={hideWindow}>volver</button>
+                </div>
             </div>
         </div>
     );
