@@ -6,6 +6,7 @@ import CambiarRoles from "./components/Roles/Roles";
 import Docente from "./components/Docente/MainComponent";
 import AddPendingWord from "./components/FormPalabraPendiente/AddWord";
 import VerificarWords from "./components/VerificarPalabra/VerificarWords";
+import MisPalabras from "./components/Usuarios/MisPalabras/MainComponent";
 
 import { AdminPrincipal } from "./components/Admin";
 import { Categorias, Tipos, Contexto } from "./components/Listas";
@@ -38,6 +39,11 @@ const VerificarPalabraRoute = {
     component: VerificarWords,
 };
 
+const MisPalabrasRoute = {
+    path: "/mis-palabras",
+    component: MisPalabras,
+};
+
 function App() {
     return (
         <Router>
@@ -56,6 +62,7 @@ function App() {
                     <UserRoute exact {...VerificarPalabraRoute} />
                     <UserRoute path="/inicio" component={Inicio} />
                     <UserRoute exact {...NuevaPalabraPendienteRoute} />
+                    <UserRoute exact {...MisPalabrasRoute} />
 
                     <NoUserRoutes exact path="/" component={Login} />
                     <NoUserRoutes exact path="/registro" component={Registro} />

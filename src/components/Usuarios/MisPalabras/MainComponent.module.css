@@ -1,0 +1,401 @@
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.container {
+    --main-color: #612afa;
+}
+
+.regresar {
+    font-family: "Montserrat", sans-serif;
+    border: 0.15em solid var(--main-color);
+    color: var(--main-color);
+    background: transparent;
+    position: absolute;
+    left: 0.7em;
+    top: 0.7em;
+    padding: 0.5em 0.8em;
+    border-radius: 3em;
+    font-weight: 500;
+    transition: all 500ms;
+}
+
+.regresar:hover {
+    border: 0.15em solid var(--main-color);
+    background: var(--main-color);
+    color: #fff;
+}
+
+.content {
+    --height-size: 80%;
+    --border-size: 0.5em;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.miData {
+    background: hsla(0, 0%, 100%, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 23%;
+    margin-right: 2em;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
+    height: var(--height-size);
+    border-radius: var(--border-size);
+    font-family: "Montserrat", sans-serif;
+}
+
+.miData img {
+    width: 100px;
+    height: 100px;
+    border-radius: 5em;
+    margin-bottom: 0.5em;
+}
+
+.miData h3 {
+    color: var(--main-color);
+    font-family: inherit;
+    font-size: 14pt;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.miData h4 {
+    margin-top: 0.6em;
+    color: var(--main-color);
+    font-family: inherit;
+    font-size: 14pt;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.miData p {
+    color: #686868;
+    font-family: inherit;
+    font-size: 11pt;
+    font-weight: 400;
+}
+
+.miData ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0 1em;
+}
+
+.miData ul p {
+    background: #612afa;
+    padding: 0.5em 0.8em;
+    margin: 0 0.5em;
+    margin-top: 0.5em;
+    border-radius: 0.2em;
+    color: white;
+    font-size: 9pt;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.05em;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
+}
+
+.estadisticas {
+    margin: 0 1.5em;
+    margin-top: 0.5em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.estadisticas p {
+    margin-bottom: 1em;
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+    background: white;
+    padding: 0.6em 0;
+    margin-top: 0.5em;
+    border-radius: 0.3em;
+    color: #612afa;
+    font-size: 9pt;
+    width: 110px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0.05em;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.12);
+}
+
+.estadisticas p span {
+    margin-top: 0.2em;
+    color: inherit;
+    font-size: 11pt;
+    font-weight: 100;
+}
+
+.views {
+    background: hsla(0, 0%, 100%, 0.1);
+    backdrop-filter: blur(10px);
+    width: 55%;
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.15);
+    height: var(--height-size);
+    border-radius: var(--border-size);
+}
+
+.menu {
+    --main-color: #222;
+    height: 5%;
+}
+
+.menu ul {
+    margin-left: 1em;
+    margin-top: 1em;
+}
+
+.menu ul button {
+    background: transparent;
+    border: none;
+    list-style: none;
+    display: inline;
+    font-size: 11pt;
+    line-height: 1.5;
+    margin-right: 0.2em;
+    font-weight: 500;
+    font-family: "Montserrat", sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    color: var(--main-color);
+    transition: all 300ms;
+    padding: 0.5em 0.8em;
+}
+
+.menu ul button:hover {
+    color: #612afa;
+    border-radius: 0.3em 0.3em 0 0;
+    box-shadow: 0 -0.3px 5px 1px rgba(0, 0, 0, 0.13);
+}
+
+.menu ul button:focus {
+    color: #2a9cfa;
+    border-radius: 0.3em 0.3em 0 0;
+    box-shadow: 0 -0.3px 5px 1px rgba(0, 0, 0, 0.13);
+}
+
+.lists {
+    height: calc(100% - 8%);
+}
+
+.listItems {
+    font-family: "Montserrat", sans-serif;
+    height: 100%;
+}
+
+.listDiv {
+    height: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.listDiv h1 {
+    margin-left: 1.75em;
+    font-family: inherit;
+    font-size: 12pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 300;
+    color: #612afa;
+}
+
+.wordItemsContainer {
+    height: calc(100% - 15%);
+    overflow: scroll;
+}
+
+.wordItems {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.tableWords {
+    width: 90%;
+    background: transparent;
+    border-radius: 0.4em;
+    border-collapse: collapse;
+}
+
+.tableWords tr:hover {
+    background-color: rgba(109, 30, 255, 0.07);
+}
+
+.tableWords thead tr th,
+.tableWords tbody tr td {
+    padding: 0.8em;
+    line-height: 1.5;
+    font-weight: 400;
+    color: #612afa;
+}
+
+.tableWords thead tr th {
+    font-family: "Montserrat", sans-serif;
+    font-size: 15pt;
+    text-align: left;
+    border-bottom: 2px solid rgba(221, 221, 221, 0.3);
+    width: 100px;
+}
+
+.tableWords tbody tr td {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12pt;
+    text-align: left;
+    text-transform: capitalize;
+}
+
+.traducciones {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.traducciones p {
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 9pt !important;
+    background: #612afa;
+    color: white;
+    padding: 0.4em 0.5em;
+    border-radius: 0.3em;
+    text-transform: lowercase !important;
+    margin: 0.2em 0.1em;
+}
+
+.tableButton {
+    font-family: "Montserrat", sans-serif !important;
+    background: transparent;
+    padding: 0.4em 0.8em;
+    color: #fff;
+    background: #612afa;
+    font-size: 10pt;
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    border-radius: 0.2em;
+    line-height: 1.5;
+}
+
+.tableButton span {
+    margin-right: 0.3em;
+    color: #fff;
+    font-size: 12pt;
+}
+
+.tableButton:hover {
+    border: 2px solid #2a9cfa;
+    background: #2a9cfa;
+    color: #fff;
+}
+
+/* .wordItem {
+    background: hsla(0, 0%, 100%, 0.5);
+    margin: 1em;
+    border-radius: 0.2em;
+    overflow: hidden;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.07);
+    width: 210px;
+    height: 320px;
+    --decorate-size: 40%;
+}
+
+.wordDecorate {
+    height: var(--decorate-size);
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.wordData {
+    font-family: "Montserrat", sans-serif;
+    height: calc(100% - var(--decorate-size));
+    padding: 1em;
+}
+
+.wordData p {
+    color: #222;
+    font-weight: 500;
+}
+
+.wordData p:first-child {
+    font-size: 15pt;
+    font-family: inherit;
+    text-transform: capitalize;
+}
+
+.wordData p:first-child span {
+    margin-top: 0em;
+    color: #612afa;
+    display: block;
+    font-size: 13pt;
+    font-weight: 500;
+    font-family: inherit;
+    text-transform: capitalize;
+    letter-spacing: 0.03em;
+}
+
+.wordData hr {
+    border: 1px solid hsla(0, 0%, 100%, 0);
+    margin: 0.1em 0;
+}
+
+.wordData p {
+    font-size: 14pt;
+    font-family: inherit;
+    text-transform: capitalize;
+}
+
+.wordData p span {
+    display: block;
+    font-size: 11pt;
+    font-weight: 500;
+    color: inherit;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #612afa;
+}
+
+.traducciones h2 {
+    font-size: 14pt;
+    color: #222;
+    display: block;
+    font-weight: 500;
+    font-family: "Montserrat", sans-serif;
+    text-transform: capitalize;
+}
+
+.traducciones div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.traducciones div p {
+    font-family: "Montserrat", sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 9pt !important;
+    background-color: #612afa;
+    color: white;
+    padding: 0.4em 0.5em;
+    border-radius: 0.3em;
+    text-transform: lowercase !important;
+    margin: 0.2em 0.1em;
+} */ ;

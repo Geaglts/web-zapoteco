@@ -112,6 +112,9 @@ const ShowMenu = ({ roles = [], admin }) => {
             case 7:
                 history.push("/docente");
                 return;
+            case 8:
+                history.push("/mis-palabras");
+                return;
             default:
                 return;
         }
@@ -126,6 +129,11 @@ const ShowMenu = ({ roles = [], admin }) => {
             <Boton
                 label="agregar Palabra"
                 callback={redirect(1)}
+                condition={esCapturador}
+            />
+            <Boton
+                label="mis palabras"
+                callback={redirect(8)}
                 condition={esCapturador}
             />
             <Boton
