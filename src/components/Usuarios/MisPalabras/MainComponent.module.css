@@ -284,7 +284,8 @@
 .tableButton {
     font-family: "Montserrat", sans-serif !important;
     background: transparent;
-    padding: 0.4em 0.8em;
+    padding: 0.2em 0.4em;
+    margin: 0.2em;
     color: #fff;
     background: #612afa;
     font-size: 10pt;

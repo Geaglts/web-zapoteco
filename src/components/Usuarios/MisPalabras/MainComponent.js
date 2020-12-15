@@ -42,7 +42,7 @@ function MainComponent() {
                     <h4>Roles</h4>
                     <ul>
                         {usuario?.roles.map((rol) => (
-                            <p>{rol}</p>
+                            <p key={rol}>{rol}</p>
                         ))}
                     </ul>
                     <h4>Estadistica</h4>
@@ -88,6 +88,8 @@ const Lista = ({ tipo }) => {
     let myWords = useQuery(GraphqlOp.Query.MIS_PALABRAS);
     if (myWords.loading) return null;
 
+    myWords.refetch();
+
     let pendingWord = myWords.data.pendingWords;
     let approvedWords = myWords.data.approvedWords;
     let rejectWords = myWords.data.rejectedWords;
@@ -126,7 +128,16 @@ const Lista = ({ tipo }) => {
 };
 
 const PalabrasNormales = ({ data, tipo }) => {
-    let activarBotonera = tipo == 2 || tipo == 3;
+    const history = useHistory();
+    let activarBotonera = tipo === 2 || tipo === 3;
+    let ocultarTraducciones = tipo === 3;
+
+    const goToUpdate = (palabra) => () => {
+        history.push({
+            pathname: "/update-word",
+            state: { palabra, tipo },
+        });
+    };
 
     return (
         <div className={classnames(styles.wordItemsContainer)}>
@@ -135,7 +146,9 @@ const PalabrasNormales = ({ data, tipo }) => {
                     <thead>
                         <tr>
                             <th>Palabra</th>
-                            <th>Traducciones</th>
+                            {!ocultarTraducciones && <th>Traducciones</th>}
+                            {ocultarTraducciones && <th>Mensaje</th>}
+                            {ocultarTraducciones && <th>Rechazado por</th>}
                             {activarBotonera && <th>Opciones</th>}
                         </tr>
                     </thead>
@@ -144,25 +157,30 @@ const PalabrasNormales = ({ data, tipo }) => {
                             return (
                                 <tr key={palabra.id}>
                                     <td>{palabra.texto}</td>
-                                    <td className={styles.traducciones}>
-                                        {palabra?.traducciones?.map(
-                                            (traduccion) => (
-                                                <p>{traduccion}</p>
-                                            )
-                                        )}
-                                    </td>
+                                    {!ocultarTraducciones && (
+                                        <td className={styles.traducciones}>
+                                            {palabra?.traducciones?.map(
+                                                (traduccion) => (
+                                                    <p>{traduccion}</p>
+                                                )
+                                            )}
+                                        </td>
+                                    )}
+                                    {ocultarTraducciones && (
+                                        <td>{palabra?.mensaje}</td>
+                                    )}
+                                    {ocultarTraducciones && (
+                                        <td>
+                                            {palabra?.rechazado_por?.nombre}
+                                        </td>
+                                    )}
                                     {activarBotonera && (
                                         <td>
-                                            <button
-                                                className={styles.tableButton}
-                                            >
-                                                <span>
-                                                    <FontAwesomeIcon
-                                                        icon={faBandAid}
-                                                    />
-                                                </span>
-                                                Actuzalizar
-                                            </button>
+                                            <TableButton
+                                                onClick={goToUpdate(palabra)}
+                                                label="Actuzalizar"
+                                            />
+                                            <TableButton label="Eliminar" />
                                         </td>
                                     )}
                                 </tr>
@@ -205,6 +223,17 @@ const PalabrasNormales = ({ data, tipo }) => {
     );
 };
 
+const TableButton = ({ label, ...rest }) => {
+    return (
+        <button className={styles.tableButton} {...rest}>
+            <span>
+                <FontAwesomeIcon icon={faBandAid} />
+            </span>
+            {label}
+        </button>
+    );
+};
+
 const GraphqlOp = {
     Query: {
         ABOUT_ME: gql`
@@ -230,17 +259,66 @@ const GraphqlOp = {
                 pendingWords {
                     id
                     texto
+                    fonetica
+                    tipo
                     traducciones
+                    categoria
+                    base {
+                        id
+                    }
+                    contextos {
+                        id
+                        contexto
+                    }
+                    example {
+                        _id
+                        ejemplo_esp
+                        ejemplo_zap
+                    }
                 }
                 approvedWords {
                     id
                     texto
+                    fonetica
+                    tipo
                     traducciones
+                    categoria
+                    base {
+                        id
+                        base_esp
+                    }
+                    contextos {
+                        id
+                        contexto
+                    }
                 }
                 rejectedWords {
                     id
                     texto
+                    fonetica
+                    tipo
                     traducciones
+                    categoria
+                    base {
+                        id
+                        base_esp
+                    }
+                    contextos {
+                        id
+                        contexto
+                    }
+                    mensaje
+                    rechazado_por {
+                        id
+                        nombre
+                        apaterno
+                        amaterno
+                    }
+                    example {
+                        _id
+                        ejemplo_esp
+                        ejemplo_zap
+                    }
                 }
             }
         `,
