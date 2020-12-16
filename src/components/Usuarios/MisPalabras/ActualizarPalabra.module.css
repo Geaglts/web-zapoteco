@@ -13,8 +13,8 @@
     backdrop-filter: blur(10px);
     box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
     border-radius: 0.6em;
-    width: 70%;
-    height: 80%;
+    width: 60%;
+    height: 70%;
     padding: 2em;
     position: relative;
     font-family: "Montserrat", sans-serif;
@@ -103,11 +103,25 @@
     border: none;
 }
 
+.formButton:active {
+    padding: 0.45em 0.6em;
+}
+
 .confirmar {
     position: absolute;
-    bottom: 1.3em;
-    right: 1.3em;
+    bottom: 2em;
+    right: 2.6em;
     padding: 0.5em 0.8em;
+}
+
+/* Contenedores de las bases y las traducciones */
+.baseTraduccionContainer {
+    height: 35%;
+}
+
+.divTraduccionesContainer {
+    height: 100%;
+    width: 50%;
 }
 
 /* Vista de las traducciones */
@@ -153,32 +167,23 @@
     margin-left: 0.5em;
 }
 
-.baseTraduccionContainer {
-    height: 100%;
-}
-
-.divTraduccionesContainer {
-    height: 35%;
-    width: 50%;
-}
-
 /* DropDown */
 .dropDownMenu {
     font-family: "Montserrat", sans-serif;
-    width: 28%;
-    height: 35%;
+    width: 33%;
+    height: 100%;
     margin-left: 0.5em;
 }
 
 .dropDownHeader {
     font-family: inherit;
-    height: 37%;
+    height: 4em;
 }
 
 .dropDownOptions {
     font-family: inherit;
     overflow: scroll;
-    height: calc(100% - 37%);
+    height: calc(100% - 4em);
 }
 
 .dropDownTitle {
@@ -240,4 +245,103 @@
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: 0.1em;
+}
+
+/* Mas informacion */
+.segundaParte {
+    position: absolute;
+    bottom: 2em;
+    left: 2.6em;
+    padding: 0.5em 0.8em;
+    color: #fff;
+    display: flex;
+}
+
+.segundaParte:active {
+    padding: 1em 0.7em;
+}
+
+.segundaParte .text {
+    color: inherit;
+    font-family: inherit;
+}
+
+.segundaParte .icon {
+    color: inherit;
+    margin-left: 0.4em;
+}
+
+.segundaParte .iconBack {
+    color: inherit;
+    margin-right: 0.4em;
+}
+
+/* Segunda parte del formulario */
+.segundaParteForm {
+    height: 90%;
+    width: 100%;
+    display: flex;
+}
+
+.segundaParteForm .left {
+    width: 50%;
+    height: 100%;
+}
+
+.segundaParteForm .right {
+    width: 50%;
+    height: 100%;
+}
+
+.segundaParteForm .left .section1 {
+    width: 100%;
+    margin: 0.4em 0em;
+    height: calc(100% / 2);
+    overflow: scroll;
+}
+
+.segundaParteForm .left .section1 div {
+    width: 75%;
+}
+
+.segundaParteForm .left .section1 div div {
+    width: 100%;
+}
+
+.segundaParteForm .left .section2 {
+    background: #fd4;
+    width: 100%;
+    margin: 0.4em 0em;
+    height: calc(100% / 2);
+    overflow: scroll;
+}
+
+.segundaParteForm .right .section1 {
+    width: 100%;
+    margin: 0.4em 0em;
+    height: calc(100% / 2);
+    overflow: scroll;
+}
+
+.segundaParteForm .right .section1 div {
+    width: 75%;
+}
+
+.segundaParteForm .right .section1 div div {
+    width: 100%;
+}
+
+.segundaParteForm .right .section2 {
+    width: 100%;
+    margin: 0.4em 0em;
+    height: calc(100% / 2);
+    overflow: scroll;
+}
+
+.segundaParteForm .right .section2 div {
+    width: 75%;
+}
+
+.segundaParteForm .right .section2 div div {
+    width: 100%;
 }
