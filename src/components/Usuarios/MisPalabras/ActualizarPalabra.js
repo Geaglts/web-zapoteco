@@ -4,7 +4,11 @@ import formStyles from "./ActualizarPalabra.module.css";
 import { gql, useQuery } from "@apollo/react-hooks";
 import useRoute from "../../../utils/useRoute";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+import {
+    faWindowClose,
+    faCaretDown,
+    faCaretUp,
+} from "@fortawesome/free-solid-svg-icons";
 import classnames from "classnames";
 
 function ActualizarPalabra() {
@@ -103,51 +107,71 @@ function ActualizarPalabra() {
                             onChange={onChangeText("ejemplo_zap")}
                         />
                     </div>
-                    <button
-                        onClick={newTranslation}
+
+                    <div
                         className={classnames(
-                            formStyles.formButton,
-                            formStyles.addTraduccion
+                            formStyles.divHorizontal,
+                            formStyles.baseTraduccionContainer
                         )}
                     >
-                        Agregar traduccion
-                    </button>
-                    <div className={formStyles.divTraducciones}>
-                        {values.traducciones.map((traduccion, index) => {
-                            return (
-                                <div
-                                    key={index}
-                                    className={formStyles.divTraduccion}
-                                >
-                                    {index > 0 && (
-                                        <button
-                                            onClick={dropTranslation(index)}
-                                        >
-                                            <FontAwesomeIcon
-                                                icon={faWindowClose}
-                                            />
-                                        </button>
-                                    )}
-                                    <Input
-                                        required
-                                        labelText={`traduccion ${index + 1}`}
-                                        value={traduccion}
-                                        onChange={onChangeTraducciones(index)}
-                                    />
-                                </div>
-                            );
-                        })}
+                        <div className={formStyles.divTraduccionesContainer}>
+                            <button
+                                onClick={newTranslation}
+                                className={classnames(
+                                    formStyles.formButton,
+                                    formStyles.addTraduccion
+                                )}
+                            >
+                                Agregar traduccion
+                            </button>
+                            <div className={formStyles.divTraducciones}>
+                                {values.traducciones.map(
+                                    (traduccion, index) => {
+                                        return (
+                                            <div
+                                                key={index}
+                                                className={
+                                                    formStyles.divTraduccion
+                                                }
+                                            >
+                                                {index > 0 && (
+                                                    <button
+                                                        onClick={dropTranslation(
+                                                            index
+                                                        )}
+                                                    >
+                                                        <FontAwesomeIcon
+                                                            icon={faWindowClose}
+                                                        />
+                                                    </button>
+                                                )}
+                                                <Input
+                                                    required
+                                                    labelText={`traduccion ${
+                                                        index + 1
+                                                    }`}
+                                                    value={traduccion}
+                                                    onChange={onChangeTraducciones(
+                                                        index
+                                                    )}
+                                                />
+                                            </div>
+                                        );
+                                    }
+                                )}
+                            </div>
+                        </div>
+                        <DropDown
+                            data={bases}
+                            actuactualValue={values.base_actual}
+                            itemName="base_id"
+                            itemText="base_esp"
+                            itemId="id"
+                            itemType="base actual: "
+                            placeholder="Selecciona una base"
+                            onChange={onChangeCombo}
+                        />
                     </div>
-                    <DropDown
-                        data={bases}
-                        actuactualValue={values.base_actual}
-                        itemName="base_id"
-                        itemText="base_esp"
-                        itemId="id"
-                        itemType="base: "
-                        placeholder="Selecciona una base"
-                        onChange={onChangeCombo}
-                    />
                     <button
                         onClick={onSubmitForm}
                         className={classnames(
@@ -190,27 +214,44 @@ const DropDown = ({
     };
 
     return (
-        <div>
-            <h1>
-                {itemType}
-                {actuactualValue}
-            </h1>
-            <button onClick={changeVisibleState}>{placeholder}</button>
-            {visible &&
-                data.map((item, index) => {
-                    return (
-                        <div
-                            key={item[itemId]}
-                            onClick={onChange(
-                                itemName,
-                                item[itemId],
-                                item[itemText]
-                            )}
-                        >
-                            <p>{item[itemText]}</p>
-                        </div>
-                    );
-                })}
+        <div className={formStyles.dropDownMenu}>
+            <div className={formStyles.dropDownHeader}>
+                <h1 className={formStyles.dropDownTitle}>
+                    {itemType}
+                    {actuactualValue}
+                </h1>
+                <button
+                    className={formStyles.dropDownButton}
+                    onClick={changeVisibleState}
+                >
+                    {placeholder}
+                    <span>
+                        <FontAwesomeIcon
+                            icon={visible ? faCaretUp : faCaretDown}
+                        />
+                    </span>
+                </button>
+            </div>
+            <div className={formStyles.dropDownOptions}>
+                {visible &&
+                    data.map((item, index) => {
+                        return (
+                            <div
+                                className={formStyles.dropDownItemContainer}
+                                key={item[itemId]}
+                                onClick={onChange(
+                                    itemName,
+                                    item[itemId],
+                                    item[itemText]
+                                )}
+                            >
+                                <p className={formStyles.dropDownItemText}>
+                                    {item[itemText]}
+                                </p>
+                            </div>
+                        );
+                    })}
+            </div>
         </div>
     );
 };
