@@ -160,8 +160,10 @@ const PalabrasNormales = ({ data, tipo }) => {
                                     {!ocultarTraducciones && (
                                         <td className={styles.traducciones}>
                                             {palabra?.traducciones?.map(
-                                                (traduccion) => (
-                                                    <p>{traduccion}</p>
+                                                (traduccion, index) => (
+                                                    <p key={index}>
+                                                        {traduccion}
+                                                    </p>
                                                 )
                                             )}
                                         </td>

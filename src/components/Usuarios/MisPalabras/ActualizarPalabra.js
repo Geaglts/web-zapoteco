@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./MainComponent.module.css";
 import formStyles from "./ActualizarPalabra.module.css";
-import { gql, useQuery } from "@apollo/react-hooks";
+import { gql, useMutation, useQuery } from "@apollo/react-hooks";
 import useRoute from "../../../utils/useRoute";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -32,6 +32,11 @@ function ActualizarPalabra() {
         tipo: palabra.tipo || "",
         categoria: palabra.categoria || "",
     });
+
+    let updatePendingWordMutation = GraphqlOp.mutation.UPDATE_PENDING_WORD;
+    let resendPendingWordMutation = GraphqlOp.mutation.RESEND_PENDING_WORD;
+    const [updatePendingWord] = useMutation(updatePendingWordMutation);
+    const [resendPendingWord] = useMutation(resendPendingWordMutation);
 
     const comboOptions = useQuery(GraphqlOp.query.GET_OPTIONS);
     if (comboOptions.loading) return null;
@@ -65,9 +70,36 @@ function ActualizarPalabra() {
         setPrimeraParte(!primeraParte);
     };
 
-    const onSubmitForm = (e) => {
+    const onSubmitForm = async (e) => {
         e.preventDefault();
-        console.log(values);
+        try {
+            let variables = Object.assign({}, values);
+            delete variables.base_actual;
+            delete variables.contexto_actual;
+            variables = { ...variables, palabraId: palabra.id };
+
+            await updatePendingWord({ variables });
+            switch (location.state.tipo) {
+                // Pendiente
+                case 1:
+                    break;
+                // Rechazada
+                case 3:
+                    // Si es una palabra rechazada va a pasar a pendientes => tipo 3
+                    await resendPendingWord({
+                        variables: {
+                            palabra_id: palabra.id,
+                        },
+                    });
+                    break;
+                default:
+                    break;
+            }
+
+            history.goBack();
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const newTranslation = (e) => {
@@ -384,7 +416,42 @@ const GraphqlOp = {
             }
         `,
     },
-    mutation: {},
+    mutation: {
+        UPDATE_PENDING_WORD: gql`
+            mutation(
+                $palabraId: Int!
+                $texto: String!
+                $fonetica: String!
+                $traducciones: [String!]
+                $base_id: String!
+                $contexto_id: Int!
+                $tipo: String!
+                $categoria: String!
+                $ejemplo_esp: String!
+                $ejemplo_zap: String!
+            ) {
+                updatePendingWord(
+                    input: {
+                        palabraId: $palabraId
+                        texto: $texto
+                        fonetica: $fonetica
+                        traducciones: $traducciones
+                        base_id: $base_id
+                        contexto_id: $contexto_id
+                        tipo: $tipo
+                        categoria: $categoria
+                        ejemplo_esp: $ejemplo_esp
+                        ejemplo_zap: $ejemplo_zap
+                    }
+                )
+            }
+        `,
+        RESEND_PENDING_WORD: gql`
+            mutation($palabra_id: Int!) {
+                resendPendingWord(palabra_id: $palabra_id)
+            }
+        `,
+    },
 };
 
 export default ActualizarPalabra;
