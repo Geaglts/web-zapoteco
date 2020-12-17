@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { gql, useQuery, useMutation } from "@apollo/react-hooks";
 import { useHistory } from "react-router-dom";
 
@@ -12,20 +12,29 @@ export default function MainComponent() {
 
 const Tarjeta = () => {
     const history = useHistory();
-    const [pendingWords, setPendingWords] = useState(null);
 
     const goToRegresar = () => {
         history.goBack();
     };
 
     let queryPendingWords = GraphqlOp.query.GET_PENDING_WORDS;
-    const { data, refetch } = useQuery(queryPendingWords);
+    const { loading, data, refetch } = useQuery(queryPendingWords, {
+        fetchPolicy: "no-cache",
+    });
 
-    useEffect(() => {
-        if (data) {
-            setPendingWords(data.getPendingWords);
-        }
-    }, []);
+    if (loading) {
+        <div className={styles.contVerificar}>
+            <div className={styles.header}>
+                <h1>Verificar palabras</h1>
+                <button className={styles.regresar} onClick={goToRegresar}>
+                    Volver
+                </button>
+            </div>
+            <div className={styles.contCard}></div>
+        </div>;
+    }
+
+    refetch();
 
     return (
         <div className={styles.contVerificar}>
@@ -36,18 +45,13 @@ const Tarjeta = () => {
                 </button>
             </div>
             <div className={styles.contCard}>
-                {pendingWords &&
-                    pendingWords.map((pendiente) => (
-                        <LlenarTarjeta
-                            row={pendiente}
-                            key={pendiente.id}
-                            refetch={refetch}
-                        />
-                    ))}
-                {/* <LlenarTarjeta
-                    pendientes={pendientes}
-                    refetch={PendingWords.refetch}
-                /> */}
+                {data?.getPendingWords.map((pendiente) => (
+                    <LlenarTarjeta
+                        row={pendiente}
+                        key={pendiente.id}
+                        refetch={refetch}
+                    />
+                ))}
             </div>
         </div>
     );
