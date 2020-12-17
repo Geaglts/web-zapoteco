@@ -267,6 +267,7 @@ const GraphqlOp = {
                     categoria
                     base {
                         id
+                        base_esp
                     }
                     contextos {
                         id
@@ -281,18 +282,7 @@ const GraphqlOp = {
                 approvedWords {
                     id
                     texto
-                    fonetica
-                    tipo
                     traducciones
-                    categoria
-                    base {
-                        id
-                        base_esp
-                    }
-                    contextos {
-                        id
-                        contexto
-                    }
                 }
                 rejectedWords {
                     id

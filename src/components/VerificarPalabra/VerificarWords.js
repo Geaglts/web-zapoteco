@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { gql, useQuery, useMutation } from "@apollo/react-hooks";
 import { useHistory } from "react-router-dom";
 
@@ -12,19 +12,20 @@ export default function MainComponent() {
 
 const Tarjeta = () => {
     const history = useHistory();
+    const [pendingWords, setPendingWords] = useState(null);
+
     const goToRegresar = () => {
-        history.push("/inicio");
+        history.goBack();
     };
 
     let queryPendingWords = GraphqlOp.query.GET_PENDING_WORDS;
-    let PendingWords = useQuery(queryPendingWords);
+    const { data, refetch } = useQuery(queryPendingWords);
 
-    if (PendingWords.loading) return null;
-    if (PendingWords.error) return null;
-
-    PendingWords.refetch();
-
-    let pendientes = PendingWords.data.getPendingWords;
+    useEffect(() => {
+        if (data) {
+            setPendingWords(data.getPendingWords);
+        }
+    }, []);
 
     return (
         <div className={styles.contVerificar}>
@@ -35,13 +36,14 @@ const Tarjeta = () => {
                 </button>
             </div>
             <div className={styles.contCard}>
-                {pendientes.map((pendiente) => (
-                    <LlenarTarjeta
-                        row={pendiente}
-                        key={pendiente.id}
-                        refetch={PendingWords.refetch}
-                    />
-                ))}
+                {pendingWords &&
+                    pendingWords.map((pendiente) => (
+                        <LlenarTarjeta
+                            row={pendiente}
+                            key={pendiente.id}
+                            refetch={refetch}
+                        />
+                    ))}
                 {/* <LlenarTarjeta
                     pendientes={pendientes}
                     refetch={PendingWords.refetch}
