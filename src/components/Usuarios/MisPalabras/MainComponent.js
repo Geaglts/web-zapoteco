@@ -16,6 +16,8 @@ function MainComponent() {
     let getData = useQuery(GraphqlOp.Query.ABOUT_ME);
     if (getData.loading) return null;
 
+    getData.refetch();
+
     const returnBack = () => {
         history.goBack();
     };
@@ -39,6 +41,7 @@ function MainComponent() {
                 visible={confirmacionVisible}
                 setVisible={setConfirmacionVisible}
                 palabraId={palabraId}
+                refetch={getData.refetch}
             />
             <div className={classnames(styles.container, styles.noselect)}>
                 <button
@@ -272,6 +275,7 @@ const Confirmacion = ({
     visible = false,
     setVisible = (_) => {},
     palabraId,
+    refetch,
 }) => {
     const deletePendingWordMutation = GraphqlOp.Mutation.DELETE_PENDING_WORD;
     const [deletePendingWordFun] = useMutation(deletePendingWordMutation);
@@ -285,6 +289,7 @@ const Confirmacion = ({
             });
 
             if (res.data) {
+                await refetch();
                 setVisible(false);
             }
         } catch (e) {
