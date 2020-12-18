@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./MainComponent.module.css";
-import { gql, useQuery } from "@apollo/react-hooks";
+import { gql, useQuery, useMutation } from "@apollo/react-hooks";
 import { useHistory } from "react-router-dom";
 import fondo from "../../../assets/img2.jpg";
 import classnames from "classnames";
@@ -8,6 +8,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBandAid } from "@fortawesome/free-solid-svg-icons";
 
 function MainComponent() {
+    const [confirmacionVisible, setConfirmacionVisible] = useState(false);
+    const [palabraId, setPalabraId] = useState(0);
     const [tipoDeLista, setTipoDeLista] = useState(1);
     const history = useHistory();
 
@@ -22,69 +24,85 @@ function MainComponent() {
         setTipoDeLista(tipo);
     };
 
+    const activateConfirmation = (id) => (e) => {
+        e.preventDefault();
+        setPalabraId(id);
+        setConfirmacionVisible(!confirmacionVisible);
+    };
+
     let { nombre, apaterno, amaterno, ...usuario } = getData.data.aboutMe;
     let nombre_completo = `${nombre} ${apaterno} ${amaterno}`;
 
     return (
-        <div className={classnames(styles.container, styles.noselect)}>
-            <button
-                onClick={returnBack}
-                className={classnames(styles.regresar)}
-            >
-                regresar
-            </button>
-            <div className={classnames(styles.content)}>
-                <section className={classnames(styles.miData)}>
-                    <img src={fondo} alt="fondo" />
-                    <h3>{nombre_completo}</h3>
-                    <p>{usuario?.correo}</p>
-                    <p>{usuario?.ncontrol}</p>
-                    <h4>Roles</h4>
-                    <ul>
-                        {usuario?.roles.map((rol) => (
-                            <p key={rol}>{rol}</p>
-                        ))}
-                    </ul>
-                    <h4>Estadistica</h4>
-                    <section className={classnames(styles.estadisticas)}>
-                        <p>
-                            Palabras agregadas
-                            <span>{usuario?.palabrasAgregadas}</span>
-                        </p>
-                        <p>
-                            Palabras pendientes
-                            <span>{usuario?.palabrasPendientes}</span>
-                        </p>
-                        <p>
-                            Palabras rechazadas
-                            <span>{usuario?.palabrasRechazadas}</span>
-                        </p>
-                    </section>
-                </section>
-                <section className={classnames(styles.views)}>
-                    <nav className={classnames(styles.menu)}>
+        <>
+            <Confirmacion
+                visible={confirmacionVisible}
+                setVisible={setConfirmacionVisible}
+                palabraId={palabraId}
+            />
+            <div className={classnames(styles.container, styles.noselect)}>
+                <button
+                    onClick={returnBack}
+                    className={classnames(styles.regresar)}
+                >
+                    regresar
+                </button>
+                <div className={classnames(styles.content)}>
+                    <section className={classnames(styles.miData)}>
+                        <img src={fondo} alt="fondo" />
+                        <h3>{nombre_completo}</h3>
+                        <p>{usuario?.correo}</p>
+                        <p>{usuario?.ncontrol}</p>
+                        <h4>Roles</h4>
                         <ul>
-                            <button onClick={changeTipoDeLista(1)}>
-                                Agregadas
-                            </button>
-                            <button onClick={changeTipoDeLista(2)}>
-                                Pendientes
-                            </button>
-                            <button onClick={changeTipoDeLista(3)}>
-                                Rechazadas
-                            </button>
+                            {usuario?.roles.map((rol) => (
+                                <p key={rol}>{rol}</p>
+                            ))}
                         </ul>
-                    </nav>
-                    <section className={classnames(styles.lists)}>
-                        <Lista tipo={tipoDeLista} />
+                        <h4>Estadistica</h4>
+                        <section className={classnames(styles.estadisticas)}>
+                            <p>
+                                Palabras agregadas
+                                <span>{usuario?.palabrasAgregadas}</span>
+                            </p>
+                            <p>
+                                Palabras pendientes
+                                <span>{usuario?.palabrasPendientes}</span>
+                            </p>
+                            <p>
+                                Palabras rechazadas
+                                <span>{usuario?.palabrasRechazadas}</span>
+                            </p>
+                        </section>
                     </section>
-                </section>
+                    <section className={classnames(styles.views)}>
+                        <nav className={classnames(styles.menu)}>
+                            <ul>
+                                <button onClick={changeTipoDeLista(1)}>
+                                    Agregadas
+                                </button>
+                                <button onClick={changeTipoDeLista(2)}>
+                                    Pendientes
+                                </button>
+                                <button onClick={changeTipoDeLista(3)}>
+                                    Rechazadas
+                                </button>
+                            </ul>
+                        </nav>
+                        <section className={classnames(styles.lists)}>
+                            <Lista
+                                tipo={tipoDeLista}
+                                activateConfirmation={activateConfirmation}
+                            />
+                        </section>
+                    </section>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
-const Lista = ({ tipo }) => {
+const Lista = ({ tipo, activateConfirmation }) => {
     let myWords = useQuery(GraphqlOp.Query.MIS_PALABRAS);
     if (myWords.loading) return null;
 
@@ -110,7 +128,11 @@ const Lista = ({ tipo }) => {
                     <div className={classnames(styles.listDiv)}>
                         <h1>Pendientes</h1>
                     </div>
-                    <PalabrasNormales data={pendingWord} tipo={tipo} />
+                    <PalabrasNormales
+                        data={pendingWord}
+                        tipo={tipo}
+                        activateConfirmation={activateConfirmation}
+                    />
                 </div>
             );
         case 3:
@@ -119,7 +141,11 @@ const Lista = ({ tipo }) => {
                     <div className={classnames(styles.listDiv)}>
                         <h1>Rechazadas</h1>
                     </div>
-                    <PalabrasNormales data={rejectWords} tipo={tipo} />
+                    <PalabrasNormales
+                        data={rejectWords}
+                        tipo={tipo}
+                        activateConfirmation={activateConfirmation}
+                    />
                 </div>
             );
         default:
@@ -127,8 +153,9 @@ const Lista = ({ tipo }) => {
     }
 };
 
-const PalabrasNormales = ({ data, tipo }) => {
+const PalabrasNormales = ({ data, tipo, activateConfirmation = (_) => {} }) => {
     const history = useHistory();
+
     let activarBotonera = tipo === 2 || tipo === 3;
     let ocultarTraducciones = tipo === 3;
 
@@ -182,7 +209,12 @@ const PalabrasNormales = ({ data, tipo }) => {
                                                 onClick={goToUpdate(palabra)}
                                                 label="Actuzalizar"
                                             />
-                                            <TableButton label="Eliminar" />
+                                            <TableButton
+                                                onClick={activateConfirmation(
+                                                    palabra.id
+                                                )}
+                                                label="Eliminar"
+                                            />
                                         </td>
                                     )}
                                 </tr>
@@ -191,35 +223,35 @@ const PalabrasNormales = ({ data, tipo }) => {
                     </tbody>
                 </table>
                 {/* {data.map((palabra) => {
-                    return (
+                return (
+                    <div
+                        key={palabra.id}
+                        className={classnames(styles.wordItem)}
+                    >
                         <div
-                            key={palabra.id}
-                            className={classnames(styles.wordItem)}
-                        >
+                            className={classnames(styles.wordDecorate)}
+                        ></div>
+                        <div className={classnames(styles.wordData)}>
+                            <p>
+                                Zapoteco <span>{palabra.texto}</span>
+                            </p>
+                            <hr />
                             <div
-                                className={classnames(styles.wordDecorate)}
-                            ></div>
-                            <div className={classnames(styles.wordData)}>
-                                <p>
-                                    Zapoteco <span>{palabra.texto}</span>
-                                </p>
-                                <hr />
-                                <div
-                                    className={classnames(styles.traducciones)}
-                                >
-                                    <h2>Traducciones</h2>
-                                    <div>
-                                        {palabra?.traducciones?.map(
-                                            (traduccion) => (
-                                                <p>{traduccion}</p>
-                                            )
-                                        )}
-                                    </div>
+                                className={classnames(styles.traducciones)}
+                            >
+                                <h2>Traducciones</h2>
+                                <div>
+                                    {palabra?.traducciones?.map(
+                                        (traduccion) => (
+                                            <p>{traduccion}</p>
+                                        )
+                                    )}
                                 </div>
                             </div>
                         </div>
-                    );
-                })} */}
+                    </div>
+                );
+            })} */}
             </div>
         </div>
     );
@@ -233,6 +265,55 @@ const TableButton = ({ label, ...rest }) => {
             </span>
             {label}
         </button>
+    );
+};
+
+const Confirmacion = ({
+    visible = false,
+    setVisible = (_) => {},
+    palabraId,
+}) => {
+    const deletePendingWordMutation = GraphqlOp.Mutation.DELETE_PENDING_WORD;
+    const [deletePendingWordFun] = useMutation(deletePendingWordMutation);
+
+    const deletePendingWord = async () => {
+        try {
+            const res = await deletePendingWordFun({
+                variables: {
+                    palabraId,
+                },
+            });
+
+            if (res.data) {
+                setVisible(false);
+            }
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    const closeWindow = () => {
+        setVisible(false);
+    };
+
+    return (
+        visible && (
+            <div className={classnames(styles.confirmacion, styles.noselect)}>
+                <div className={styles.confirmacionContent}>
+                    <div className={styles.mensaje}>
+                        <h1>Estas seguro?</h1>
+                        <p>
+                            Esta accion eliminara esta palabra y no podra ser
+                            recuperada.
+                        </p>
+                    </div>
+                    <div className={styles.botonera}>
+                        <button onClick={deletePendingWord}>Confirmar</button>
+                        <button onClick={closeWindow}>Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        )
     );
 };
 
@@ -312,6 +393,13 @@ const GraphqlOp = {
                         ejemplo_zap
                     }
                 }
+            }
+        `,
+    },
+    Mutation: {
+        DELETE_PENDING_WORD: gql`
+            mutation($palabraId: Int!) {
+                deletePendingWord(palabra_id: $palabraId)
             }
         `,
     },

@@ -399,4 +399,86 @@
     border-radius: 0.3em;
     text-transform: lowercase !important;
     margin: 0.2em 0.1em;
-} */ ;
+} */
+
+/* ventana de confirmacion */
+.confirmacion {
+    z-index: 1;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    backdrop-filter: blur(5px);
+    position: absolute;
+}
+
+.confirmacionContent {
+    --primary-color: #612afa;
+    --secondary-color: #fff;
+    font-family: "Montserrat", sans-serif;
+    background-color: white;
+    backdrop-filter: blur(5px);
+    height: 35%;
+    width: 35%;
+    border-radius: 0.4em;
+    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
+    padding: 1em;
+}
+
+.mensaje {
+    font-family: inherit;
+    height: 70%;
+    color: var(--primary-color);
+}
+
+.mensaje h1 {
+    font-family: inherit;
+    font-size: 26pt;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: inherit;
+}
+
+.mensaje p {
+    font-family: inherit;
+    font-size: 14pt;
+    font-weight: 400;
+    color: inherit;
+}
+
+.botonera {
+    font-family: inherit;
+    text-align: right;
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.botonera button {
+    font-family: inherit;
+    font-weight: 300;
+    padding: 0.4em 0.8em;
+    line-height: 1.5;
+    border-radius: 0.3em;
+    margin: 0 0.3em;
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    letter-spacing: 0.1em;
+    border: none;
+}
+
+.botonera button:hover {
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    padding: 0.5em 0.9em;
+    border: none;
+}
+
+.botonera button:active {
+    padding: 0.4em 0.8em;
+}
