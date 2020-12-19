@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Buscador from "./Buscador";
+import styles from "../MainComponent.module.css";
 import Estadisticas from "./Estadisticas";
 
 const filterUserList = (searchTerm) => (item) => {
@@ -20,13 +21,13 @@ function Lista({ data }) {
     };
 
     return (
-        <div>
+        <div className={styles.contCard}>
             <Buscador
                 value={searchTerm}
                 onSearch={handleChangeSearchTerm}
                 onCancelSearch={cancelSearch}
             />
-            <section>
+            <section className={styles.card}>
                 {data.filter(filterUserList(searchTerm)).map((item) => {
                     let {
                         nombre,
@@ -36,18 +37,28 @@ function Lista({ data }) {
                         ncontrol,
                         ...restItem
                     } = item;
-                    let nombreCompleto = `${nombre} ${apaterno} ${amaterno}`;
+                    let apellidos = `${apaterno} ${amaterno}`;
 
                     return (
-                        <section key={item.id}>
-                            <h2>{nombreCompleto}</h2>
+                        <div className={styles.infoCard} key={item.id}>
+                            <div className={styles.perfil}>
+                                <div className={styles.perfilInfo}>
+                                    <h3>{nombre}</h3>
+                                    <h3>{apellidos}</h3>
+                                    <p>{correo}</p>
+                                    <p>{ncontrol}</p>
+                                </div>
+                                {/* <img src={fondo} alt="fondo" /> */}
+                            </div>
+                            <Estadisticas {...restItem} />
+                            {/* <h2>{nombreCompleto}</h2>
                             <p>{correo}</p>
                             <p>{ncontrol}</p>
                             <section>
                                 <h2>estadisticas</h2>
                                 <Estadisticas {...restItem} />
-                            </section>
-                        </section>
+                            </section> */}
+                        </div>
                     );
                 })}
             </section>

@@ -3,9 +3,10 @@ import { Redirect } from "react-router-dom";
 import { deleteAdmin, deleteToken } from "../../../token";
 import fondo from "../../../assets/img2.jpg";
 
-import styles from "./Capturador.module.css";
+import styles from "./HomeUsuario.module.css";
 import { useHistory } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBook, faBookReader, faBookMedical, faHandshake, faSpellCheck, faClipboardList, faUsers, faFont } from "@fortawesome/free-solid-svg-icons";
 import hasRoles from "../../../utils/hasRoles";
 
 export default function HomeUsuario({ ncontrol, ...rest }) {
@@ -69,7 +70,10 @@ export default function HomeUsuario({ ncontrol, ...rest }) {
                 <div className={styles.contButtons}>
                     <div className={styles.buttons}>
                         <button onClick={goToDiccionario}>
-                            Diccionario de palabras
+                            <span>
+                                <FontAwesomeIcon icon={faBook} />
+                            </span>
+                            <h1>Diccionario de palabras</h1>
                         </button>
                         <ShowMenu roles={roles} admin={admin} />
                     </div>
@@ -120,47 +124,64 @@ const ShowMenu = ({ roles = [], admin }) => {
         }
     };
 
-    const Boton = ({ label, callback, condition }) => {
-        return condition ? <button onClick={callback}>{label}</button> : null;
+    const Boton = ({ label, callback, condition, icon }) => {
+        return condition ? (
+            <button onClick={callback}>
+                <span>{icon}</span>
+                <h1>{label}</h1>
+            </button>
+        ) : null;
     };
 
     return (
         <>
             <Boton
-                label="agregar Palabra"
+                label="Nueva Palabra"
                 callback={redirect(1)}
                 condition={esCapturador}
+                icon={<FontAwesomeIcon icon={faBookMedical} />}
             />
             <Boton
                 label="mis palabras"
                 callback={redirect(8)}
                 condition={esCapturador}
+                icon={<FontAwesomeIcon icon={faFont} />}
             />
             <Boton
-                label="me interesa participar"
+                label="participar"
                 callback={redirect(2)}
                 condition={esVisitante}
+                icon={<FontAwesomeIcon icon={faHandshake} />}
             />
             <Boton
                 label="revisar palabras"
                 callback={redirect(3)}
                 condition={esExperto}
+                icon={<FontAwesomeIcon icon={faBookReader} />}
             />
             <Boton
-                label="verificar nuevas palabras"
+                label="verificar palabras"
                 callback={redirect(4)}
                 condition={esVerificador}
+                icon={<FontAwesomeIcon icon={faSpellCheck} />}
             />
             <Boton
                 label="modificar roles"
                 callback={redirect(5)}
                 condition={esCoordinador}
+                icon={<FontAwesomeIcon icon={faBook} />}
             />
-            <Boton label="listas" callback={redirect(6)} condition={admin} />
+            <Boton
+                label="listas"
+                callback={redirect(6)}
+                condition={admin}
+                icon={<FontAwesomeIcon icon={faClipboardList} />}
+            />
             <Boton
                 label="Participantes"
                 callback={redirect(7)}
                 condition={esDocente}
+                icon={<FontAwesomeIcon icon={faUsers} />}
             />
         </>
     );

@@ -166,28 +166,44 @@
 .content .container .contButtons .buttons {
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.content .container .contButtons .buttons button {
-    width: 100%;
-    height: 100%;
+    /* display: grid;
+    grid-template-columns: repeat(3, 1fr); */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: .9rem;
-    color: var(--secundario);
-    background: var(--terciario);
-    border: .1rem solid transparent;
-    border-radius: 0;
+    flex-wrap: wrap;
+}
 
+.content .container .contButtons .buttons button {
+    width: 7rem;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* font-size: 1rem; */
+    color: var(--secundario);
+    background: transparent;
+    border-radius: 0;
+}
+.content .container .contButtons .buttons button h1 {
+    color: var(--secundario);
+    font-size: .6rem;
+    text-align: center;
+}
+
+.content .container .contButtons .buttons button span {
+    color: var(--secundario);
+    font-size: 1.2rem;
+    margin: .2rem;
 }
 
 .content .container .contButtons .buttons button:hover {
     background: var(--terciario);
     color: var(--secundario);
-    border: .1rem solid var(--secundario);
+    border: none;
+    box-shadow: 0 0 10px 0 var(--secundario);
+    border-radius: .5rem;
 }
 
 .contentUser {

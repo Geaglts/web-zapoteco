@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import Lista from "../Components/Lista";
+import styles from "../MainComponent.module.css";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 
 function ListaDeUsuarios({ label = "", data = [] }) {
     const [showList, setShowList] = useState(false);
@@ -9,11 +13,16 @@ function ListaDeUsuarios({ label = "", data = [] }) {
     };
 
     return (
-        <div>
-            <h1>{label}</h1>
-            <button onClick={changeStatusShowList}>
-                {!showList ? "Mostrar" : "Ocultar"}
-            </button>
+        <div className={styles.contLista}>
+            <div className={styles.headerLista}>
+                <h1>{label}</h1>
+                <button onClick={changeStatusShowList}>
+                    {/* {!showList ? <FontAwesomeIcon icon={faCaretDown} /> : "Ocultar"} */}
+                    <FontAwesomeIcon
+                        icon={!showList ? faCaretDown : faCaretUp}
+                    />
+                </button>
+            </div>
             {showList && <Lista data={data} />}
         </div>
     );

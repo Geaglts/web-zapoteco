@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { gql, useQuery, useMutation } from "@apollo/react-hooks";
 import { useHistory } from "react-router-dom";
 
-import CardCarousel from "./components/CardCarousel";
+// import CardCarousel from "./components/CardCarousel";
 import styles from "./VerificarWords.module.css";
-import "pure-react-carousel/dist/react-carousel.es.css";
+// import "pure-react-carousel/dist/react-carousel.es.css";
 
 export default function MainComponent() {
     return <Tarjeta />;
@@ -123,6 +123,7 @@ const LlenarTarjeta = ({ row, refetch }) => {
                 <div className={styles.botones}>
                     <button onClick={goShowAcceptCard}>aceptar</button>
                     <button onClick={goShowRejectCard}>rechazar</button>
+                    <button>Editar</button>
                 </div>
                 {visibleConfirmacion && (
                     <VentanaConfirmar

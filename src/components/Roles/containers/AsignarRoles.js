@@ -3,7 +3,7 @@ import CheckboxGroup from "../componentes/CheckboxGroup";
 import Buscador from "../componentes/Buscador";
 import Button from "../componentes/Button";
 // import styles from "../Roles.module.css";
-import styles from "../../Usuarios/HomeUsuario/Capturador.module.css";
+import styles from "../../Usuarios/HomeUsuario/HomeUsuario.module.css";
 import { gql, useMutation } from "@apollo/react-hooks";
 // import classnames from "classnames";
 import axios from "axios";

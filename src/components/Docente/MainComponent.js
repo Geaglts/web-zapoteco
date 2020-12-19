@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { gql, useQuery } from "@apollo/react-hooks";
+import styles from "./MainComponent.module.css";
 
 import ListaDeUsuarios from "./Listas/ListaDeUsuarios";
 
@@ -22,10 +23,17 @@ function MainComponent() {
 
     return (
         <div>
-            <button onClick={goBack}>regrasar</button>
-            <h1>Docente</h1>
-            <ListaDeUsuarios label="Capturadores" data={capturers} />
-            <ListaDeUsuarios label="Verificadores" data={verifiersData} />
+            {/* <button onClick={goBack}>regrasar</button> */}
+            <div className={styles.header}>
+                <h1>Diccionario de palabras</h1>
+                <button className={styles.regresar} onClick={goBack}>
+                    Volver
+                </button>
+            </div>
+            <div className={styles.container}>
+                <ListaDeUsuarios label="Capturadores" data={capturers} />
+                <ListaDeUsuarios label="Verificadores" data={verifiersData} />
+            </div>
         </div>
     );
 }

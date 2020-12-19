@@ -1,289 +1,333 @@
-.content {
+.container {
+    width: 100%;
     height: 100vh;
-    overflow: hidden;
+}
+
+.header {
+    background: var(--secundario);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 12rem;
+    /* position: fixed;
+    z-index: 999;
+    top: 0; */
+    width: 100%;
+    height: 5rem;
+    box-shadow: 0 0 10px 0 #000000;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.header .regresar {
+    background: var(--secundario);
+    border: 0.1rem solid var(--terciario);
+    border-radius: 0;
+    color: var(--terciario);
+}
+
+.header .regresar:hover {
+    border: 0.1rem solid var(--primario);
+    color: var(--primario);
+}
+
+.content {
+    height: calc(100vh - 5rem);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.form {
-    --primary-color: #612afa;
-    --secondary-color: #2a9cfa;
-    background: hsla(0, 0%, 100%, 0.05);
-    backdrop-filter: blur(10px);
-    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
-    border-radius: 0.6em;
-    width: 60%;
-    height: 70%;
-    padding: 2em;
-    position: relative;
-    font-family: "Montserrat", sans-serif;
+.content .form {
+    background: var(--terciario);
+    width: 80%;
+    height: 90%;
+    box-shadow: 0 0 10px 0 var(--secundario);
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
 }
 
-.titleForm {
-    font-family: inherit;
-    font-weight: 500;
-    margin-bottom: 0.5em;
-    color: var(--primary-color);
+.content .form .infoPalabra {
+    grid-column: 1/2;
+    background-image: linear-gradient(45deg, #1a1a1ac0, var(--secundario)),
+        url("../../../assets/fondo1.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: var(--secundario);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.divHorizontal {
-    display: flex;
-}
-
-.formGroup {
-    font-family: "Montserrat", sans-serif;
-    margin: 0.5em 0.5em;
-    width: 50%;
-}
-
-/* label input */
-.formGroup label {
-    font-family: inherit;
-    font-size: 12pt;
-    font-weight: 500;
-    color: var(--primary-color);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-}
-
-/* input */
-.formGroup input {
-    font-size: 12pt;
-    font-family: inherit;
-    color: var(--primary-color);
-    border: none;
-    border-bottom: 2px solid var(--primary-color);
-    background: transparent;
-    transition: all 500ms;
-    padding: 0.4em 0;
-    margin: 0;
-    margin-bottom: 0.7em;
-}
-
-.formGroup input:hover {
-    color: var(--secondary-color);
-    border-bottom: 2px solid var(--secondary-color);
-}
-
-.formGroup input:hover::placeholder {
-    color: var(--secondary-color);
-}
-
-.formGroup input:focus {
-    color: var(--secondary-color);
-    border-bottom: 2px solid var(--secondary-color);
-}
-
-.formGroup input:focus::placeholder {
-    color: var(--secondary-color);
-}
-
-.formGroup input::placeholder {
-    color: var(--primary-color);
-    font-weight: 400;
-}
-
-.formButton {
-    font-family: "Montserrat", sans-serif !important;
-    background: var(--primary-color);
-    padding: 0.4em 0.6em;
-    border-radius: 0.3em;
-    font-family: inherit;
-    line-height: 1.5;
-    font-weight: 400;
-    font-size: 11pt;
-    transition: all 300ms;
-    border: none;
-}
-
-.formButton:hover {
-    background: var(--secondary-color);
-    color: white;
-    border: none;
-}
-
-.formButton:active {
-    padding: 0.45em 0.6em;
-}
-
-.confirmar {
-    position: absolute;
-    bottom: 2em;
-    right: 2.6em;
-    padding: 0.5em 0.8em;
-}
-
-/* Contenedores de las bases y las traducciones */
-.baseTraduccionContainer {
-    height: 35%;
-}
-
-.divTraduccionesContainer {
-    height: 100%;
-    width: 50%;
-}
-
-/* Vista de las traducciones */
-.divTraducciones {
+.content .form .infoPalabra .contInfo {
     width: 100%;
     height: 100%;
+}
+
+.content .form .infoPalabra .contInfo .formGroup {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.content .form .infoPalabra .contInfo .formGroup label {
+    color: var(--terciario);
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.content .form .infoPalabra .contInfo .formGroup input {
+    background: transparent;
+    margin: 1rem 0;
+    width: 50%;
+    height: 2rem;
+    border-radius: 2rem;
+    background: var(--terciario);
+    color: var(--secundario);
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.content .form .infoPalabra .contInfo .dropDownMenu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.content .form .infoPalabra .contInfo .dropDownMenu .dropDownHeader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dropDownMenu .dropDownHeader h1 {
+    color: var(--terciario);
+    font-size: 1rem;
+    font-weight: normal;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.dropDownMenu .dropDownHeader button {
+    background: var(--terciario);
+    color: var(--secundario);
+    font-size: 1rem;
+    font-weight: normal;
+    padding: 0;
+    width: 50%;
+    height: 2rem;
+    text-transform: none;
+    border: none;
+    border-radius: 0;
+}
+
+.dropDownMenu .dropDownHeader button span {
+    margin-left: .5rem;
+    color: var(--secundario);
+}
+
+.dropDownMenu .dropDownOptions {
+    position: absolute;
+    top: 75%;
+    overflow: scroll;
+    width: 50%;
+    background: var(--terciario);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dropDownMenu .dropDownOptions div {
+    background: var(--secundario);
+    width: 100%;
+    height: 3rem;
+    border-bottom: .1rem solid var(--cuarto);
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+}
+
+.dropDownMenu .dropDownOptions div:hover {
+    background: var(--cuarto);
+    cursor: pointer;
+}
+
+.dropDownMenu .dropDownOptions div p {
+    color: var(--terciario);
+    text-transform: uppercase;
+}
+
+.content .form .contEjemplos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.content .form .contEjemplos .contData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content .form .contEjemplos .contData label {
+    font-weight: bold;
+}
+
+.content .form .contEjemplos .contData input {
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    border-bottom: .1rem solid var(--secundario);
+    background: transparent;
+    color: var(--secundario);
+}
+
+.content .form .contTraducciones {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content .form .contTraducciones .contTraducir {
+    width: 100%;
+    height: 100%;
+}
+
+.content .form .contTraducciones .contTraducir .encabezado {
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 8%
+}
+
+.content .form .contTraducciones .contTraducir h1 {
+    color: var(--secundario);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-right: 1rem;
+}
+
+.content .form .contTraducciones .contTraducir button {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    padding: 0;
+    background: transparent;
+    color: var(--secundario);
+    font-size: .8rem;
+    border: .15rem solid var(--secundario);
+}
+
+.content .form .contTraducciones .contTraducir button:hover {
+    background: var(--secundario);
+    color: var(--terciario);
+}
+
+.content .form .contTraducciones .contTraducir .divTraducciones {
+    width: 100%;
+    height: calc(100% - 2.5rem);
     display: flex;
     flex-wrap: wrap;
-    overflow: scroll;
-    justify-content: space-between;
+    align-items: center;
+    padding: 0 8%;
 }
 
-.divTraduccion {
-    width: 49%;
+.content .form .contTraducciones .contTraducir .divTraducciones .divTraduccion {
+    width: 9rem;
+    height: 3rem;
+    margin-bottom: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     position: relative;
 }
 
-.divTraduccion button {
-    background: transparent;
-    padding: 0;
+.content .form .contTraducciones .contTraducir .divTraducciones .divTraduccion input {
+    background: var(--secundario);
+    color: var(--terciario);
+    width: 90%;
+    height: 2rem;
+    border: none;
+    border-radius: 1rem;
+    text-align: center;
     margin: 0;
-    color: var(--primary-color);
+}
+
+.content .form .contTraducciones .contTraducir .divTraducciones .divTraduccion button {
     position: absolute;
-    right: 0.2em;
-    top: 0.1em;
-    transition: all 300ms;
-    border: none;
-}
-
-.divTraduccion button:hover {
-    color: var(--secondary-color);
+    width: 1rem;
+    height: 1rem;
     border: none;
     padding: 0;
-    margin: 0;
+    font-size: .7rem;
+    top: 0;
+    right: 1rem;
+    background: var(--primario);
 }
 
-.divTraduccion div {
-    width: 100%;
-}
-
-.addTraduccion {
-    margin-bottom: 0.5em;
-    margin-left: 0.5em;
-}
-
-/* DropDown */
-.dropDownMenu {
-    font-family: "Montserrat", sans-serif;
-    width: 33%;
-    height: 100%;
-    margin-left: 0.5em;
-}
-
-.dropDownHeader {
-    font-family: inherit;
-    height: 4em;
-}
-
-.dropDownOptions {
-    font-family: inherit;
-    overflow: scroll;
-    height: calc(100% - 4em);
-}
-
-.dropDownTitle {
-    font-family: inherit;
-    font-weight: 400;
-    font-size: 14pt;
-    line-height: 1.5;
-    color: var(--primary-color);
-    text-transform: capitalize;
-}
-
-.dropDownButton {
-    font-family: inherit;
-    background: var(--primary-color);
-    color: #fff;
+.content .form .contTraducciones .contTraducir .divTraducciones .divTraduccion button:hover {
+    background: var(--terciario);
+    color: var(--primario);
     border: none;
-    padding: 0.5em 0.9em;
-    margin: 0;
-    transition: all 300ms;
-    border-radius: 0em;
-    font-weight: 500;
-    width: 100%;
 }
 
-.dropDownButton:hover {
-    background: #5e27f515;
-    color: var(--primary-color);
-}
-
-.dropDownButton:active {
-    padding: 0.4em 0.8em;
-}
-
-.dropDownButton span {
-    color: inherit;
-    margin-left: 0.4em;
-}
-
-.dropDownItemContainer {
-    margin-top: 0.2em;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all 500ms;
-    color: var(--primary-color);
-    background: rgba(255, 255, 255, 0.575);
-    padding: 0.4em 0.8em;
-    border-radius: 0.15em;
-}
-
-.dropDownItemContainer:hover {
-    background: var(--primary-color);
-    color: #fff;
-    padding: 0.5em 0.9em;
-}
-
-.dropDownItemText {
-    color: inherit;
-    font-family: inherit;
-    text-transform: uppercase;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-}
-
-/* Mas informacion */
-.segundaParte {
-    position: absolute;
-    bottom: 2em;
-    left: 2.6em;
-    padding: 0.5em 0.8em;
-    color: #fff;
+.content .form .contBtn {
+    height: 5rem;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8%;
 }
 
-.segundaParte:active {
-    padding: 1em 0.7em;
+.content .form .contBtn button {
+    background: transparent;
+    border: 1px solid var(--secundario);
+    color: var(--secundario);
+    font-size: .8rem;
+    padding: 0 1rem;
+    height: 2rem;
 }
 
-.segundaParte .text {
-    color: inherit;
-    font-family: inherit;
+.content .form .contBtn button p {
+    color: var(--secundario);
 }
 
-.segundaParte .icon {
-    color: inherit;
-    margin-left: 0.4em;
-}
-
-.segundaParte .iconBack {
-    color: inherit;
-    margin-right: 0.4em;
+.content .form .contBtn button:hover {
+    background: var(--secundario);
+    color: var(--terciario);
 }
 
 /* Segunda parte del formulario */
 .segundaParteForm {
-    height: 90%;
+    height: 100%;
     width: 100%;
-    display: flex;
+    grid-row: 1/-1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
-.segundaParteForm .left {
+/* .segundaParteForm .left {
     width: 50%;
     height: 100%;
 }
@@ -291,16 +335,77 @@
 .segundaParteForm .right {
     width: 50%;
     height: 100%;
-}
+} */
 
-.segundaParteForm .left .section1 {
+.segundaParteForm .section1 {
     width: 100%;
-    margin: 0.4em 0em;
-    height: calc(100% / 2);
+    height: 100%;
     overflow: scroll;
+    display: flex;
+    justify-content: center;
 }
 
-.segundaParteForm .left .section1 div {
+.segundaParteForm .section1 .dropDownMenu {
+    width: 100%;
+    padding: 5%;
+    position: relative;
+}
+
+.segundaParteForm .section1 .dropDownMenu .dropDownHeader {
+    width: 100%;
+    text-align: center;
+}
+
+.segundaParteForm .section1 .dropDownMenu .dropDownHeader h1 {
+    color: var(--secundario);
+    font-size: .8rem;
+}
+
+.segundaParteForm .section1 .dropDownMenu .dropDownHeader button {
+    width: 100%;
+    height: 2.5rem;
+    background: var(--secundario);
+    color: var(--terciario);
+}
+
+.segundaParteForm .section1 .dropDownMenu .dropDownHeader button span {
+    color: var(--terciario);
+}
+
+.segundaParteForm .section1 .dropDownMenu .dropDownOptions {
+    position: absolute;
+    top: 25%;
+    overflow: scroll;
+    width: 90%;
+    background: var(--terciario);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.segundaParteForm .section1 .dropDownMenu .dropDownOptions div {
+    background: var(--secundario);
+    width: 100%;
+    height: 3rem;
+    border-bottom: .1rem solid var(--cuarto);
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+}
+
+.segundaParteForm .section1 .dropDownMenu .dropDownOptions div:hover {
+    background: var(--cuarto);
+    cursor: pointer;
+}
+
+.dropDownMenu .dropDownOptions div p {
+    color: var(--terciario);
+    text-transform: uppercase;
+}
+
+/* no se que pedo */
+.segundaParteForm .section1 div {
     width: 75%;
 }
 

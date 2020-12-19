@@ -5,7 +5,12 @@ import { useHistory } from "react-router-dom";
 import fondo from "../../../assets/img2.jpg";
 import classnames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBandAid } from "@fortawesome/free-solid-svg-icons";
+import {
+    faBandAid,
+    faCheck,
+    faTimes,
+    faClock,
+} from "@fortawesome/free-solid-svg-icons";
 
 function MainComponent() {
     const [tipoDeLista, setTipoDeLista] = useState(1);
@@ -23,20 +28,102 @@ function MainComponent() {
     };
 
     let { nombre, apaterno, amaterno, ...usuario } = getData.data.aboutMe;
-    let nombre_completo = `${nombre} ${apaterno} ${amaterno}`;
+    let apellidos = `${apaterno} ${amaterno}`;
 
     return (
         <div className={classnames(styles.container, styles.noselect)}>
-            <button
+            {/* <button
                 onClick={returnBack}
                 className={classnames(styles.regresar)}
             >
                 regresar
-            </button>
+            </button> */}
+            <div className={styles.header}>
+                <h1>Actualizar palabra</h1>
+                <button
+                    className={styles.regresar}
+                    onClick={returnBack}
+                >
+                    Volver
+                </button>
+            </div>
             <div className={classnames(styles.content)}>
                 <section className={classnames(styles.miData)}>
-                    <img src={fondo} alt="fondo" />
-                    <h3>{nombre_completo}</h3>
+                    <div className={classnames(styles.perfil)}>
+                        <div className={classnames(styles.perfilInfo)}>
+                            <h3>{nombre}</h3>
+                            <h3>{apellidos}</h3>
+                            <p>{usuario?.correo}</p>
+                            <p>{usuario?.ncontrol}</p>
+                        </div>
+                        {/* <img src={fondo} alt="fondo" /> */}
+                    </div>
+                    <div className={classnames(styles.contData)}>
+                        <div className={classnames(styles.roles)}>
+                            {usuario?.roles.map((rol) => (
+                                <p key={rol}>{rol}</p>
+                            ))}
+                        </div>
+                        <div className={classnames(styles.contEstadis)}>
+                            <div className={classnames(styles.estadistica)}>
+                                <div
+                                    className={classnames(
+                                        styles.estadisticaIMG
+                                    )}
+                                >
+                                    <FontAwesomeIcon icon={faCheck} />
+                                </div>
+                                <div
+                                    className={classnames(
+                                        styles.estadisticaData
+                                    )}
+                                >
+                                    <h1>Palabras agregadas</h1>
+                                    <h2>Total: {usuario?.palabrasAgregadas}</h2>
+                                </div>
+                            </div>
+                            <div className={classnames(styles.estadistica)}>
+                                <div
+                                    className={classnames(
+                                        styles.estadisticaIMG
+                                    )}
+                                >
+                                    <FontAwesomeIcon icon={faClock} />
+                                </div>
+                                <div
+                                    className={classnames(
+                                        styles.estadisticaData
+                                    )}
+                                >
+                                    <h1>Palabras pendientes</h1>
+                                    <h2>
+                                        Total: {usuario?.palabrasPendientes}
+                                    </h2>
+                                </div>
+                            </div>
+                            <div className={classnames(styles.estadistica)}>
+                                <div
+                                    className={classnames(
+                                        styles.estadisticaIMG
+                                    )}
+                                >
+                                    <FontAwesomeIcon icon={faTimes} />
+                                </div>
+                                <div
+                                    className={classnames(
+                                        styles.estadisticaData
+                                    )}
+                                >
+                                    <h1>Palabras rechazadas</h1>
+                                    <h2>
+                                        Total: {usuario?.palabrasRechazadas}
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/* <img src={fondo} alt="fondo" />
+                    <h3>{nombre}</h3>
                     <p>{usuario?.correo}</p>
                     <p>{usuario?.ncontrol}</p>
                     <h4>Roles</h4>
@@ -59,7 +146,7 @@ function MainComponent() {
                             Palabras rechazadas
                             <span>{usuario?.palabrasRechazadas}</span>
                         </p>
-                    </section>
+                    </section> */}
                 </section>
                 <section className={classnames(styles.views)}>
                     <nav className={classnames(styles.menu)}>
@@ -98,27 +185,27 @@ const Lista = ({ tipo }) => {
         case 1:
             return (
                 <div className={classnames(styles.listItems)}>
-                    <div className={classnames(styles.listDiv)}>
+                    {/* <div className={classnames(styles.listDiv)}>
                         <h1>Agregadas</h1>
-                    </div>
+                    </div> */}
                     <PalabrasNormales data={approvedWords} tipo={tipo} />
                 </div>
             );
         case 2:
             return (
                 <div className={classnames(styles.listItems)}>
-                    <div className={classnames(styles.listDiv)}>
+                    {/* <div className={classnames(styles.listDiv)}>
                         <h1>Pendientes</h1>
-                    </div>
+                    </div> */}
                     <PalabrasNormales data={pendingWord} tipo={tipo} />
                 </div>
             );
         case 3:
             return (
                 <div className={classnames(styles.listItems)}>
-                    <div className={classnames(styles.listDiv)}>
+                    {/* <div className={classnames(styles.listDiv)}>
                         <h1>Rechazadas</h1>
-                    </div>
+                    </div> */}
                     <PalabrasNormales data={rejectWords} tipo={tipo} />
                 </div>
             );
@@ -161,9 +248,11 @@ const PalabrasNormales = ({ data, tipo }) => {
                                         <td className={styles.traducciones}>
                                             {palabra?.traducciones?.map(
                                                 (traduccion, index) => (
-                                                    <p key={index}>
-                                                        {traduccion}
-                                                    </p>
+                                                    <div className={styles.traduccion}>
+                                                        <p key={index}>
+                                                            {traduccion}
+                                                        </p>
+                                                    </div>
                                                 )
                                             )}
                                         </td>
@@ -180,7 +269,7 @@ const PalabrasNormales = ({ data, tipo }) => {
                                         <td>
                                             <TableButton
                                                 onClick={goToUpdate(palabra)}
-                                                label="Actuzalizar"
+                                                label="Actualizar"
                                             />
                                             <TableButton label="Eliminar" />
                                         </td>
@@ -228,9 +317,9 @@ const PalabrasNormales = ({ data, tipo }) => {
 const TableButton = ({ label, ...rest }) => {
     return (
         <button className={styles.tableButton} {...rest}>
-            <span>
+            {/* <span>
                 <FontAwesomeIcon icon={faBandAid} />
-            </span>
+            </span> */}
             {label}
         </button>
     );

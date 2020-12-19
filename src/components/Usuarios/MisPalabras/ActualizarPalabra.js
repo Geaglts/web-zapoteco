@@ -10,6 +10,8 @@ import {
     faCaretUp,
     faAngleDoubleRight,
     faAngleDoubleLeft,
+    faPlus,
+    faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import classnames from "classnames";
 
@@ -120,18 +122,169 @@ function ActualizarPalabra() {
     const tipos = comboOptions.data.getTypes;
 
     return (
-        <div className={classnames(styles.container, styles.noselect)}>
-            <button onClick={history.goBack} className={styles.regresar}>
+        <div className={formStyles.container}>
+            {/* <button onClick={history.goBack} className={styles.regresar}>
                 regresar
-            </button>
+            </button> */}
+            <div className={formStyles.header}>
+                <h1>Actualizar palabra</h1>
+                <button
+                    className={formStyles.regresar}
+                    onClick={history.goBack}
+                >
+                    Volver
+                </button>
+            </div>
             <section className={formStyles.content}>
                 <form className={formStyles.form}>
-                    <h1 className={formStyles.titleForm}>
+                    {/* <h1 className={formStyles.titleForm}>
                         Actuzalizar {values.texto}
-                    </h1>
+                    </h1> */}
                     {primeraParte && (
                         <>
-                            <div className={formStyles.divHorizontal}>
+                            <div className={formStyles.infoPalabra}>
+                                <div className={formStyles.contInfo}>
+                                    {/* <input
+                                        value={values.texto}
+                                        onChange={onChangeText("texto")}
+                                    /> */}
+                                    <Input
+                                        labelText="palabra en zapoteco"
+                                        value={values.texto}
+                                        onChange={onChangeText("texto")}
+                                    />
+                                </div>
+                                <div className={formStyles.contInfo}>
+                                    <Input
+                                        labelText="fonetica"
+                                        value={values.fonetica}
+                                        onChange={onChangeText("fonetica")}
+                                    />
+                                </div>
+                                <div className={formStyles.contInfo}>
+                                    <DropDown
+                                        data={bases}
+                                        actuactualValue={values.base_actual}
+                                        itemName="base_id"
+                                        itemText="base_esp"
+                                        itemId="id"
+                                        nameActual="base_actual"
+                                        itemType="base actual: "
+                                        placeholder="Seleccionar base"
+                                        onChange={onChangeCombo}
+                                    />
+                                </div>
+                                {/* <div className={formStyles.contTraducir}>
+                                    <div className={formStyles.encabezado}>
+                                        <h1>Traducciones</h1>
+                                        <button
+                                            onClick={newTranslation}
+                                            className={classnames(
+                                                formStyles.formButton,
+                                                formStyles.addTraduccion
+                                            )}
+                                        >
+                                            <FontAwesomeIcon icon={faPlus} />
+                                        </button>
+                                    </div>
+                                    <div className={formStyles.divTraducciones}>
+                                        {values.traducciones.map(
+                                            (traduccion, index) => {
+                                                return (
+                                                    <div key={index} className={formStyles.divTraduccion}>
+                                                        {index > 0 && (
+                                                            <button  onClick={dropTranslation(index)}>
+                                                                <FontAwesomeIcon icon={faTimes} />
+                                                            </button>
+                                                        )}
+                                                        <Input
+                                                            required
+                                                            // labelText={`traduccion ${
+                                                            //     index + 1
+                                                            // }`}
+                                                            value={traduccion}
+                                                            onChange={onChangeTraducciones(
+                                                                index
+                                                            )}
+                                                        />
+                                                    </div>
+                                                );
+                                            }
+                                        )}
+                                    </div>
+                                </div> */}
+                            </div>
+                            <div className={formStyles.contEjemplos}>
+                                <div className={formStyles.contData}>
+                                    <Input
+                                        labelText="Ejemplo en español"
+                                        value={values.ejemplo_esp}
+                                        onChange={onChangeText("ejemplo_esp")}
+                                    />
+                                </div>
+                                <div className={formStyles.contData}>
+                                    <Input
+                                        labelText="Ejemplo en zapoteco"
+                                        value={values.ejemplo_zap}
+                                        onChange={onChangeText("ejemplo_zap")}
+                                    />
+                                </div>
+                            </div>
+                            <div className={formStyles.contTraducciones}>
+                                <div className={formStyles.contTraducir}>
+                                    <div className={formStyles.encabezado}>
+                                        <h1>Traducciones</h1>
+                                        <button
+                                            onClick={newTranslation}
+                                            className={classnames(
+                                                formStyles.formButton,
+                                                formStyles.addTraduccion
+                                            )}
+                                        >
+                                            <FontAwesomeIcon icon={faPlus} />
+                                        </button>
+                                    </div>
+                                    <div className={formStyles.divTraducciones}>
+                                        {values.traducciones.map(
+                                            (traduccion, index) => {
+                                                return (
+                                                    <div
+                                                        key={index}
+                                                        className={
+                                                            formStyles.divTraduccion
+                                                        }
+                                                    >
+                                                        {index > 0 && (
+                                                            <button
+                                                                onClick={dropTranslation(
+                                                                    index
+                                                                )}
+                                                            >
+                                                                <FontAwesomeIcon
+                                                                    icon={
+                                                                        faTimes
+                                                                    }
+                                                                />
+                                                            </button>
+                                                        )}
+                                                        <Input
+                                                            required
+                                                            // labelText={`traduccion ${
+                                                            //     index + 1
+                                                            // }`}
+                                                            value={traduccion}
+                                                            onChange={onChangeTraducciones(
+                                                                index
+                                                            )}
+                                                        />
+                                                    </div>
+                                                );
+                                            }
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
+                            {/* <div className={formStyles.divHorizontal}>
                                 <Input
                                     labelText="palabra en zapoteco"
                                     value={values.texto}
@@ -225,96 +378,93 @@ function ActualizarPalabra() {
                                     placeholder="Selecciona una base"
                                     onChange={onChangeCombo}
                                 />
-                            </div>
+                            </div> */}
                         </>
                     )}
                     {!primeraParte && (
                         <>
                             <div className={formStyles.segundaParteForm}>
-                                <div className={formStyles.left}>
-                                    <section className={formStyles.section1}>
-                                        <DropDown
-                                            data={contextos}
-                                            actuactualValue={
-                                                values.contexto_actual
-                                            }
-                                            itemName="contexto_id"
-                                            itemText="contexto"
-                                            itemId="id"
-                                            nameActual="contexto_actual"
-                                            itemType="Contexto actual: "
-                                            placeholder="Selecciona un contexto"
-                                            onChange={onChangeCombo}
-                                        />
-                                    </section>
-                                </div>
-                                <div className={formStyles.right}>
-                                    <section className={formStyles.section1}>
-                                        <DropDown
-                                            data={tipos}
-                                            actuactualValue={values.tipo}
-                                            itemName="tipo"
-                                            itemText="tipo"
-                                            itemId="id"
-                                            nameActual="tipo"
-                                            itemType="Tipo actual: "
-                                            placeholder="Selecciona el tipo"
-                                            onChange={onChangeCombo}
-                                        />
-                                    </section>
-                                    <section className={formStyles.section2}>
-                                        <DropDown
-                                            data={categorias}
-                                            actuactualValue={values.categoria}
-                                            itemName="categoria"
-                                            itemText="categoria"
-                                            itemId="id"
-                                            nameActual="categoria"
-                                            itemType="Categoria actual: "
-                                            placeholder="Selecciona la categoria"
-                                            onChange={onChangeCombo}
-                                        />
-                                    </section>
-                                </div>
+                                <section className={formStyles.section1}>
+                                    <DropDown
+                                        data={contextos}
+                                        actuactualValue={values.contexto_actual}
+                                        itemName="contexto_id"
+                                        itemText="contexto"
+                                        itemId="id"
+                                        nameActual="contexto_actual"
+                                        itemType="Contexto actual: "
+                                        placeholder="Selecciona un contexto"
+                                        onChange={onChangeCombo}
+                                    />
+                                </section>
+                                <section className={formStyles.section1}>
+                                    <DropDown
+                                        data={tipos}
+                                        actuactualValue={values.tipo}
+                                        itemName="tipo"
+                                        itemText="tipo"
+                                        itemId="id"
+                                        nameActual="tipo"
+                                        itemType="Tipo actual: "
+                                        placeholder="Selecciona el tipo"
+                                        onChange={onChangeCombo}
+                                    />
+                                </section>
+                                <section className={formStyles.section1}>
+                                    <DropDown
+                                        data={categorias}
+                                        actuactualValue={values.categoria}
+                                        itemName="categoria"
+                                        itemText="categoria"
+                                        itemId="id"
+                                        nameActual="categoria"
+                                        itemType="Categoria actual: "
+                                        placeholder="Selecciona la categoria"
+                                        onChange={onChangeCombo}
+                                    />
+                                </section>
                             </div>
                         </>
                     )}
-                    <button
-                        onClick={onSubmitForm}
-                        className={classnames(
-                            formStyles.formButton,
-                            formStyles.confirmar
-                        )}
-                    >
-                        Confirmar
-                    </button>
-                    <button
-                        onClick={changePrimeraParte}
-                        className={classnames(
-                            formStyles.formButton,
-                            formStyles.segundaParte
-                        )}
-                    >
-                        {primeraParte ? (
-                            <>
-                                <p className={formStyles.text}>
+                    <div className={formStyles.contBtn}>
+                        <button
+                            onClick={changePrimeraParte}
+                            className={classnames(formStyles.segundaParte)}
+                        >
+                            {primeraParte ? (
+                                <>
                                     Mas informacion
-                                </p>
-                                <p className={formStyles.icon}>
-                                    <FontAwesomeIcon
+                                    {/* <FontAwesomeIcon
                                         icon={faAngleDoubleRight}
-                                    />
-                                </p>
-                            </>
-                        ) : (
-                            <>
-                                <p className={formStyles.iconBack}>
-                                    <FontAwesomeIcon icon={faAngleDoubleLeft} />
-                                </p>
-                                <p className={formStyles.text}>Regresar</p>
-                            </>
-                        )}
-                    </button>
+                                    /> */}
+                                    {/* <p className={formStyles.text}>
+                                        Mas informacion
+                                    </p>
+                                    <p className={formStyles.icon}>
+                                        <FontAwesomeIcon
+                                            icon={faAngleDoubleRight}
+                                        />
+                                    </p> */}
+                                </>
+                            ) : (
+                                <>
+                                    Regresar
+                                    {/* <p className={formStyles.iconBack}>
+                                        <FontAwesomeIcon
+                                            icon={faAngleDoubleLeft}
+                                        />
+                                    </p>
+                                    <p className={formStyles.text}>Regresar</p> */}
+                                </>
+                            )}
+                        </button>
+                        <button
+                            onClick={onSubmitForm}
+                            className={classnames(formStyles.confirmar)}
+                        >
+                            Confirmar
+                        </button>
+                    </div>
                 </form>
             </section>
         </div>
@@ -372,7 +522,7 @@ const DropDown = ({
                     data.map((item, index) => {
                         return (
                             <div
-                                className={formStyles.dropDownItemContainer}
+                                className={formStyles.items}
                                 key={item[itemId]}
                                 onClick={onChange(
                                     itemName,

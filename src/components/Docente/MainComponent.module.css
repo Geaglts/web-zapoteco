@@ -1,0 +1,237 @@
+.header {
+    background: var(--secundario);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 12rem;
+    margin-bottom: 5rem;
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    width: 100%;
+    height: 5rem;
+    box-shadow: 0 0 10px 0 #000000;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.header .regresar {
+    background: var(--secundario);
+    border: 0.1rem solid var(--terciario);
+    border-radius: 0;
+    color: var(--terciario);
+}
+
+.header .regresar:hover {
+    border: 0.1rem solid var(--primario);
+    color: var(--primario);
+}
+
+.container {
+    padding: 10.7rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container .contLista {
+    backdrop-filter: blur(10px);
+    width: 70%;
+    margin-top: 5%;
+    box-shadow: 0 0 10px 0 var(--secundario);
+}
+
+.container .contLista .headerLista {
+    background: var(--terciario);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.container .contLista .headerLista h1 {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+}
+
+.container .contLista .headerLista button {
+    font-size: 1.5rem;
+    color: var(--secundario);
+    background: var(--terciario);
+    border: 1px solid var(--secundario);
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+}
+
+.container .contLista .headerLista button:hover {
+    background: var(--secundario);
+    color: var(--terciario);
+}
+
+.container .contLista .contCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Buscador */
+.buscadorContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buscadorContainer .contForm {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    padding: 5vh 0;
+}
+
+.buscadorContainer .contForm form {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.buscadorContainer .contForm form .contInput {
+    width: 100%;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.buscadorContainer .contForm form .contInput input {
+    margin: 0;
+    width: 80%;
+    height: 100%;
+    border-top-left-radius: 10rem;
+    border-bottom-left-radius: 10rem;
+    background: transparent;
+    color: var(--secundario);
+    border: 0.2rem solid var(--secundario);
+    border-right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+    padding-left: 1rem;
+}
+.buscadorContainer .contForm form .contInput input::placeholder {
+    color: #333333;
+}
+
+.buscadorContainer .contForm form .contInput button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    border-top-right-radius: 10rem;
+    border-bottom-right-radius: 10rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background: transparent;
+    color: var(--secundario);
+    border: 0.2rem solid var(--secundario);
+    border-left: 0;
+    font-size: .8rem;
+}
+
+.buscadorContainer .contForm form .contInput button:hover {
+    background: var(--secundario);
+    color: var(--terciario);
+}
+
+
+.container .contLista .contCard .card {
+    width: 100%;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+}
+
+.container .contLista .contCard .card .infoCard {
+    width: 100%;
+    height: 25rem;
+    background: var(--terciario);
+}
+
+.infoCard .perfil {
+    background: #000;
+    width: 100%;
+    height: 50%;
+    grid-row: 1/2;
+    background-image: linear-gradient(45deg, var(--secundario),#1a1a1aaf),
+        url("../../assets/img2.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--secundario);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 75% 90%, 0 100%);
+}
+
+.infoCard .perfil .perfilInfo {
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.infoCard .perfil .perfilInfo h3 {
+    color: var(--primario);
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.infoCard .perfil .perfilInfo p {
+    margin-top: .2rem;
+    color: var(--terciario);
+    font-size: .8rem;
+}
+
+.infoCard .contEstadistica {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.infoCard .contEstadistica .estadistica {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 3rem;
+}
+
+.infoCard .contEstadistica .estadistica h4 {
+    font-size: .8rem;
+    color: var(--secundario);
+}
+
+.infoCard .contEstadistica .estadistica p {
+    font-size: 1rem;
+    color: var(--secundario);
+}

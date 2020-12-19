@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../MainComponent.module.css";
 
 function Estadisticas({ roles, ...items }) {
     return (
@@ -7,21 +8,29 @@ function Estadisticas({ roles, ...items }) {
                 switch (rol) {
                     case "capturador":
                         return (
-                            <section key={rol}>
-                                <h4>Palabras agregadas</h4>
-                                <p>{items.palabrasAgregadas}</p>
-                                <h4>Palabras pendientes</h4>
-                                <p>{items.palabrasPendientes}</p>
-                                <h4>Palabras rechazadas</h4>
-                                <p>{items.palabrasRechazadas}</p>
-                            </section>
+                            <div className={styles.contEstadistica} key={rol}>
+                                <div className={styles.estadistica} key={rol}>
+                                    <h4>Palabras agregadas</h4>
+                                    <p>{items.palabrasAgregadas}</p>
+                                </div>
+                                <div className={styles.estadistica} key={rol}>
+                                    <h4>Palabras pendientes</h4>
+                                    <p>{items.palabrasPendientes}</p>
+                                </div>
+                                <div className={styles.estadistica} key={rol}>
+                                    <h4>Palabras rechazadas</h4>
+                                    <p>{items.palabrasRechazadas}</p>
+                                </div>
+                            </div>
                         );
                     case "verificador":
                         return (
-                            <section key={rol}>
-                                <h4>Palabras verificadas</h4>
-                                <p>{items.palabrasVerificadas}</p>
-                            </section>
+                            <div className={styles.contEstadistica} key={rol}>
+                                <div className={styles.estadistica} key={rol}>
+                                    <h4>Palabras verificadas</h4>
+                                    <p>{items.palabrasVerificadas}</p>
+                                </div>
+                            </div>
                         );
                     default:
                         return null;
