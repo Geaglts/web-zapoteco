@@ -41,7 +41,6 @@ function MainComponent() {
     let apellidos = `${apaterno} ${amaterno}`;
 
     return (
-<<<<<<< HEAD
         <div className={classnames(styles.container, styles.noselect)}>
             {/* <button
                 onClick={returnBack}
@@ -51,10 +50,7 @@ function MainComponent() {
             </button> */}
             <div className={styles.header}>
                 <h1>Actualizar palabra</h1>
-                <button
-                    className={styles.regresar}
-                    onClick={returnBack}
-                >
+                <button className={styles.regresar} onClick={returnBack}>
                     Volver
                 </button>
             </div>
@@ -161,15 +157,34 @@ function MainComponent() {
                 </section>
                 <section className={classnames(styles.views)}>
                     <nav className={classnames(styles.menu)}>
-=======
-        <>
-            <Confirmacion
-                visible={confirmacionVisible}
-                setVisible={setConfirmacionVisible}
-                palabraId={palabraId}
-                refetch={getData.refetch}
-            />
-            <div className={classnames(styles.container, styles.noselect)}>
+                        <ul>
+                            <button onClick={changeTipoDeLista(1)}>
+                                Agregadas
+                            </button>
+                            <button onClick={changeTipoDeLista(2)}>
+                                Pendientes
+                            </button>
+                            <button onClick={changeTipoDeLista(3)}>
+                                Rechazadas
+                            </button>
+                        </ul>
+                    </nav>
+                    <section className={classnames(styles.lists)}>
+                        <Lista
+                            tipo={tipoDeLista}
+                            activateConfirmation={activateConfirmation}
+                        />
+                    </section>
+                </section>
+            </div>
+            <>
+                <Confirmacion
+                    visible={confirmacionVisible}
+                    setVisible={setConfirmacionVisible}
+                    palabraId={palabraId}
+                    refetch={getData.refetch}
+                />
+                {/* <div className={classnames(styles.container, styles.noselect)}>
                 <button
                     onClick={returnBack}
                     className={classnames(styles.regresar)}
@@ -179,11 +194,10 @@ function MainComponent() {
                 <div className={classnames(styles.content)}>
                     <section className={classnames(styles.miData)}>
                         <img src={fondo} alt="fondo" />
-                        <h3>{nombre_completo}</h3>
+                        <h3>{apellidos}</h3>
                         <p>{usuario?.correo}</p>
                         <p>{usuario?.ncontrol}</p>
                         <h4>Roles</h4>
->>>>>>> e3994e9d35e315b4de5a11968e8005b4887baa6a
                         <ul>
                             {usuario?.roles.map((rol) => (
                                 <p key={rol}>{rol}</p>
@@ -227,8 +241,9 @@ function MainComponent() {
                         </section>
                     </section>
                 </div>
-            </div>
-        </>
+            </div> */}
+            </>
+        </div>
     );
 }
 
@@ -257,17 +272,14 @@ const Lista = ({ tipo, activateConfirmation }) => {
                 <div className={classnames(styles.listItems)}>
                     {/* <div className={classnames(styles.listDiv)}>
                         <h1>Pendientes</h1>
-<<<<<<< HEAD
                     </div> */}
-                    <PalabrasNormales data={pendingWord} tipo={tipo} />
-=======
-                    </div>
+                    {/* <PalabrasNormales data={pendingWord} tipo={tipo} /> */}
+                    {/* </div> */}
                     <PalabrasNormales
                         data={pendingWord}
                         tipo={tipo}
                         activateConfirmation={activateConfirmation}
                     />
->>>>>>> e3994e9d35e315b4de5a11968e8005b4887baa6a
                 </div>
             );
         case 3:
@@ -275,17 +287,14 @@ const Lista = ({ tipo, activateConfirmation }) => {
                 <div className={classnames(styles.listItems)}>
                     {/* <div className={classnames(styles.listDiv)}>
                         <h1>Rechazadas</h1>
-<<<<<<< HEAD
                     </div> */}
-                    <PalabrasNormales data={rejectWords} tipo={tipo} />
-=======
-                    </div>
+                    {/* <PalabrasNormales data={rejectWords} tipo={tipo} /> */}
+                    {/* </div> */}
                     <PalabrasNormales
                         data={rejectWords}
                         tipo={tipo}
                         activateConfirmation={activateConfirmation}
                     />
->>>>>>> e3994e9d35e315b4de5a11968e8005b4887baa6a
                 </div>
             );
         default:
@@ -328,7 +337,11 @@ const PalabrasNormales = ({ data, tipo, activateConfirmation = (_) => {} }) => {
                                         <td className={styles.traducciones}>
                                             {palabra?.traducciones?.map(
                                                 (traduccion, index) => (
-                                                    <div className={styles.traduccion}>
+                                                    <div
+                                                        className={
+                                                            styles.traduccion
+                                                        }
+                                                    >
                                                         <p key={index}>
                                                             {traduccion}
                                                         </p>
