@@ -69,7 +69,7 @@ const PendingWord = ({ children }) => {
 
     const onSubmit = async () => {
         try {
-            await addPendingWord({
+            const res = await addPendingWord({
                 variables: {
                     ...values[0],
                     idtipo: parseInt(values[0].idtipo),
@@ -78,21 +78,25 @@ const PendingWord = ({ children }) => {
                 },
             });
 
-            visibleVentana[1](!visibleVentana[0]);
-            values[1]({
-                texto: "",
-                fonetica: "",
-                traduccion: "",
-                base_id: "",
-                idcontexto: "",
-                idtipo: "",
-                categoria_id: "",
-                ejemplo_esp: "",
-                ejemplo_zap: "",
-            });
+            if (res.data.newPendingWord) {
+                visibleVentana[1](!visibleVentana[0]);
+                values[1]({
+                    texto: "",
+                    fonetica: "",
+                    traduccion: "",
+                    base_id: "",
+                    idcontexto: "",
+                    idtipo: "",
+                    categoria_id: "",
+                    ejemplo_esp: "",
+                    ejemplo_zap: "",
+                });
+            } else {
+                alert("Quiza ya exista esa palabra");
+            }
         } catch (e) {
             alert("A ocurrido un error");
-            console.log(e);
+            // console.log(e);
         }
     };
 
@@ -226,7 +230,12 @@ const VentanaFinal = ({ visibleVentana, visible }) => {
             <div className={styles.accion}>
                 <div className={styles.contAccion}>
                     <h1>Se ha agregado tu palabra</h1>
-                    <button className={styles.btnAceptar} onClick={setVisibleVentana}>Aceptar</button>
+                    <button
+                        className={styles.btnAceptar}
+                        onClick={setVisibleVentana}
+                    >
+                        Aceptar
+                    </button>
                 </div>
             </div>
         );
