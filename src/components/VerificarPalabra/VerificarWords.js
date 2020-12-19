@@ -60,6 +60,7 @@ const Tarjeta = () => {
 const LlenarTarjeta = ({ row, refetch }) => {
     const [visibleConfirmacion, setVisibleConfirmacion] = useState(false);
     const [visibleRechazar, setVisibleRechazar] = useState(false);
+    const history = useHistory();
 
     const goShowAcceptCard = () => {
         setVisibleConfirmacion(!visibleConfirmacion);
@@ -67,6 +68,13 @@ const LlenarTarjeta = ({ row, refetch }) => {
 
     const goShowRejectCard = () => {
         setVisibleRechazar(!visibleRechazar);
+    };
+
+    const goToUpdateWord = (palabra) => () => {
+        history.push({
+            pathname: "/update-word",
+            state: { palabra, tipo: 1 },
+        });
     };
 
     return (
@@ -123,7 +131,7 @@ const LlenarTarjeta = ({ row, refetch }) => {
                 <div className={styles.botones}>
                     <button onClick={goShowAcceptCard}>aceptar</button>
                     <button onClick={goShowRejectCard}>rechazar</button>
-                    <button>Editar</button>
+                    <button onClick={goToUpdateWord(row)}>Editar</button>
                 </div>
                 {visibleConfirmacion && (
                     <VentanaConfirmar
