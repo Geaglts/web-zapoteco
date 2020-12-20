@@ -1,3 +1,4 @@
+import Principal from "./components/Principal";
 import Login from "./components/Login";
 import Inicio from "./components/Inicio";
 import Registro from "./components/Registro";
@@ -71,7 +72,8 @@ function App() {
                     <UserRoute exact {...MisPalabrasRoute} />
                     <UserRoute exact {...ActualizarPalabraRoute} />
 
-                    <NoUserRoutes exact path="/" component={Login} />
+                    <NoUserRoutes exact path="/" component={Principal} />
+                    <NoUserRoutes exact path="/Login" component={Login} />
                     <NoUserRoutes exact path="/registro" component={Registro} />
                     <Route
                         exact

@@ -7,9 +7,9 @@
     user-select: none;
 }
 
-.container {
+/* .container {
     --main-color: #612afa;
-}
+} */
 
 .header {
     background: var(--secundario);

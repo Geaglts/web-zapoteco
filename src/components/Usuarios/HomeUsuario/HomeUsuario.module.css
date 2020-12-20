@@ -47,14 +47,16 @@
 
 .content .sesion .sesionData h1{
     color: var(--terciario);
-    font-size: 1.3rem;
+    font-size: 1rem;
     text-transform: capitalize;
+    font-weight: normal;
 }
 
 .content .sesion .sesionData h2{
     color: var(--terciario);
     font-size: 0.9rem;
     margin-top: 0.2rem;
+    font-weight: normal;
 }
 
 .content .sesion .sesionCerrar {
@@ -67,6 +69,7 @@
     background: transparent;
     font-size: .8rem;
     border: .1rem solid var(--terciario);
+    font-weight: normal;
 }
 
 .content .sesion .sesionCerrar button:hover {
@@ -100,7 +103,8 @@
 
 .content .container .contProfile .profile .profileUser h1 {
     color: var(--terciario);
-    font-size: 1.3rem;
+    font-size: 1rem;
+    font-weight: normal;
     text-transform: capitalize;
 }
 
@@ -108,6 +112,7 @@
     color: var(--terciario);
     font-size: 0.9rem;
     margin-top: 0.2rem;
+    font-weight: normal;
 }
 
 .content .container .contProfile .profile .profileData {
@@ -175,8 +180,8 @@
 }
 
 .content .container .contButtons .buttons button {
-    width: 7rem;
-    height: 6rem;
+    width: 18%;
+    height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -188,7 +193,7 @@
 }
 .content .container .contButtons .buttons button h1 {
     color: var(--secundario);
-    font-size: .6rem;
+    font-size: .7rem;
     text-align: center;
 }
 
