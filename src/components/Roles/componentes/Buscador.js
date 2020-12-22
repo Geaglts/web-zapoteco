@@ -2,6 +2,8 @@ import React from "react";
 import Button from "./Button";
 import styles from "../Roles.module.css";
 import classnames from "classnames";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
 
 export default function Buscador({ handleChange, value, onSubmitBuscar }) {
     return (
@@ -17,7 +19,7 @@ export default function Buscador({ handleChange, value, onSubmitBuscar }) {
                         />
                         <Button
                             callback={onSubmitBuscar(value)}
-                            label="Buscar"
+                            label={<FontAwesomeIcon icon={faSearch} />}
                         />
                     </div>
                 </form>

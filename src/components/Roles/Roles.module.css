@@ -202,9 +202,6 @@
     font-size: 1.2rem;
     padding-left: 1rem;
 }
-.buscadorContainer .contForm form .contInput input::placeholder {
-    color: #333333;
-}
 
 .buscadorContainer .contForm form .contInput button {
     display: flex;
@@ -228,7 +225,7 @@
 }
 
 /* Boton General */
-.generalButton {
+/* .generalButton {
     font-size: 14pt;
     border-radius: 50px;
     padding: 10px 25px;
@@ -243,4 +240,22 @@
 .generalButton:hover {
     background-color: white;
     color: peru;
+} */
+
+@media screen and (max-width: 1024px) {
+    .header {
+        padding: 0 5%;
+    }
+    
+    .header h1 {
+        font-size: 1rem;
+    }
+    
+    .header .regresar {
+        font-size: .8rem;
+    }
+
+    .buscadorContainer .contForm form  {
+        width: 90%;
+    }
 }

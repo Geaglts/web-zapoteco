@@ -45,14 +45,14 @@
     color: var(--terciario);
 }
 
-.content .sesion .sesionData h1{
+.content .sesion .sesionData h1 {
     color: var(--terciario);
     font-size: 1rem;
     text-transform: capitalize;
     font-weight: normal;
 }
 
-.content .sesion .sesionData h2{
+.content .sesion .sesionData h2 {
     color: var(--terciario);
     font-size: 0.9rem;
     margin-top: 0.2rem;
@@ -67,14 +67,14 @@
 
 .content .sesion .sesionCerrar button {
     background: transparent;
-    font-size: .8rem;
-    border: .1rem solid var(--terciario);
+    font-size: 0.8rem;
+    border: 0.1rem solid var(--terciario);
     font-weight: normal;
 }
 
 .content .sesion .sesionCerrar button:hover {
     color: var(--primario);
-    border: .1rem solid var(--primario);
+    border: 0.1rem solid var(--primario);
 }
 
 .content .container .contProfile {
@@ -127,21 +127,21 @@
 .content .container .contProfile .profile .profileData .contData {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: .3rem 1.5rem;
+    grid-gap: 0.3rem 1.5rem;
     text-align: center;
 }
 
 .content .container .contProfile .profile .profileData .contData h1 {
     color: var(--secundario);
-    font-size: .8rem;
-    font-family: 'Lato', sans-serif;
+    font-size: 0.8rem;
+    font-family: "Lato", sans-serif;
     text-transform: uppercase;
 }
 
 .content .container .contProfile .profile .profileData .contData h2 {
     color: var(--secundario);
     font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .content .container .contProfile .contImg {
@@ -193,14 +193,14 @@
 }
 .content .container .contButtons .buttons button h1 {
     color: var(--secundario);
-    font-size: .7rem;
+    font-size: 0.7rem;
     text-align: center;
 }
 
 .content .container .contButtons .buttons button span {
     color: var(--secundario);
     font-size: 1.2rem;
-    margin: .2rem;
+    margin: 0.2rem;
 }
 
 .content .container .contButtons .buttons button:hover {
@@ -208,7 +208,7 @@
     color: var(--secundario);
     border: none;
     box-shadow: 0 0 10px 0 var(--secundario);
-    border-radius: .5rem;
+    border-radius: 0.5rem;
 }
 
 .contentUser {
@@ -252,3 +252,53 @@
     border: .1rem solid transparent;
     border-radius: 0;
 } */
+
+@media screen and (max-width: 1024px) {
+    .content {
+        width: 100%;
+        height: 100%;
+        box-shadow: none;
+    }
+
+    .content .container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        grid-template-areas:
+            "sesion"
+            "contProfile "
+            "contProfile "
+            "contProfile "
+            "contButtons"
+            "contButtons";
+    }
+    .content .container .sesion .sesionCerrar button {
+        font-size: .7rem;
+    }
+
+    .contentUser .content .container .contProfile .contImg {
+        top: calc(50% - 2.5rem);
+        left: calc(50% - 2.5rem);
+    }
+
+    .contentUser .content .container .contProfile .contImg img {
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+    }
+    .content .container .contButtons .buttons button {
+        width: 15%;
+        height: 30%;
+    }
+    .content .container .contButtons .buttons button h1 {
+        color: var(--secundario);
+        font-size: 0.5rem;
+        text-align: center;
+    }
+    
+    .content .container .contButtons .buttons button span {
+        color: var(--secundario);
+        font-size: 1rem;
+        margin: 0.2rem;
+    }
+}

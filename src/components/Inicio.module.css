@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--terciario);
+    /* background: var(--terciario); */
 }
 
 .boton {
@@ -15,4 +15,11 @@
     z-index: 1;
     font-size: 11pt;
     padding: 0.75em 0.5em;
+}
+
+@media screen and (max-width: 1000px) {
+    .container {
+        display: block;
+        height: 150vh;
+    }
 }

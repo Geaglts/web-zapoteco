@@ -13,7 +13,7 @@ function Buscador({ value, onSearch, onCancelSearch }) {
                             value={value}
                             onChange={onSearch}
                         />
-                        <button onClick={onCancelSearch}>cancelar</button>
+                        <button onClick={onCancelSearch}>x</button>
                     </div>
                 </form>
             </div>

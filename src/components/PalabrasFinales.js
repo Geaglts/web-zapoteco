@@ -2,6 +2,8 @@ import styles from "./PalabrasFinales.module.css";
 import logo from "../assets/img2.jpg";
 import { useHistory } from "react-router-dom";
 import { gql, useQuery } from "@apollo/react-hooks";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
 
 function PalabrasFinales() {
     const history = useHistory();
@@ -29,6 +31,19 @@ function PalabrasFinales() {
                     </button>
                 </div>
                 <div className={styles.contenedor}>
+                    <div className={styles.buscadorContainer}>
+                        <div className={styles.contForm}>
+                            <form>
+                                <div className={styles.contInput}>
+                                    <input
+                                        type="text"
+                                        placeholder="Buscar palabra"
+                                    />
+                                    <button><FontAwesomeIcon icon={faSearch} /></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     <div className={styles.contCard}>
                         {words.map((word, index) => {
                             return (

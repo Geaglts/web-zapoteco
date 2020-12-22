@@ -112,11 +112,11 @@ const LlenarTarjeta = ({ row, refetch }) => {
                     </div>
                 </div>
                 <div className={styles.traducciones}>
-                    <h2>traducciones</h2>
+                    <h1>traducciones</h1>
                     {<LlenarTraducciones row={row.traducciones} />}
                 </div>
                 <div className={styles.ejemplo}>
-                    <h2>ejemplo</h2>
+                    <h1>ejemplo</h1>
                     <div className={styles.contInfo}>
                         <div className={styles.contTxt}>
                             <h2>español</h2>

@@ -119,3 +119,33 @@
     color: var(--terciario);
     border: 1px solid var(--terciario);
 }
+
+
+@media screen and (max-width: 1000px) {
+    .container .header{
+        padding: 1rem;
+    }
+
+    .container .header .contMenu a {
+        font-size: .8rem;
+    }
+
+    .container .header .contBtn button {
+        font-size: .6rem;
+    }
+
+    .container .setInicio  h1{
+        font-size: 4rem;
+    }
+
+    .container .setInicio p {
+        color: var(--terciario);
+        font-size: .8rem;
+        margin-top: 1rem;
+        font-weight: normal;
+    }
+    
+    .container .setInicio button {
+        font-size: .8rem;
+    }
+}

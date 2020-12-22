@@ -17,8 +17,12 @@
     height: 70%;
     /* box-shadow: 0 0 10px 0 #000000;
     border-radius: .5rem; */
+    /* display: grid;
+    grid-template-columns: repeat(2, 1fr); */
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-template-areas: "contForm contText";
 }
 
 .addPalabra .container .contForm {
@@ -27,6 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    grid-area: contForm;
 }
 
 .addPalabra .container .contForm .form {
@@ -38,7 +43,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    animation: mostrar .5s forwards;
+    animation: mostrar 0.5s forwards;
 }
 
 @keyframes mostrar {
@@ -164,6 +169,7 @@ select::-ms-expand {
     height: 100%;
     display: flex;
     align-items: center;
+    grid-area: contText;
 }
 
 .addPalabra .container .contText h1 {
@@ -187,7 +193,7 @@ select::-ms-expand {
 .addPalabra .container .contText button {
     margin-top: 3rem;
     background: transparent;
-    border: .1rem solid var(--terciario);
+    border: 0.1rem solid var(--terciario);
     text-transform: capitalize;
     padding: 0;
     width: 15rem;
@@ -195,7 +201,7 @@ select::-ms-expand {
 }
 
 .addPalabra .container .contText button:hover {
-    border: .1rem solid var(--primario);
+    border: 0.1rem solid var(--primario);
 }
 
 .accion {
@@ -234,4 +240,52 @@ select::-ms-expand {
 .btnAceptar {
     background: #000;
     color: var(--primario);
+}
+
+@media screen and (max-width: 1024px) {
+    .addPalabra {
+        background: #000;
+        height: 150vh;
+    }
+    .addPalabra .container {
+        width: 100%;
+        height: 150vh;
+
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas:
+            "contText"
+            "contForm"
+            "contForm";
+    }
+
+    .addPalabra .container .contText {
+        grid-area: contText;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .addPalabra .container .contText .text h1 {
+        font-size: 1rem;
+    }
+
+    .addPalabra .container .contText h2 {
+        font-size: 3.5rem;
+    }
+    
+    .addPalabra .container .contText p {
+        font-size: .8rem;
+    }
+
+    .addPalabra .container .contForm {
+        grid-area: contForm;
+    }
+
+    .addPalabra .container .contForm .form {
+        width: 100%;
+        height: 100%;
+    }
 }

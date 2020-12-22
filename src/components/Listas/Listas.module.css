@@ -232,3 +232,27 @@ input::-ms-input-placeholder {
     background: transparent;
     border: .1rem solid var(--secundario);
 }
+
+@media screen and (max-width: 1024px) {
+    .content .header {
+        padding: 0 5%;
+    }
+
+    .content .header h1 {
+        font-size: 1rem;
+    }
+
+    .content .header button {
+        font-size: .8rem;
+    }
+
+    .content .container .contForm form {
+        width: 90%;
+    }
+
+    .content .container .contTipos .contCard .cards {
+        width: 90%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
