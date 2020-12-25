@@ -189,7 +189,9 @@
     /* font-size: 1rem; */
     color: var(--secundario);
     background: transparent;
-    border-radius: 0;
+    border-radius: 0.5rem;
+    border: none;
+    position: relative;
 }
 .content .container .contButtons .buttons button h1 {
     color: var(--secundario);
@@ -209,6 +211,30 @@
     border: none;
     box-shadow: 0 0 10px 0 var(--secundario);
     border-radius: 0.5rem;
+}
+
+.content .container .contButtons .buttons button .ocultarNot {
+    background: var(--secundario);
+    display: none;
+}
+
+.content .container .contButtons .buttons button .mostrarNot {
+    background: var(--primario);
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 50%;
+    top: 10%;
+    right: 20%;
+}
+
+.content .container .contButtons .buttons button .mostrarNot span {
+    font-size: .65rem;
+    color: var(--secundario);
 }
 
 .contentUser {

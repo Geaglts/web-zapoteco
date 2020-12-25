@@ -5,9 +5,17 @@ import { NavLink, Redirect } from "react-router-dom";
 import { Link } from "react-scroll";
 import classnames from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import {
+    faEnvelope,
+    faMapMarkedAlt,
+    faPhone,
+    faSearch,
+} from "@fortawesome/free-solid-svg-icons";
 import { gql, useQuery, useMutation } from "@apollo/react-hooks";
 import Combo from "./FormPalabraPendiente/Combo";
+import facebook from "../assets/Facebook.png";
+import twitter from "../assets/Twitter.png";
+import instagram from "../assets/Instagram.png";
 
 const initialState = {
     texto: "",
@@ -95,7 +103,7 @@ function Principal() {
                         offset={0}
                         duration={700}
                     >
-                        Servicios
+                        Trabajos
                     </Link>
                     <Link
                         activeClass="active"
@@ -213,16 +221,75 @@ function Principal() {
             </section>
             <section id={"idContacto"} className={styles.setContacto}>
                 <div className={styles.contenedor}>
-                    <h1 className={styles.titulo}>
-                        Consultar <span>Dicionario</span>{" "}
+                    {/* <h1 className={styles.titulo}>
+                        Contactanos <span>Aquí</span>{" "}
                     </h1>
                     <p className={styles.descripcion}>
                         Si su busqueda no es exitosa contribuya con nosotros
                         para mejorar
-                    </p>
-                    <div className={styles.cardWrapper}></div>
+                    </p> */}
+                    <div className={styles.cardWrapper}>
+                        <div className={styles.card}>
+                            <span>
+                                <FontAwesomeIcon icon={faPhone} />
+                            </span>
+                            <h1>Llamanos</h1>
+                            <h6>971 154 0996</h6>
+                        </div>
+                        <div className={styles.card}>
+                            <span>
+                                <FontAwesomeIcon icon={faEnvelope} />
+                            </span>
+                            <h1>Envia un correo</h1>
+                            <h6>support@cinere.com</h6>
+                        </div>
+                        <div className={styles.card}>
+                            <span>
+                                <FontAwesomeIcon icon={faMapMarkedAlt} />
+                            </span>
+                            <h1>Visitanos</h1>
+                            <h6>Juchitan de Zaragoza Oaxaca</h6>
+                        </div>
+                    </div>
+                    <form
+                        className={styles.formContact}
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                        }}
+                    >
+                        <div className={styles.inputWrap}>
+                            <input type="text" placeholder="Nombre *" />
+                            <input type="text" placeholder="Correo *" />
+                            <input
+                                className={styles.inputAsunto}
+                                type="text"
+                                placeholder="Asunto"
+                            />
+                            <input
+                                className={styles.inputMensaje}
+                                type="text"
+                                placeholder="Escribir mensaje..."
+                            />
+                        </div>
+                        <div className={styles.btnWrapper}>
+                            <button>Enviar mensaje</button>
+                        </div>
+                    </form>
                 </div>
             </section>
+            <footer>
+                <div className={styles.footer}>
+                    <div className={styles.footerSocial}>
+                        <button><img src={facebook} alt="Facebook" /></button>
+                        <button><img src={twitter} alt="Twitter" /></button>
+                        <button><img src={instagram} alt="Instagram" /></button>
+                    </div>
+                    <p>
+                        Copyright 2020 &copy; Cinere. Todos los derechos
+                        reservados.
+                    </p>
+                </div>
+            </footer>
         </div>
     );
 }

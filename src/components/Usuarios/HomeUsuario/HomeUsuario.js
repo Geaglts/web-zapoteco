@@ -2,11 +2,20 @@ import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { deleteAdmin, deleteToken } from "../../../token";
 import fondo from "../../../assets/img2.jpg";
-
+import { gql, useQuery } from "@apollo/react-hooks";
 import styles from "./HomeUsuario.module.css";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBook, faBookReader, faBookMedical, faHandshake, faSpellCheck, faClipboardList, faUsers, faFont } from "@fortawesome/free-solid-svg-icons";
+import {
+    faBook,
+    faBookReader,
+    faBookMedical,
+    faHandshake,
+    faSpellCheck,
+    faClipboardList,
+    faUsers,
+    faFont,
+} from "@fortawesome/free-solid-svg-icons";
 import hasRoles from "../../../utils/hasRoles";
 
 export default function HomeUsuario({ ncontrol, ...rest }) {
@@ -124,11 +133,27 @@ const ShowMenu = ({ roles = [], admin }) => {
         }
     };
 
-    const Boton = ({ label, callback, condition, icon }) => {
+    let queryPendingWords = GraphqlOp.query.GET_PENDING_WORDS;
+    const { loading, data, refetch } = useQuery(queryPendingWords, {
+        fetchPolicy: "no-cache",
+    });
+
+    const [count, setCount] = useState(0);
+
+    const Boton = ({ label, callback, condition, icon, notificar, notSpan }) => {
         return condition ? (
             <button onClick={callback}>
                 <span>{icon}</span>
                 <h1>{label}</h1>
+                <div
+                    className={
+                        notificar
+                            ? styles.mostrarNot
+                            : styles.ocultarNot
+                    }
+                >
+                    <span> {notSpan} </span>
+                </div>
             </button>
         ) : null;
     };
@@ -139,24 +164,28 @@ const ShowMenu = ({ roles = [], admin }) => {
                 label="Nueva Palabra"
                 callback={redirect(1)}
                 condition={esCapturador}
+                notificar={false}
                 icon={<FontAwesomeIcon icon={faBookMedical} />}
             />
             <Boton
                 label="mis palabras"
                 callback={redirect(8)}
                 condition={esCapturador}
+                notificar={false}
                 icon={<FontAwesomeIcon icon={faFont} />}
             />
             <Boton
                 label="participar"
                 callback={redirect(2)}
                 condition={esVisitante}
+                notificar={false}
                 icon={<FontAwesomeIcon icon={faHandshake} />}
             />
             <Boton
                 label="revisar palabras"
                 callback={redirect(3)}
                 condition={esExperto}
+                notificar={false}
                 icon={<FontAwesomeIcon icon={faBookReader} />}
             />
             <Boton
@@ -164,25 +193,61 @@ const ShowMenu = ({ roles = [], admin }) => {
                 callback={redirect(4)}
                 condition={esVerificador}
                 icon={<FontAwesomeIcon icon={faSpellCheck} />}
+                notificar={true}
+                notSpan={data?.getPendingWords.length}
             />
             <Boton
                 label="modificar roles"
                 callback={redirect(5)}
                 condition={esCoordinador}
+                notificar={false}
                 icon={<FontAwesomeIcon icon={faBook} />}
             />
             <Boton
                 label="listas"
                 callback={redirect(6)}
                 condition={admin}
+                notificar={false}
                 icon={<FontAwesomeIcon icon={faClipboardList} />}
             />
             <Boton
                 label="Participantes"
                 callback={redirect(7)}
                 condition={esDocente}
+                notificar={false}
                 icon={<FontAwesomeIcon icon={faUsers} />}
             />
         </>
     );
+};
+
+const GraphqlOp = {
+    query: {
+        GET_PENDING_WORDS: gql`
+            {
+                getPendingWords {
+                    id
+                    texto
+                    fonetica
+                    tipo
+                    traducciones
+                    usuarioid
+                    categoria
+                    base {
+                        id
+                        base_esp
+                        base_zap
+                    }
+                    contextos {
+                        id
+                        contexto
+                    }
+                    example {
+                        ejemplo_esp
+                        ejemplo_zap
+                    }
+                }
+            }
+        `,
+    },
 };
